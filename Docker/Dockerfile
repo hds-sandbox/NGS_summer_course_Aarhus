@@ -12,7 +12,6 @@ LABEL software="JupyterLab" \
 USER 0
 
 
-
 ## Install additional programs
 # RUN apt-get update \
 #  && apt-get install -y --no-install-recommends \
@@ -24,7 +23,11 @@ USER $NB_USER
 RUN conda install -c conda-forge scanpy==1.9.1 leidenalg=0.8.10 python-igraph==0.9.10\
  && conda clean --all -f -y \ 
  && fix-permissions "${CONDA_DIR}/share/jupyter/kernels/" \
- && fix-permissions "/home/${NB_USER}"
+ && fix-permissions "/home/${NB_USER}" \
+ && python -m ipykernel install --user --name scrna-python --display-name "Python (scRNA)"
+
+#RUN jupyter kernelspec uninstall python3
+
 
 
 ## Set startup script in the PATH
