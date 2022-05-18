@@ -31,8 +31,8 @@ RUN conda install -c conda-forge scanpy==1.9.1 leidenalg=0.8.10 python-igraph==0
 #COPY --chown=${NB_USER}:${NB_GID} start-jupyter ${CONDA_DIR}/bin/
 #RUN chmod +x ${CONDA_DIR}/bin/start-jupyter
 COPY --chown=${NB_USER}:${NB_GID} start-jupyter ${CONDA_DIR}/bin/
-RUN chmod +x ${CONDA_DIR}/bin/start-jupyter
+RUN sed -i -e 's/\r$//' ${CONDA_DIR}/bin/start-jupyter \
+ && chmod +x ${CONDA_DIR}/bin/start-jupyter
 
 WORKDIR /work
-
 
