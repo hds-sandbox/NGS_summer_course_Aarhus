@@ -21,48 +21,42 @@ do
 done
 
 
-#if [ -f "${PYTHON_DEPS}" ]
-#then
-
-
-
-    if [[ "${COURSE}" == "NGS Summer" ]]
+if [[ "${COURSE}" == "NGS Summer" ]]
+then
+    if [[ "${MATERIAL_FOLDER}" == "None" ]]
     then
-        if [[ "${MATERIAL_FOLDER}" == "None" ]]
-        then
 
-            printf  "\n===================================  "
-            printf  "\n Downloading Course Material  \n"
-            printf  "===================================  \n\n"
+        printf  "\n===================================  "
+        printf  "\n Downloading Course Material  \n"
+        printf  "===================================  \n\n"
 
-	        mkdir introduction_to_scrna_analysis
-	        cd introduction_to_scrna_analysis
-	        git init
-	        git remote add origin https://github.com/hds-sandbox/scRNASeq_course.git
-	        git config core.sparseCheckout true
-	        echo "Assignments/" >> .git/info/sparse-checkout
-	        echo "Environments/" >> .git/info/sparse-checkout
-	        echo "Notebooks/" >> .git/info/sparse-checkout
-	        echo "Scripts/" >> .git/info/sparse-checkout
-	        git pull --depth=1 origin main
-
-        else
-
-            printf  "\n===================================  "
-            printf  "\n Copying Chosen Course Material \n"
-            printf  "===================================  \n\n"
-            # cp -a ${COURSE_MATERIAL} .
-
-        fi
+        mkdir introduction_to_scrna_analysis
+        cd introduction_to_scrna_analysis
+        git init
+        git remote add origin https://github.com/hds-sandbox/scRNASeq_course.git
+        git config core.sparseCheckout true
+        echo "Assignments/" >> .git/info/sparse-checkout
+        echo "Environments/" >> .git/info/sparse-checkout
+        echo "Notebooks/" >> .git/info/sparse-checkout
+        echo "Scripts/" >> .git/info/sparse-checkout
+        git pull --depth=1 origin main
 
     else
 
-        echo "No Course"
-        echo ""
+        printf  "\n===================================  "
+        printf  "\n Copying Chosen Course Material \n"
+        printf  "===================================  \n\n"
+        cp -a ${COURSE_MATERIAL} .
 
     fi
 
-#fi
+else
+
+    echo "No Course"
+    echo ""
+
+fi
+
 
 #if [ -f "${BATCH_SCRIPT}" ]
 #then
