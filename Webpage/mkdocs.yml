@@ -1,0 +1,44 @@
+site_name: 'Example webpage'
+nav:
+- 'Course Introduction': index.md
+- 'Python':
+      - Setup and installation: python/installation.md
+      #- Read the data: python/Part01_read_the_data.ipynb
+      #- Preprocessing: python/Part02_filtering_sample2.ipynb
+      #- Normalize and integrate: python/Part03_normalize_and_integrate.ipynb
+      #- Clustering and Differential Expression: python/Part04_clustering.ipynb
+      #- Pseudotimes and Cell Fate: python/Part05_cell_fate.ipynb
+      #- Gene enrichment: python/Part06_Condition_analysis.ipynb
+      #- 'Extra':
+      #  - Preprocessing a sample': python/Part02_filtering_sample3.ipynb
+      #  - Preprocessing a low quality sample: python/Part02_filtering_sample1.ipynb
+- 'R':
+   - Data analysis: scRNAseq_Seurat.md
+docs_dir: develop
+site_dir: docs
+plugins:
+    - mkdocs-jupyter
+extra_css:
+    - extra.css
+extra_javascript:
+  - javascripts/embed-amd.js
+theme: 
+    name: material
+    favicon: img/sandbox1.png
+    logo: img/sandbox1.png
+    palette:
+      primary: grey
+      accent: cyan
+markdown_extensions:
+  - pymdownx.tabbed
+  - pymdownx.superfences
+  - admonition
+  - pymdownx.details
+  - attr_list
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+extra:
+  homepage: https://hds-sandbox.github.io/
