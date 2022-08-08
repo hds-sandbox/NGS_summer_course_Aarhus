@@ -134,3 +134,44 @@ def rename_clusters(names_dict, names_obs):
     split_array = [ i.split('.')[0] for i in cluster_array ]
     clusters = pd.Categorical(split_array)
     return clusters
+
+###function to plot variant density in VCF file analysis
+def plot_variant_density(variants, window_size, title=None):
+    
+    # setup windows 
+    bins = np.arange(0, variants['variants/POS'][:].max(), window_size)
+    x = (bins[1:] + bins[:-1])/2
+    
+    # compute variant density in each window
+    h, _ = np.histogram(variants['variants/POS'][:], bins=bins)
+    y = h / window_size
+    
+    # plot
+    fig, ax = plt.subplots(figsize=(11, 3))
+    sns.despine(ax=ax, offset=10)
+    ax.plot(x, y)
+    ax.set_xlabel('Contig position (bp)')
+    ax.set_ylabel('SNP density (bp$^{-1}$)')
+    if title:
+        ax.set_title(title)
+
+###function to plot parameters from the VCF files
+def plot_variant_hist(variants, f, colour="mediumblue", bins=50):
+    x = variants['variants/'+f][:]
+    fig, ax = plt.subplots(figsize=(9, 4))
+    sns.despine(ax=ax, offset=10)
+    ax.hist(x, bins=bins, color = colour)
+    ax.set_xlabel(f)
+    ax.set_ylabel('No. SNPs')
+    ax.set_title('Variant %s distribution' % f)
+
+###function to count het and hom positions in VCF file analysis
+def position_count(vcf_file):
+    pos_missing = allel.GenotypeChunkedArray(vcf_file['calldata/GT']).count_missing(axis=0)[:]
+    pos_het = allel.GenotypeChunkedArray(vcf_file['calldata/GT']).count_het(axis=0)[:]
+    pos_hom_ref = allel.GenotypeChunkedArray(vcf_file['calldata/GT']).count_hom_ref(axis=0)[:]
+    pos_hom_alt = allel.GenotypeChunkedArray(vcf_file['calldata/GT']).count_hom_alt(axis=0)[:]
+    print("Count missing positions:", int(pos_missing))
+    print("Count heterozygous positions:", pos_het)
+    print("Count homozygous reference positions:", pos_hom_ref)
+    print("Count homozygous alternate positions:", pos_hom_alt)
