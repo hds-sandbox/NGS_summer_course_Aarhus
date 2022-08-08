@@ -36,6 +36,7 @@ dependencies:
   - bioconductor-mixomics==6.17.26
   - bioconductor-edger==3.36
   - vcftools==0.1.16
+  - pip==18.1
   - pip:
     - batchglm==0.7.4
     - bbknn==1.5.1
