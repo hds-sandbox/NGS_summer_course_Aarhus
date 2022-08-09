@@ -20,23 +20,20 @@ RUN mkdir -p /usr/Material
 
 USER $NB_USER
 
-COPY --chown=${NB_USER}:${NB_GID} ../Notebooks /usr/Material/Notebooks
-COPY --chown=${NB_USER}:${NB_GID} ../Environments /usr/Material/Environments
-COPY ../Notebooks /usr/Material/Notebooks
-COPY ../Environments /usr/Material/Environments
+COPY --chown=${NB_USER}:${NB_GID} ./Notebooks /usr/Material/Notebooks
+COPY --chown=${NB_USER}:${NB_GID} ./Environments /usr/Material/Environments
+COPY ./Notebooks /usr/Material/Notebooks
+COPY ./Environments /usr/Material/Environments
 RUN ln -s /usr/Material ./Course_Material
 
+
 RUN conda install mamba
-RUN conda  config --add channels bioconda 
-RUN conda  config --add channels grst
-RUN conda  config --add channels defaults
-RUN conda  config --add channels anaconda
-RUN conda  config --add channels conda-forge
-RUN mamba install -n base conda-libmamba-solver
-RUN conda env create -f /usr/Material/Environments/environment.yml -p /usr/Material/NGS_course_aarhus --experimental-solver=libmamba --dry-run install
-#RUN mamba env create -vv -f /usr/Material/Environments/environment.yml -p /usr/Material/NGS_course_aarhus
+RUN mamba env create -f /usr/Material/Environments/environment.yml -p /usr/Material/NGS_course_aarhus
+
 RUN fix-permissions "${CONDA_DIR}/share/jupyter/kernels/" \
     && fix-permissions "/home/${NB_USER}"
+
+
 
 #RUN ln -s /usr/Material /work/Course_Material
 
