@@ -32,7 +32,9 @@ RUN conda  config --add channels grst
 RUN conda  config --add channels defaults
 RUN conda  config --add channels anaconda
 RUN conda  config --add channels conda-forge
-RUN mamba env create -vv -f /usr/Material/Environments/environment.yml -p /usr/Material/NGS_course_aarhus
+RUN mamba install -n base conda-libmamba-solver
+RUN conda env create -f /usr/Material/Environments/environment.yml -p /usr/Material/NGS_course_aarhus --experimental-solver=libmamba --dry-run install
+#RUN mamba env create -vv -f /usr/Material/Environments/environment.yml -p /usr/Material/NGS_course_aarhus
 RUN fix-permissions "${CONDA_DIR}/share/jupyter/kernels/" \
     && fix-permissions "/home/${NB_USER}"
 

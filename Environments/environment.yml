@@ -52,7 +52,6 @@ dependencies:
     - charset-normalizer==2.0.12
     - colorama==0.4.4
     - idna==3.3
-    - pip==22.1.2
     - pycparser==2.21
     - pyopenssl==22.0.0
     - requests==2.27.1
