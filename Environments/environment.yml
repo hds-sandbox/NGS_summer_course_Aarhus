@@ -1,12 +1,13 @@
 name: NGS_Aarhus
-channels:
+  - conda-forge
   - plotly
-  - grst
   - defaults
   - bioconda
   - anaconda
-  - conda-forge
+  - grst
 dependencies:
+  - bioconductor-edger==3.36
+  - gsl
   - scanpy
   - python-igraph
   - leidenalg
@@ -21,12 +22,12 @@ dependencies:
   - star==2.7.10a
   - bcftools
   - scikit-allel
-  - fastqc
+  - bioconda::fastqc
   - multiqc
   - qualimap
   - minimap2
   - samtools
-  - r-base==4.1.3
+  - r-base==4.1.2
   - r-dplyr
   - r-vcfr
   - r-formattable
@@ -34,8 +35,8 @@ dependencies:
   - r-irkernel
   - r-pheatmap
   - bioconductor-mixomics
-  - bioconductor-edger
   - vcftools
+  - gffread
   - pip
   - pip:
     - batchglm==0.7.4

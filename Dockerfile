@@ -1,4 +1,5 @@
-FROM jupyter/minimal-notebook:latest
+FROM dreg.cloud.sdu.dk/ucloud-apps/jupyter-base:3.4.2 
+#jupyter/minimal-notebook:latest
 
 MAINTAINER "Samuele Soraggi <samuele@birc.au.dk>"
 
@@ -13,19 +14,24 @@ USER 0
 
 RUN mkdir -p /usr/Material 
 
-COPY --chown=${NB_USER}:${NB_GID} ./Notebooks /usr/Material/Notebooks
-COPY --chown=${NB_USER}:${NB_GID} ./Environments /usr/Material/Environments
-COPY --chown=${NB_USER}:${NB_GID} ./Scripts /usr/Material/Scripts
 COPY ./Notebooks /usr/Material/Notebooks
 COPY ./Environments /usr/Material/Environments
-RUN ln -s /usr/Material ./Course_Material
+COPY ./Scripts /usr/Material/Scripts
 
+RUN mkdir -p /usr/Material/Data && \
+    curl https://zenodo.org/record/6952995/files/clover.tar.gz?download=1 -o /usr/Material/Data/Clover_Data.tar.gz && \
+    tar -zxvf /usr/Material/Data/Clover_Data.tar.gz -C /usr/Material/Data/ && \
+    curl https://zenodo.org/record/6952995/files/singlecell.tar.gz?download=1 -o /usr/Material/Data/scrna_Data.tar.gz && \
+    tar -zxvf /usr/Material/Data/scrna_Data.tar.gz -C /usr/Material/Data/ && \
+    rm -f /usr/Material/Data/*.tar.gz
+RUN ln -s /usr/Material ./Course_Material
 RUN eval "$(mamba shell.bash hook)"
-RUN conda config --add channels bioconda
-RUN conda config --add channels plotly
-RUN conda config --add channels grst
-RUN conda config --add channels anaconda
-RUN conda config --add channels conda-forge
+#RUN conda update -y conda mamba
+#RUN conda config --add channels bioconda
+#RUN conda config --add channels plotly
+#RUN conda config --add channels grst
+#RUN conda config --add channels anaconda
+#RUN conda config --add channels conda-forge
 
 RUN fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/home/${NB_USER}"
@@ -42,4 +48,5 @@ RUN echo "c.MappingKernelManager.default_kernel_name='NGS_python'" >> ~/.jupyter
     jupyter kernelspec uninstall -y python3
 
 RUN fix-permissions "/usr/Material"
-RUN cp ./Course_Material/Environments/kernel_py.json ~/.local/share/jupyter/kernels/ngs_python/kernel.json
+RUN cp ./Course_Material/Environments/kernel_py.json ~/.local/share/jupyter/kernels/ngs_python/kernel.json && \
+    cp ./Course_Material/Environments/kernel_R.json ~/.local/share/jupyter/kernels/ngs_r/kernel.json

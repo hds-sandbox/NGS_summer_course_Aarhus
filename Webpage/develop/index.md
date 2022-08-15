@@ -40,16 +40,19 @@ rm -rf ~/miniconda3/miniconda.sh
 ~/miniconda3/bin/conda init zsh
 ```
 
-For the Mac and Windows platforms you can download installers at this address: [https://docs.conda.io/en/latest/miniconda.html](https://docs.conda.io/en/latest/miniconda.html).
+For the Mac platforms you can download installers at this address: [https://docs.conda.io/en/latest/miniconda.html](https://docs.conda.io/en/latest/miniconda.html).
+Windows platform do not support some of the packages used in this course, so you need to either access `uCloud` or use the `Docker` container as explained in the next section.
 
 Follow then these instructions:
 
 * clone the github repository at this address `https://github.com/hds-sandbox/NGS_summer_course_Aarhus` either using the [Github desktop app](https://desktop.github.com/) or with the Linux/Mac command line instructions
 `git clone -b main https://github.com/hds-sandbox/NGS_summer_course_Aarhus.git NGS_summer_course`
 
-* create the conda environment for the course from your terminal. This might take some time:
-  
-  `conda env create --file NGS_summer_course/Environments/environment.yml -n NGS_summer_course`
+* Use the terminal to go into the course folder and run the setup script:
+  ```
+  cd NGS_summer_course
+  sh ./Scripts/courseSetup.sh
+  ```
 
 * install and configure `jupyterlab`
  
