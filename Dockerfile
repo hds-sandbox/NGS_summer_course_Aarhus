@@ -1,4 +1,4 @@
-FROM dreg.cloud.sdu.dk/ucloud-apps/jupyter-base:3.4.2 
+FROM dreg.cloud.sdu.dk/ucloud-apps/jupyter-all-spark:3.4.2
 #jupyter/minimal-notebook:latest
 
 MAINTAINER "Samuele Soraggi <samuele@birc.au.dk>"

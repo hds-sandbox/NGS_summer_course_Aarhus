@@ -4,7 +4,7 @@ nav:
 - 'Alignment of raw data': nb/align.ipynb
 - 'Variant calling analysis': nb/vcf.ipynb
 - 'Bulk RNA data analysis': nb/rna.ipynb
-- 'Single cell data analysis': nb/scrna.ipynb
+- 'Single cell data analysis': nb/scrna.html
 docs_dir: develop
 site_dir: docs
 plugins:
