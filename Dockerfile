@@ -34,19 +34,17 @@ RUN fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/usr/Material"
 
 #create environments
-RUN mamba env create -p "${CONDA_DIR}/envs/NGS_aarhus" -f ./Course_Material/Environments/environment.yml && \
+RUN mamba env create -p "${CONDA_DIR}/envs/NGS_aarhus_py" -f ./Course_Material/Environments/python_environment.yml && \
+    mamba env create -p "${CONDA_DIR}/envs/NGS_aarhus_r" -f ./Course_Material/Environments/R_environment.yml && \
     mamba clean --all -f -y
 
 #install kernels
-RUN "${CONDA_DIR}/envs/NGS_aarhus/bin/python" -m ipykernel install --user --name="NGS_python" --display-name "NGS (python)" && \
-    /opt/conda/envs/NGS_aarhus/bin/R -e "IRkernel::installspec(user=TRUE, name = 'NGS_R', displayname = 'NGS (R)')" && \
+RUN "${CONDA_DIR}/envs/NGS_aarhus_py/bin/python" -m ipykernel install --user --name="NGS_python" --display-name "NGS (python)" && \
+    /opt/conda/envs/NGS_aarhus_r/bin/R -e "IRkernel::installspec(user=TRUE, name = 'NGS_R', displayname = 'NGS (R)')" && \
     fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/home/${NB_USER}"
 
-#define default kernel
-RUN echo "c.MappingKernelManager.default_kernel_name='NGS_python'" >> ~/.jupyter/jupyter_notebook_config.py && \
-    jupyter kernelspec uninstall -y python3
 
 ### modify kernel files with system variables
-RUN cp ./Course_Material/Environments/kernel_py.json ~/.local/share/jupyter/kernels/ngs_python/kernel.json && \
-    cp ./Course_Material/Environments/kernel_R.json ~/.local/share/jupyter/kernels/ngs_r/kernel.json
+RUN cp ./Course_Material/Environments/kernel_py_docker.json ~/.local/share/jupyter/kernels/ngs_python/kernel.json && \
+    cp ./Course_Material/Environments/kernel_R_docker.json ~/.local/share/jupyter/kernels/ngs_r/kernel.json

@@ -1,6 +1,6 @@
 {
     "argv": [
-     "/opt/conda/envs/NGS_aarhus/bin/python",
+     "/opt/conda/envs/NGS_aarhus_py/bin/python",
      "-m",
      "ipykernel_launcher",
      "-f",
@@ -12,6 +12,6 @@
      "debugger": true
     },
     "env": {
-     "PATH": "${CONDA_PREFIX}/envs/NGS_aarhus/lib/:${CONDA_PREFIX}/envs/NGS_aarhus/bin/:${CONDA_PREFIX}/envs/NGS_aarhus/libexec/:$PATH"
+        "PATH": "/opt/conda/envs/NGS_aarhus_py/lib/:/opt/conda/envs/NGS_aarhus_py/bin/:/opt/conda/envs/NGS_aarhus_py/libexec/:$PATH"
     }
 }

@@ -1,0 +1,8 @@
+{
+    "argv": ["/opt/conda/envs/NGS_aarhus_r/lib/R/bin/R", "--slave", "-e", "IRkernel::main()", "--args", "{connection_file}"],
+    "display_name": "NGS (R)",
+    "language": "R",
+    "env": {
+        "PATH": "/opt/conda/envs/NGS_aarhus_r/lib/:/opt/conda/envs/NGS_aarhus_r/bin/:/opt/conda/envs/NGS_aarhus_r/libexec/:$PATH"
+    }
+}

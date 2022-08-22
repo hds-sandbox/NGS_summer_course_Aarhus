@@ -3,6 +3,6 @@
     "display_name": "NGS (R)",
     "language": "R",
     "env": {
-        "PATH": "/opt/conda/envs/NGS_aarhus/lib/:/opt/conda/envs/NGS_aarhus/bin/:/opt/conda/envs/NGS_aarhus/nextflow/:/opt/conda/envs/NGS_aarhus/libexec/:$PATH"
+        "PATH": "${CONDA_PREFIX}/envs/NGS_aarhus/lib/:${CONDA_PREFIX}/envs/NGS_aarhus/bin/:${CONDA_PREFIX}/envs/NGS_aarhus/libexec/:$PATH"
        }
   }
