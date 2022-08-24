@@ -1,10 +1,13 @@
-site_name: 'Example webpage'
+site_name: 'Introduction to NGS data'
 nav:
 - 'Course Introduction': index.md
-- 'Alignment of raw data': nb/align.ipynb
-- 'Variant calling analysis': nb/vcf.ipynb
-- 'Bulk RNA data analysis': nb/rna.ipynb
-- 'Single cell data analysis': nb/scrna.html
+- 'Course exercises':
+  - 'Alignment of raw data': 
+    - 'Galaxy web tool': galaxy.md
+    - 'jupyter notebook': nb/align.html
+  - 'Variant calling analysis': nb/vcf.html
+  - 'Bulk RNA data analysis': nb/bulk.html
+  - 'Single cell data analysis': nb/scrna.html
 docs_dir: develop
 site_dir: docs
 plugins:
@@ -30,6 +33,3 @@ markdown_extensions:
       generic: true
   - pymdownx.tasklist:
       custom_checkbox: true
-
-extra:
-  homepage: https://hds-sandbox.github.io/
