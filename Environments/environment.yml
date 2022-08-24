@@ -38,6 +38,7 @@ dependencies:
   - vcftools
   - gffread
   - pip
+  - jupyterlab
   - pip:
     - batchglm==0.7.4
     - bbknn==1.5.1
