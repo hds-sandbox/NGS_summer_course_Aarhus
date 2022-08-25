@@ -289,6 +289,13 @@ dependencies:
   - zlib=1.2.11=h166bdaf_1014
   - zstd=1.5.2=h8a70e8d_1
   - gffread
+  - bcftools
+  - scikit-allel
+  - bioconda::fastqc
+  - multiqc
+  - qualimap
+  - minimap2
+  - samtools=2.7.0a
   - pip:
     - batchglm==0.7.4
     - bbknn==1.5.1
