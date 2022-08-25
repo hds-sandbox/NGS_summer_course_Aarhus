@@ -62,4 +62,4 @@ Here you find a table with the instructor's slides and a link to the compiled no
 | RNA sequencing  | [link](https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/05_rna_sequencing.pdf)  | [Notebook](./nb/bulk.html) |
 | De-novo assembly  | [link](https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/06_de_novo_assembly.pdf)  | -- |
 | Microbiomes and metagenomics  | [link](https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/07_microbiomes_and_metagenomics.pdf)  | -- |
-| Single cell RNA sequencing | [link](https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/08_single_cell_day.pdf)  | [Notebook](./nb/scrna.html) |
+| Single cell RNA sequencing | [link](https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/08_single_cell_day.pdf)  | [Notebook](./nb/scrna.html) | 
