@@ -11,5 +11,5 @@ jobs:
     - name: copy file
       uses: canastro/copy-file-action@master
       with:
-        source: "Webpage/develop.index.md"
+        source: "Webpage/develop/index.md"
         target: "README.md"
