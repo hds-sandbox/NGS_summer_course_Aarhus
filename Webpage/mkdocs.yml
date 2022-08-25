@@ -1,10 +1,9 @@
 site_name: 'Introduction to NGS data'
 nav:
 - 'Course Introduction': index.md
+- 'Instructions': instructions.md
 - 'Course exercises':
-  - 'Alignment of raw data': 
-    - 'Galaxy web tool': galaxy.md
-    - 'jupyter notebook': nb/align.html
+  - 'Alignment of raw data': nb/align.html
   - 'Variant calling analysis': nb/vcf.html
   - 'Bulk RNA data analysis': nb/bulk.html
   - 'Single cell data analysis': nb/scrna.html
