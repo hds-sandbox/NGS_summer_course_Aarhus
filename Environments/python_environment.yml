@@ -295,7 +295,7 @@ dependencies:
   - multiqc
   - qualimap
   - minimap2
-  - samtools=2.7.0a
+  - samtools
   - pip:
     - batchglm==0.7.4
     - bbknn==1.5.1
