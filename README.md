@@ -1,74 +1,65 @@
 # Introduction to Next Generation Sequencing data
 **A course of the danish healt data science sandbox**
 
-This course is based on the material developed for the NGS summer school at Aarhus University. The material is organized in four separated jupyter notebooks in both `python` and `R` where you will benefit of an interactive coding setup. You will find this same instruction page, together with the course material, at the [course webpage!!!!](!!!!).
+This course is based on the material developed for the NGS summer school at Aarhus University. The material is organized in four separated jupyter notebooks in both `bash`, `python` and `R` where you will benefit of an interactive coding setup. 
 
----------------------
+If you use any of this material for your research, please cite this course with the DOI below, and acknowledge the Health Data Science Sandbox project of the Novo Nordisk Foundation (grant number NNF20OC0063268). It is of great help to support the project.
+[![DOI](https://zenodo.org/badge/468293635.svg)](https://zenodo.org/badge/latestdoi/468293635)
 
-## How to run the course material
 
-You have various options to run the course material. You can execute it on your own computer, or alternatively you can access to other resources.
+## Course description
 
-### Access the material on uCloud
+After the course, you will have knowledge of bioinformatics methods for analyzing genomes using `NGS` data, including knowledge of the existing types of genome data, how the different types of data can be displayed and analyzed, the current methods for genome assembly and analysis, their accuracy and how they can be used. The course will enable you to devise and run a project that makes use of NGS data.
 
-`Ucloud` is an interactive online platform that allows users to execute softwares and execute their own computer code. If you are enrolled in a danish university or hospital, you can access the platform for free and try the course.
+----------------------
 
-Please follow these instructions to access uCloud and get access to the course:
+### Prerequisites
 
-* To access uCloud for the first time, go to the ucloud webpage and log in pressing the green button and writing your credentials.
-
-* If you are from a mail address from a danish institution or university, you should be able to login with your institutional credentials.
-
-* Once you log into uCloud, you should see a dashboard window similar to the one below
-  ![](./img/ucloud_dashboard.png)
-
-* On top of this page you have `My Workspace`. That is your private space where you have some free hundreds of CPU hours and GBs of memory to run different applications (that you can see by using the menu `Apps` on the left). 
- 
-* Click on `Apps` and find the application called `Genomics Courses`. Here choose the course `Introduction to NGS data`, and use the other options to choose how many resources you want to use (we suggest at least 8 vCPUs)
-
-### Use the github repository
-
-If you use the material from our `github` repository, it will run locally on the computer you are using. You might not have anough resources to do that if you have less than `4GB` of RAM: the single cell data analysis requires quite some memory usage, but the notebooks show a subsampling solution to solve that problem.
-Before using the course, you need to install the `conda` package manager. If you are using the command line on `Linux`, you need to run
-
-```
-mkdir -p ~/miniconda3
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh
-bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
-rm -rf ~/miniconda3/miniconda.sh
-~/miniconda3/bin/conda init bash
-~/miniconda3/bin/conda init zsh
-```
-
-For the Mac and Windows platforms you can download installers at this address: [https://docs.conda.io/en/latest/miniconda.html](https://docs.conda.io/en/latest/miniconda.html).
-
-Follow then these instructions:
-
-* clone the github repository at this address `https://github.com/hds-sandbox/NGS_summer_course_Aarhus` either using the [Github desktop app](https://desktop.github.com/) or with the Linux/Mac command line instructions
-`git clone -b main https://github.com/hds-sandbox/NGS_summer_course_Aarhus.git NGS_summer_course`
-
-* create the conda environment for the course from your terminal. This might take some time:
+This is an introductory course that needs a basic understanding of the biology behind sequencing, and not necessarily programming experience.
   
-  `conda env create --file NGS_summer_course/Environments/environment.yml -n NGS_summer_course`
+### Learning Outcomes
 
-* install and configure `jupyterlab`
- 
-  ```
-  conda activate NGS_summer_course
-  conda install jupyterlab
-  ${CONDA_DIR}/envs/NGS_summer_course/bin/python" -m ipykernel install --user --name="NGS_python" --display-name "NGS (python)"
-  /opt/conda/envs/NGS_summer_course/bin/R -e "IRkernel::installspec(user=TRUE, name = 'NGS_R', displayname = 'NGS (R)')"
-  ```
+- Describe key challenges in the analysis of NGS data
+- Explain the theoretical foundation for methods that use NGS for assembly and analysis of genomes
+- Discuss the bioinformatic methods for genome analysis and hypothesize what drives the outcome of the methods
+- Discuss original literature within the subjects and relate the discussed topics to analysis scenarios
+- Apply bioinformatics tools within the selected application areas and reflect on the results, formulating your own conclusion in the proposed tasks
 
-* when you are done with these steps, launch jupyterlab. You will be able to run the notebooks in the Folder `NGS_summer_course/Notebooks`.
 
-### Use the `Docker` container for the course
+### Supporting material
 
-With `Docker`, you can create containers that will work in the same way on all the machines. We created a container for the course that already contains packages and course material installed. You need to download `Docker Desktop` [at this link](https://www.docker.com/products/docker-desktop/).
+- jupyter notebooks for interactive coding
+- lecture slides from the instructor
 
-* When `Docker Desktop` is installed, you can use the command line to retrieve the container from the web:
-`docker pull samuelesoraggi/ngs-summer-aarhus:2022.08.01`
+You can find the links to the material in [the table at the bottom of this page](#course-material).
 
-* You can now execute the container. You will see a web address in the output: you need to copy that into your web browser to see `jupyterlab`.
+### Course duration
 
-`docker run --rm -it -p 8888:8888 samuelesoraggi/ngs-summer-aarhus:2022.08.01`
+This course was originally one-week long.
+
+### Course authors
+
+Heads of the course: Mikkel H. Schierup, Stig U. Andersen.
+
+Exercise responsibles: Lavinia I. Fechete, Jilong Ma, Samuele Soraggi.
+
+Contact: Samuele Soraggi (samuele at birc.au.dk).
+
+-----------------------------
+
+
+
+## Course material
+
+Here you find a table with the instructor's slides and a link to the compiled notebooks, that you can also run on your own following the [instructions](./instructions.md). Data alignment can also be performed on the `Galaxy` interactive webpage (see the manual in the table).
+
+| Topic  | Slide | Notebook |
+| ------------- | ------------- | ------------- |
+| Sequencing technologies  | [link](https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/01_sequencing_technologies.pdf)  | -- |
+| Mapping to reference  | [link](https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/02_mapping_to_reference.pdf)  | [Notebook](./nb/align.html) or [Galaxy guide](https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/galaxy_manual_2022.pdf) |
+| Data visualization  | [link](https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/03_data_visualization.pdf)  | -- |
+| SNPs and structural variants  | [link](https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/04_snp_and_structural_variants.pdf)  | [Notebook](./nb/vcf.html) |
+| RNA sequencing  | [link](https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/05_rna_sequencing.pdf)  | [Notebook](./nb/bulk.html) |
+| De-novo assembly  | [link](https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/06_de_novo_assembly.pdf)  | -- |
+| Microbiomes and metagenomics  | [link](https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/07_microbiomes_and_metagenomics.pdf)  | -- |
+| Single cell RNA sequencing | [link](https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/08_single_cell_day.pdf)  | [Notebook](./nb/scrna.html) |
