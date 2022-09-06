@@ -1,0 +1,47 @@
+{
+    "siteVersion": 3,
+    "request": {
+        "application": {
+            "name": "jupyter-all-spark",
+            "version": "3.4.2"
+        },
+        "product": {
+            "id": "u1-standard-8",
+            "category": "u1-standard",
+            "provider": "ucloud"
+        },
+        "name": "NGS",
+        "replicas": 1,
+        "parameters": {
+            "requirements": {
+                "path": "/59896/Configurations/setup.sh",
+                "type": "file",
+                "readOnly": false
+            }
+        },
+        "resources": [
+            {
+                "path": "/59896",
+                "type": "file",
+                "readOnly": false
+            }
+        ],
+        "timeAllocation": {
+            "hours": 2,
+            "minutes": 0,
+            "seconds": 0
+        },
+        "resolvedProduct": null,
+        "resolvedApplication": null,
+        "resolvedSupport": null,
+        "allowDuplicateJob": true
+    },
+    "resolvedResources": {
+        "ingress": {
+        }
+    },
+    "machineType": {
+        "cpu": 8,
+        "memoryInGigs": 47
+    }
+}

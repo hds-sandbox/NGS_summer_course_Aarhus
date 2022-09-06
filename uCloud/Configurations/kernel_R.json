@@ -1,0 +1,8 @@
+{
+    "argv": ["/work/59896/NGS_aarhus/lib/R/bin/R", "--slave", "-e", "IRkernel::main()", "--args", "{connection_file}"],
+    "display_name": "NGS (R)",
+    "language": "R",
+    "env": {
+        "PATH": "/work/59896/NGS_aarhus/lib/:/work/59896/NGS_aarhus/bin/:/work/59896/NGS_aarhus/libexec/:$PATH"
+       }
+  }

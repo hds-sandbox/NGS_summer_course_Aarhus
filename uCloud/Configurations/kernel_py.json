@@ -1,0 +1,17 @@
+{
+    "argv": [
+     "/work/59896/NGS_aarhus/bin/python",
+     "-m",
+     "ipykernel_launcher",
+     "-f",
+     "{connection_file}"
+    ],
+    "display_name": "NGS (python)",
+    "language": "python",
+    "metadata": {
+     "debugger": true
+    },
+    "env": {
+     "PATH": "/work/59896/NGS_aarhus/lib/:/work/59896/NGS_aarhus/bin/:/work/59896/NGS_aarhus/libexec/:$PATH"
+    }
+}
