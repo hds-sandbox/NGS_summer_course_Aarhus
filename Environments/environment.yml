@@ -1,4 +1,4 @@
-name: NGS_Aarhus
+channels:
   - conda-forge
   - plotly
   - defaults
