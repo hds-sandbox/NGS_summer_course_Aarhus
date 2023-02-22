@@ -1,8 +1,8 @@
 {
-    "argv": ["/opt/conda/envs/NGS_aarhus/lib/R/bin/R", "--slave", "-e", "IRkernel::main()", "--args", "{connection_file}"],
+    "argv": ["/work/Material/Course_Env/lib/R/bin/R", "--slave", "-e", "IRkernel::main()", "--args", "{connection_file}"],
     "display_name": "NGS (R)",
     "language": "R",
     "env": {
-        "PATH": "${CONDA_PREFIX}/envs/NGS_aarhus/lib/:${CONDA_PREFIX}/envs/NGS_aarhus/bin/:${CONDA_PREFIX}/envs/NGS_aarhus/libexec/:$PATH"
+        "PATH": "/work/Material/Course_Env/lib/:/work/Material/Course_Env/bin/:/work/Material/Course_Env/libexec/:$PATH"
        }
   }
