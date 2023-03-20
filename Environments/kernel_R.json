@@ -1,8 +1,8 @@
 {
-    "argv": ["/work/Material/Course_Env/lib/R/bin/R", "--slave", "-e", "IRkernel::main()", "--args", "{connection_file}"],
+    "argv": ["/work/Course_Env/lib/R/bin/R", "--slave", "-e", "IRkernel::main()", "--args", "{connection_file}"],
     "display_name": "NGS (R)",
     "language": "R",
     "env": {
-        "PATH": "/work/Material/Course_Env/lib/:/work/Material/Course_Env/bin/:/work/Material/Course_Env/libexec/:$PATH"
+        "PATH": "/work/Course_Env/lib/:/work/Course_Env/bin/:/work/Course_Env/libexec/:$PATH"
        }
   }

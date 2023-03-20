@@ -1,6 +1,6 @@
 {
     "argv": [
-     "/work/Material/Course_Env/bin/python",
+     "/work/Course_Env/bin/python",
      "-m",
      "ipykernel_launcher",
      "-f",
@@ -12,6 +12,6 @@
      "debugger": true
     },
     "env": {
-     "PATH": "/work/Material/Course_Env/lib/:/work/Material/Course_Env/bin/:/work/Material/Course_Env/libexec/:$PATH"
+     "PATH": "/work/Course_Env/lib/:/work/Course_Env/bin/:/work/Course_Env/libexec/:$PATH"
     }
 }
