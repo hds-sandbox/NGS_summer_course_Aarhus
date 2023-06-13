@@ -123,7 +123,7 @@ def marker_score(markers_dict, adata, N_samples=100, random_seed=42):
     gene_names = adata.var_names[random_genes]
     for i in markers_dict:
         markers_list.append(f'{i}_score')
-        adata.obs[f'{i}_score'] = np.array( np.mean(adata[:,markers_dict[i]].X,1) - np.mean(adata[:,gene_names].X,(0,1)) )
+        adata.obs[f'{i}_score'] = np.array(np.mean(adata[:,markers_dict[i]].X,1) - np.mean(adata[:,gene_names].X,(0,1)))
     return markers_list, adata
 
 ###function to rename clusters from a dictionary
@@ -175,3 +175,79 @@ def position_count(vcf_file):
     print("Count heterozygous positions:", pos_het)
     print("Count homozygous reference positions:", pos_hom_ref)
     print("Count homozygous alternate positions:", pos_hom_alt)
+    
+###function to create pseudobulk matrix    
+def pseudobulk_matrix(adata, batch_key, condition_key, cluster_key, Nsamples=10, Ncells=10, random_seed=42):
+    
+    np.random.seed(random_seed)
+    
+    clusters = list()
+    conditions = list()
+    matrix_bulk = pd.DataFrame( index = adata.var_names )
+    
+    for BATCH in adata.obs[batch_key].cat.categories:
+        #M1 = adata[ adata.obs[batch_key]==BATCH, : ].copy()
+        print(f'{BATCH}')
+        for COND in adata.obs[condition_key].cat.categories:
+            print(f'----{COND}')
+            #M2 = M1[ M1.obs[condition_key]==COND, : ].copy()
+            for CLUST in adata.obs[cluster_key].cat.categories:
+                print(f'--------{CLUST}')
+                #M3 = M2[ M2.obs[cluster_key]==COND, : ].copy()
+                M = adata[(adata.obs[batch_key]==BATCH)&(adata.obs[condition_key]==COND)&(adata.obs[cluster_key]==CLUST)].layers['raw_counts'].copy()
+                M = M.todense()
+                if(M.shape[0]>1):
+                    for i in range(Nsamples):
+                        integ = np.random.randint(low=0, high=M.shape[0]-1, size=min(Ncells, M.shape[1]))
+                        #Ph[i,:] = np.mean( Xh[ integ, : ], axis=0 )
+                        #integ = np.random.random_integers(low=0, high=M.shape[0]-1, size=20)
+                        matrix_bulk[f'{COND}_{BATCH}_{CLUST}_{i}'] = np.ravel( np.sum( M[integ,:], axis=0 ) )
+                        clusters.append(CLUST)
+                        conditions.append(COND)
+                else:
+                    print(f'Only {M.shape[0]} cells: skipping')
+    return matrix_bulk, clusters, conditions
+    
+def pseudobulk_extract_DEG(pbulk, adata, DE_key='rank_genes_groups'):
+    print('---Extracting results')
+    result = pbulk.uns['rank_genes_groups']
+    groups = result['names'].dtype.names
+    X = pd.DataFrame(
+        {group + '_' + key.upper(): result[key][group]
+        for group in groups for key in ['names', 'pvals','pvals_adj','logfoldchanges']})
+    
+    #expression matrix from the original data, normalized depths and logarithmized
+    adata.X = adata.layers["raw_counts"].todense().copy()
+    sc.pp.normalize_per_cell(adata)
+    sc.pp.log1p(adata)
+
+    mat = adata[:, X['Crypto_NAMES'] ].X.copy()
+
+    #percentage
+    X['Healthy_PCT'] = np.sum( mat[adata.obs['condition']=='Healthy', :]>0, 0) / adata[adata.obs['condition']=='Healthy', :].shape[0] * 100
+    X['Crypto_PCT'] = np.sum( mat[adata.obs['condition']=='Crypto', :]>0, 0) / adata[adata.obs['condition']=='Crypto', :].shape[0] * 100
+
+    #foldchange and log-pvalues
+    X['Crypto_FOLDCHANGES'] = 2**X['Crypto_LOGFOLDCHANGES']
+    X['Crypto_LOGPVALS_ADJ'] = -np.log10(X['Crypto_PVALS_ADJ']+1e-50)
+    X['Crypto_LOGPVALS'] = -np.log10(X['Crypto_PVALS']+1e-50)
+    
+    print('---done')
+    
+    return X
+
+def pseudobulk_volcano(X, logpval_threshold=3, logfold_threshold=2, plot_size=(800,800)):
+    import plotly.express as px
+    
+    hue = ['SIGN.' if (P>logpval_threshold)&(L>logfold_threshold) else 'NOT.SIGN.' 
+           for P,L in zip(X['Crypto_LOGPVALS_ADJ'],np.abs(X['Crypto_LOGFOLDCHANGES'])) ]
+
+    fig = px.scatter(x='Crypto_LOGFOLDCHANGES', 
+                 height=plot_size[1],
+                 width=plot_size[0],
+                 color=hue,
+                 y='Crypto_LOGPVALS_ADJ', 
+                 hover_name='Crypto_NAMES', 
+                 size='Crypto_PCT',
+                 data_frame=X)
+    fig.show()
