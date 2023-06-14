@@ -15,7 +15,7 @@ After the course, you will have knowledge of bioinformatics methods for analyzin
 
 ### Prerequisites
 
-This is an introductory course that needs a basic understanding of the biology behind sequencing, and not necessarily programming experience.
+This is an introductory course that needs a basic understanding of the biology behind sequencing, and not necessarily programming experience (though this would help!).
   
 ### Learning Outcomes
 
@@ -35,13 +35,13 @@ You can find the links to the material in [the table at the bottom of this page]
 
 ### Course duration
 
-This course was originally one-week long.
+This course is meant to be one week long.
 
 ### Course authors
 
 Heads of the course: Mikkel H. Schierup, Stig U. Andersen.
 
-Exercise responsibles: Lavinia I. Fechete, Jilong Ma, Samuele Soraggi.
+Exercise responsibles: Peter, Adrian, Samuele Soraggi.
 
 Contact: Samuele Soraggi (samuele at birc.au.dk).
 
