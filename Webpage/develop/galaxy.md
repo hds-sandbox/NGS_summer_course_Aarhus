@@ -61,14 +61,14 @@ Through `Galaxy`, we build a workflow applying tools to the data. We will look a
 
 #### Quality control
 
-1. Run FastQC on the PacBio Hifi reads and on two of the Illumina RNA-seq libraries. FastQC does quality control of the raw sequence data, providing an overview of the data which can help identify if there are any problems that should be addressed before further analysis. 
+**1)** Run FastQC on the PacBio Hifi reads and on two of the Illumina RNA-seq libraries. FastQC does quality control of the raw sequence data, providing an overview of the data which can help identify if there are any problems that should be addressed before further analysis. 
    
-    In the tool menu, click on `FASTQ quality control --> FASTQC read quality reports`. You will see a window with *tool parameters*: for the first option (raw read data from history), choose multiple files and select `Hifi_reads_white_clover.fastq` plus other `fastq` files you want to see the quality of (example in figure below).  Then click on the button `Run Tool`.
-    ![](./img/fastqc.png)
+In the tool menu, click on `FASTQ quality control --> FASTQC read quality reports`. You will see a window with *tool parameters*: for the first option (raw read data from history), choose multiple files and select `Hifi_reads_white_clover.fastq` plus other `fastq` files you want to see the quality of (example in figure below).  Then click on the button `Run Tool`.
+![](./img/fastqc.png)
 
-    You will notice that some new elements are added to your history. Part of them are `FastQC` producing a text file, while others are `FastQC` producing a webpage report. The reports are ready when coloured in green: click on the *eye symbol* of a history item to read a report.
+You will notice that some new elements are added to your history. Part of them are `FastQC` producing a text file, while others are `FastQC` producing a webpage report. The reports are ready when coloured in green: click on the *eye symbol* of a history item to read a report.
 
-2. FastQC provides a report for each sample. To have a better comparison between
+**2** FastQC provides a report for each sample. To have a better comparison between
 the *Hifi* and *Illumina* data, we would combine the three `FastQC` reports into one using `MultiQC`.
 
 Choose the MultiQC tool from `FASTQ quality control --> MultiQC aggregate results from ...`. In the options, select `FastQC` as the used tool for the logsselect FastQC as the tool used to generate the output, and then select the items of `FastQC` of your history producing `RawData` (Figure below). In this way, you build a pipeline from the previous reports to the new tool you are using. Now click on `Run Tool`.
@@ -89,3 +89,66 @@ Hint: You can find a “Help” button that offers additional information about 
 </summary>
 
 #### Hifi Data Alignment
+
+**3** Map the PacBio Hifi reads (`Hifi_reads_white_clover.fastq`) to the white clover reference sequence (Contigs 1 and 2) using `minimap2` (Map with minimap2). Find `Genomics Analysis --> Mapping --> Map with minimap2`. In the options, do not leave `Use a built-in genome index`, but select the option of having a genome from history. Choose then `DNA_Contig1_2.fasta` as the reference sequence.
+
+Under the profile with preset options, choose `PacBio/Oxford Nanopore read to reference mapping (map-pb)`. Then click on `Run Tool`.
+
+![](./img/map-pb.png)
+
+**4** Run the same alignment, but choose as preset options `Long assembly to reference mapping. Divergence is far below 5% (asm5)`.
+
+![](./img/asm5.png)
+
+Rename now the two alignments using the edit function (*pen symbol* in the history). Use for example names `Contig1_2_mappb` and `Contig1_2_asm5`, to distinguish alignment options and reference genome.
+
+**5** The aligned genomes are not sorted by coordinates. Sort the alignments using `Samtools sort` (Find the tool under `Genomic file manipulation --> SAM/BAM --> Samtools sort ...`). In the options, choose the two aligned files with multiple selection. Then click on `Run Tool`.
+
+**6** Download the two alignments to your computer. To do so, click on the *disk symbol* of each file in your history, and for each download both the Dataset (alignments in `bam` format) and their index files (in `bai` format). Download as well the reference genome in `fasta` format (`DNA_Contig1_2.fasta` from the history).
+
+**7** Open IGV on your computer. Load the reference first: go on `Genome --> Load genome from file` and select the `fasta` file you downloaded. Then load the two alignments: go on `File --> Load from file` and select the `bam` and `bai` files you downloaded, together. You can now visualize the alignments.
+
+![](./img/IGV.png)
+
+<summary>Questions:
+<p>
+<i> Look at the alignments in IGV. What do you notice about the alignments? What is the difference between the two alignments? Do you think one of them is better than the other? Choose on of the two alignments for the next steps.
+</i>
+</p>
+</summary>
+
+**8** Repeat the alignment with Minimap2 (using the chosen alignment option from the question above) and the sorting, but using the reference genomes for Contig 1 and for Contig 2 seaprately. **Note:** you can run all at once by choosing multiple reference genomes!
+
+<summary>Questions:
+<p>
+<i> Download the two references for Contig 1 and 2, and the two sorted alignments. Load the references as tracks in IGV, and then open the two alignments.
+
+- Why do you see fluctuations in coverage and large regions without any apparent subgenome
+SNPs?
+- What are the major differences between the stats for the reads mapped to Contigs1&2
+versus contig1 and contig2? What is your interpretation of the differences?
+</i>
+</p>
+</summary>
+
+#### RNA Data Alignment
+
+**9** First, group the 24 RNA-seq libraries into two dataset lists, one list of pairs for S10 libraries and
+another for Tienshan libraries. so we can work with multiple samples simultaneously.
+You can do this by selecting the libraries for each genotype and choosing `Build Lists of Dataset
+Pairs`. Make sure that all R1 and R2 libraries for each sample are grouped together.
+
+![](./img/buildlist.png)
+
+Your sequences will be substituted by two elements in your history. Here we chose for example to name them `S10` and `TI`.
+
+![](./img/builtlist.png)
+
+**10** Do alignment of the RNA-seq lists of raw files to the reference `DNA_Contig1_2.fasta` using `STAR`. Go to `Genomics analysis --> RNA-seq --> RNA STAR Gapped-read mapper for RNA-seq data`. In the options use:
+
+- as data, the parameter `Paired-end (as collection)`, and then choose one of the two collections (you cannot run them all at once)
+- as reference, `DNA_Contig1_2.fasta`, with Length of SA pre-indexing string equal to `9`
+- as index with gene-model, use `white_clover_annotations.gtf`
+- as output, `Per gene read counts (GeneCounts)`.
+
+**11** Use `MultiQC` to see the quality of the output. The alignment of `STAR` produces log files which can be used for quality reports. Go on ``
