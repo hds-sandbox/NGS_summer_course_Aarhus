@@ -1,6 +1,6 @@
 # Quality Control and Alignment of raw reads
 
-This first exercise will be executed on `Galaxy`, an interactive platform to run bioinformatics workflow. We will replicate this lesson with computer code later in this course. `Galazy` has the possibility of working with a free account.
+This first exercise will be executed on `Galaxy`, an interactive platform to run bioinformatics workflows. We will replicate this lesson with computer code later in this course. `Galaxy` has the possibility of working with a free account.
 
 ## Biological introduction
 
@@ -22,7 +22,7 @@ collected from Chinese mountains and is adapted to alpine conditions.
 ### Prepare the tools and data
 
 1. Install IGV on your computer from [here](https://software.broadinstitute.org/software/igv/download). This is a genome browser you will use to look at some files.
-2. Create a galaxy account at [usegalaxy.org](https://usegalaxy.org) and log into galaxy.
+2. Create an account at [usegalaxy.org](https://usegalaxy.org) and log into galaxy.
 3. Find the course data by going to [this web address](https://usegalaxy.org/u/samuele.soraggi/h/ngs2023) and by clicking on `Import this history` (top left corner of the page).
 
 #### Data
@@ -31,29 +31,30 @@ You will be working with two types of sequencing data.
 The first is *PacBio Hifi reads*, which are long and accurate. You can find them under
 Hifi_reads_white_clover.fastq.
 The second type is *Illumina RNA-seq reads*, which are short and accurate and should be aligned
-using a spliced aligner. There are 24 of these files, 12 for each of the two genotypes mentioned
+using [a spliced aligner, such as STAR](https://youtu.be/XbBS9o-4100).
+
+There are 24 of these files, 12 for each of the two genotypes mentioned
 before. The files are named `[genotype]_[treatment]_[replicate].fastq`. Treatment 1 is before and
 treatment 2 is after exposure to frost, respectively.
-In addition to the sequencing data, there are also the 4 reference files. Here, you will find three `fasta`
-files containing the homologous contigs, i.e. two contigs that represent similar regions in the two
-subgenomes. Contig1 is from the T. occidentale-derived subgenome and Contig2 is from the T.
-pallescens-derived subgenome. The reference genome was generated using the PacBio Hifi reads
-mentioned above.
-The file white_clover_genes.gtf contains the gene annotations for the two contigs.
+
+In addition to the sequencing data, there are also three reference files: one for homologous contig 1 (referencing T. occidentale-derived subgenome), one for contig 2 (T.
+pallescens-derived subgenome) and one for both Contigs 1 and 2. The reference files are in `fasta` format.
+
+The file `white_clover_genes.gtf` contains the gene annotations for the two contigs.
 
 #### Workflow illustration
 
-Through `Galaxy`, we build a workflow applying tools to the data. We will look at the quality of the raw reads for both PacBio HiFi and Illumina RNA-seq reads. Afterwards, we align to references, using two different tools for the two types of data. Finally, we will look at the quality of the alignments. We will work then on `uCloud` to analyze the aligned data in some of the upcoming lessons of the course.
+Through `Galaxy`, we build a workflow applying tools to the data. We will look at the quality of the raw reads for both PacBio HiFi and Illumina RNA-seq reads. Afterwards, we align to references, using two different tools for the two types of data. Finally, we will look at the alignments on a genome browser. We will work then on a computing cluster through `uCloud` to analyze the aligned data in some of the upcoming lessons of the course.
 
 ![](./img/scheme_exercise.png)
 
 ### Galaxy Workflow
 
-   When you import the files, what you actually import is a **History** - a sequence of files and softwares applied on the data. You can see the history on the right side of your *usegalaxy.org* webpage with green panels. Here, we only have the starting data, and you will build the rest of your history through various tools. 
+   When you import the files, what you actually import is a **History** - a sequence of files and softwares applied on the data. You can see the history on the right side of your *usegalaxy.org* webpage with green panels. Here, we only have the starting data, and you will build the rest of your history through various tools.
 
    ![](./img/history.png)
 
-   On the left side of the screen, you have a menu with various available tools organized by category. All those softwares are also available on a classical computing command line.
+   On the left side of the screen, you have a menu with various available tools organized by category. All those softwares are also available on a classical computing command line (we will try those as well).
 
    ![](./img/tools.png)   
 
@@ -90,17 +91,16 @@ Hint: You can find a “Help” button that offers additional information about 
 
 #### Hifi Data Alignment
 
-**3** Map the PacBio Hifi reads (`Hifi_reads_white_clover.fastq`) to the white clover reference sequence (Contigs 1 and 2) using `minimap2` (Map with minimap2). Find `Genomics Analysis --> Mapping --> Map with minimap2`. In the options, do not leave `Use a built-in genome index`, but select the option of having a genome from history. Choose then `DNA_Contig1_2.fasta` as the reference sequence.
+**3** Map the PacBio Hifi reads (`Hifi_reads_white_clover.fastq`) to the white clover reference sequence (Contigs 1 and 2) using `minimap2` (Map with minimap2). Find `Genomics Analysis --> Mapping --> Map with minimap2`. In the options, do not leave `Use a built-in genome index`, but select the option for having a genome from history. Choose then `DNA_Contig1_2.fasta` as the reference sequence.
 
 Under the profile with preset options, choose `PacBio/Oxford Nanopore read to reference mapping (map-pb)`. Then click on `Run Tool`.
 
 ![](./img/map-pb.png)
 
-**4** Run the same alignment, but choose as preset options `Long assembly to reference mapping. Divergence is far below 5% (asm5)`.
+**4** Run the same alignment, but choose as preset options `Long assembly to reference mapping. Divergence is far below 20% (asm20)`.
 
-![](./img/asm5.png)
 
-Rename now the two alignments using the edit function (*pen symbol* in the history). Use for example names `Contig1_2_mappb` and `Contig1_2_asm5`, to distinguish alignment options and reference genome.
+Rename then the two alignments using the edit function (*pen symbol* in the history). Use for example names `Contig1_2_mappb` and `Contig1_2_asm20`, to distinguish alignment options and reference genome.
 
 **5** The aligned genomes are not sorted by coordinates. Sort the alignments using `Samtools sort` (Find the tool under `Genomic file manipulation --> SAM/BAM --> Samtools sort ...`). In the options, choose the two aligned files with multiple selection. Then click on `Run Tool`.
 
@@ -117,14 +117,15 @@ Rename now the two alignments using the edit function (*pen symbol* in the histo
 </p>
 </summary>
 
-**8** Repeat the alignment with Minimap2 (using the chosen alignment option from the question above) and the sorting, but using the reference genomes for Contig 1 and for Contig 2 seaprately. **Note:** you can run all at once by choosing multiple reference genomes!
+**8** Repeat the alignment with Minimap2 (using the chosen alignment option from the question above) and the sorting, but using the reference genomes for Contig 1 and for Contig 2 searaately. **Note:** you can run all at once by choosing multiple reference genomes in the options!
 
 <summary>Questions:
 <p>
-<i> Download the two references for Contig 1 and 2, and the two sorted alignments. Load the references as tracks in IGV, and then open the two alignments.
+<i> Download the two references for Contig 1 and 2, and the two sorted alignments. Load the references from the menu `Genomes` in IGV, and then open the two alignments using the menu `File` in IGV.
 
 - Why do you see fluctuations in coverage and large regions without any apparent subgenome
 SNPs?
+
 - What are the major differences between the stats for the reads mapped to Contigs1&2
 versus contig1 and contig2? What is your interpretation of the differences?
 </i>
@@ -136,9 +137,13 @@ versus contig1 and contig2? What is your interpretation of the differences?
 **9** First, group the 24 RNA-seq libraries into two dataset lists, one list of pairs for S10 libraries and
 another for Tienshan libraries. so we can work with multiple samples simultaneously.
 You can do this by selecting the libraries for each genotype and choosing `Build Lists of Dataset
-Pairs`. Make sure that all R1 and R2 libraries for each sample are grouped together.
+Pairs`. 
 
 ![](./img/buildlist.png)
+
+The grouping suggested by Galaxy is wrong, because the paired reads are paired according to `_1` and `_2` in their names. Change those two with `R1` and `R2`, click on `Unpair all`, and then click on the suggested corrected pairs with the buttons `Pair these datasets`.
+
+![](./img/groupoptions.png)
 
 Your sequences will be substituted by two elements in your history. Here we chose for example to name them `S10` and `TI`.
 
@@ -151,4 +156,13 @@ Your sequences will be substituted by two elements in your history. Here we chos
 - as index with gene-model, use `white_clover_annotations.gtf`
 - as output, `Per gene read counts (GeneCounts)`.
 
-**11** Use `MultiQC` to see the quality of the output. The alignment of `STAR` produces log files which can be used for quality reports. Go on ``
+**11** Use `MultiQC` to see the quality of the output. The alignment of `STAR` produces log files which can be used for quality reports. Go on `Genomic File Manipulation --> MultiQC`. In the options select the tool `STAR`. Then `Insert STAR output`, as type of output the `Log`, and choose the two logs listing collections of `STAR` alignments. Then click on `Run Tool`.
+
+![](./img/starMultiQC.png)
+
+View the report to see the alignment statistics.
+
+
+**Final note:** `Galaxy  can also be used to create an automatic workflow that will map the data. This workflow can be useful when running multiple samples. You can
+generate a workflow from the analysis already completed in a history, by going to Settings →
+Extract workflow. You can also create a workflow from scratch using the Workflow editor.
