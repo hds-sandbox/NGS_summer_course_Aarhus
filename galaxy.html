@@ -1,0 +1,947 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Analysis of NGS data from alignment to bulk RNA and single cell">
+      
+      
+        <meta name="author" content="Samuele Soraggi">
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.3.9">
+    
+    
+      
+        <title>1.Galaxy Exercise - Introduction to NGS data analysis</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.1d29e8d0.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/extra.css">
+    
+    <script>__md_scope=new URL(".",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="brightness" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#quality-control-and-alignment-of-raw-reads" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="Introduction to NGS data analysis" class="md-header__button md-logo" aria-label="Introduction to NGS data analysis" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Introduction to NGS data analysis
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              1.Galaxy Exercise
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="brightness" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SamueleSoraggi/scsm" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    scrna data analysis
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="index.html" class="md-tabs__link">
+      Course Introduction
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  <li class="md-tabs__item">
+    <a href="galaxy.html" class="md-tabs__link md-tabs__link--active">
+      1.Galaxy Exercise
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="ucloud.html" class="md-tabs__link">
+        2.Instructions
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="nb/align.html" class="md-tabs__link">
+        3.Course exercises
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="Introduction to NGS data analysis" class="md-nav__button md-logo" aria-label="Introduction to NGS data analysis" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Introduction to NGS data analysis
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SamueleSoraggi/scsm" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    scrna data analysis
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        Course Introduction
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          1.Galaxy Exercise
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="galaxy.html" class="md-nav__link md-nav__link--active">
+        1.Galaxy Exercise
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#biological-introduction" class="md-nav__link">
+    Biological introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-guide" class="md-nav__link">
+    Exercise guide
+  </a>
+  
+    <nav class="md-nav" aria-label="Exercise guide">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prepare-the-tools-and-data" class="md-nav__link">
+    Prepare the tools and data
+  </a>
+  
+    <nav class="md-nav" aria-label="Prepare the tools and data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data" class="md-nav__link">
+    Data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workflow-illustration" class="md-nav__link">
+    Workflow illustration
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#galaxy-workflow" class="md-nav__link">
+    Galaxy Workflow
+  </a>
+  
+    <nav class="md-nav" aria-label="Galaxy Workflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quality-control" class="md-nav__link">
+    Quality control
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hifi-data-alignment" class="md-nav__link">
+    Hifi Data Alignment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rna-data-alignment" class="md-nav__link">
+    RNA Data Alignment
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          2.Instructions
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="2.Instructions" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          2.Instructions
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ucloud.html" class="md-nav__link">
+        2.1.Ucloud Access
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          3.Course exercises
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="3.Course exercises" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          3.Course exercises
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="nb/align.html" class="md-nav__link">
+        3.1.Alignment of raw data
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="nb/vcf.html" class="md-nav__link">
+        3.2.Variant calling analysis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="nb/bulk.html" class="md-nav__link">
+        3.3.Bulk RNA data analysis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="nb/scrna.html" class="md-nav__link">
+        3.4.Single cell data analysis
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#biological-introduction" class="md-nav__link">
+    Biological introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-guide" class="md-nav__link">
+    Exercise guide
+  </a>
+  
+    <nav class="md-nav" aria-label="Exercise guide">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prepare-the-tools-and-data" class="md-nav__link">
+    Prepare the tools and data
+  </a>
+  
+    <nav class="md-nav" aria-label="Prepare the tools and data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data" class="md-nav__link">
+    Data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workflow-illustration" class="md-nav__link">
+    Workflow illustration
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#galaxy-workflow" class="md-nav__link">
+    Galaxy Workflow
+  </a>
+  
+    <nav class="md-nav" aria-label="Galaxy Workflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quality-control" class="md-nav__link">
+    Quality control
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hifi-data-alignment" class="md-nav__link">
+    Hifi Data Alignment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rna-data-alignment" class="md-nav__link">
+    RNA Data Alignment
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+  <a href="https://github.com/SamueleSoraggi/scsm/edit/master/docs/galaxy.md" title="Edit this page" class="md-content__button md-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+
+
+<h1 id="quality-control-and-alignment-of-raw-reads">Quality Control and Alignment of raw reads<a class="headerlink" href="#quality-control-and-alignment-of-raw-reads" title="Permanent link">&para;</a></h1>
+<p>This first exercise will be executed on <code>Galaxy</code>, an interactive platform to run bioinformatics workflows. We will replicate this lesson with computer code later in this course. <code>Galaxy</code> has the possibility of working with a free account.</p>
+<h2 id="biological-introduction">Biological introduction<a class="headerlink" href="#biological-introduction" title="Permanent link">&para;</a></h2>
+<p>White clover (<em>Trifolium repens</em>) is an <strong>allotetraploid</strong>. This means that it contains genomes
+originating from two different species within the same nucleus. Normally, white clover is an
+outbreeding species, but a self-compatible line was used for <a href="https://academic.oup.com/plcell/article/31/7/1466/5985684">sequencing the white clover
+genome</a>. This line is
+designated <code>S10</code> in your data, indicating that this is the 10<sup>th</sup> self-fertilized generation. In
+addition, you have data from a wild clover accession (ecotype) called Tienshan (<code>Ti</code>), which is
+collected from Chinese mountains and is adapted to alpine conditions. </p>
+<p><img alt="" src="img/clover.png" />
+<em>Figure: Characterisation of the white clover population. T.Repens is a hybrid of T.Occidentale and T.Pallescens</em></p>
+<h2 id="exercise-guide">Exercise guide<a class="headerlink" href="#exercise-guide" title="Permanent link">&para;</a></h2>
+<h3 id="prepare-the-tools-and-data">Prepare the tools and data<a class="headerlink" href="#prepare-the-tools-and-data" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Install IGV on your computer from <a href="https://software.broadinstitute.org/software/igv/download">here</a>. This is a genome browser you will use to look at some files.</li>
+<li>Create an account at <a href="https://usegalaxy.org">usegalaxy.org</a> and log into galaxy.</li>
+<li>Find the course data by going to <a href="https://usegalaxy.org/u/samuele.soraggi/h/ngs2023">this web address</a> and by clicking on <code>Import this history</code> (top left corner of the page).</li>
+</ol>
+<h4 id="data">Data<a class="headerlink" href="#data" title="Permanent link">&para;</a></h4>
+<p>You will be working with two types of sequencing data.
+The first is <em>PacBio Hifi reads</em>, which are long and accurate. You can find them under
+Hifi_reads_white_clover.fastq.
+The second type is <em>Illumina RNA-seq reads</em>, which are short and accurate and should be aligned
+using <a href="https://youtu.be/XbBS9o-4100">a spliced aligner, such as STAR</a>.</p>
+<p>There are 24 of these files, 12 for each of the two genotypes mentioned
+before. The files are named <code>[genotype]_[treatment]_[replicate].fastq</code>. Treatment 1 is before and
+treatment 2 is after exposure to frost, respectively.</p>
+<p>In addition to the sequencing data, there are also three reference files: one for homologous contig 1 (referencing T. occidentale-derived subgenome), one for contig 2 (T.
+pallescens-derived subgenome) and one for both Contigs 1 and 2. The reference files are in <code>fasta</code> format.</p>
+<p>The file <code>white_clover_genes.gtf</code> contains the gene annotations for the two contigs.</p>
+<h4 id="workflow-illustration">Workflow illustration<a class="headerlink" href="#workflow-illustration" title="Permanent link">&para;</a></h4>
+<p>Through <code>Galaxy</code>, we build a workflow applying tools to the data. We will look at the quality of the raw reads for both PacBio HiFi and Illumina RNA-seq reads. Afterwards, we align to references, using two different tools for the two types of data. Finally, we will look at the alignments on a genome browser. We will work then on a computing cluster through <code>uCloud</code> to analyze the aligned data in some of the upcoming lessons of the course.</p>
+<p><img alt="" src="img/scheme_exercise.png" /></p>
+<h3 id="galaxy-workflow">Galaxy Workflow<a class="headerlink" href="#galaxy-workflow" title="Permanent link">&para;</a></h3>
+<p>When you import the files, what you actually import is a <strong>History</strong> - a sequence of files and softwares applied on the data. You can see the history on the right side of your <em>usegalaxy.org</em> webpage with green panels. Here, we only have the starting data, and you will build the rest of your history through various tools.</p>
+<p><img alt="" src="img/history.png" /></p>
+<p>On the left side of the screen, you have a menu with various available tools organized by category. All those softwares are also available on a classical computing command line (we will try those as well).</p>
+<p><img alt="" src="img/tools.png" />   </p>
+<h4 id="quality-control">Quality control<a class="headerlink" href="#quality-control" title="Permanent link">&para;</a></h4>
+<p><strong>1)</strong> Run FastQC on the PacBio Hifi reads and on two of the Illumina RNA-seq libraries. FastQC does quality control of the raw sequence data, providing an overview of the data which can help identify if there are any problems that should be addressed before further analysis. </p>
+<p>In the tool menu, click on <code>FASTQ quality control --&gt; FASTQC read quality reports</code>. You will see a window with <em>tool parameters</em>: for the first option (raw read data from history), choose multiple files and select <code>Hifi_reads_white_clover.fastq</code> plus other <code>fastq</code> files you want to see the quality of (example in figure below).  Then click on the button <code>Run Tool</code>.
+<img alt="" src="img/fastqc.png" /></p>
+<p>You will notice that some new elements are added to your history. Part of them are <code>FastQC</code> producing a text file, while others are <code>FastQC</code> producing a webpage report. The reports are ready when coloured in green: click on the <em>eye symbol</em> of a history item to read a report.</p>
+<p><strong>2</strong> FastQC provides a report for each sample. To have a better comparison between
+the <em>Hifi</em> and <em>Illumina</em> data, we would combine the three <code>FastQC</code> reports into one using <code>MultiQC</code>.</p>
+<p>Choose the MultiQC tool from <code>FASTQ quality control --&gt; MultiQC aggregate results from ...</code>. In the options, select <code>FastQC</code> as the used tool for the logsselect FastQC as the tool used to generate the output, and then select the items of <code>FastQC</code> of your history producing <code>RawData</code> (Figure below). In this way, you build a pipeline from the previous reports to the new tool you are using. Now click on <code>Run Tool</code>.</p>
+<p><img alt="" src="img/multiqc.png" /></p>
+<p>The tool will be now running in your history. When it is done, click on the <em>eye symbol</em> to see the report.</p>
+<p>select the three “RawData” outputs generated by FastQC. Visualize the Webpage generated by
+MultiQC.
+Hint: You can find a “Help” button that offers additional information about the plots for each panel.</p>
+<summary>Questions:
+<p>
+<i>Focus on the following panels: “Per base sequence quality”, “Per sequence quality scores”…. (“Per base sequence content” always gives a FAIL for RNA-seq data). What do you notice with respect to the sequence quality scores? And are there any other quality issues worth noting?
+</i>
+</p>
+</summary>
+
+<h4 id="hifi-data-alignment">Hifi Data Alignment<a class="headerlink" href="#hifi-data-alignment" title="Permanent link">&para;</a></h4>
+<p><strong>3</strong> Map the PacBio Hifi reads (<code>Hifi_reads_white_clover.fastq</code>) to the white clover reference sequence (Contigs 1 and 2) using <code>minimap2</code> (Map with minimap2). Find <code>Genomics Analysis --&gt; Mapping --&gt; Map with minimap2</code>. In the options, do not leave <code>Use a built-in genome index</code>, but select the option for having a genome from history. Choose then <code>DNA_Contig1_2.fasta</code> as the reference sequence.</p>
+<p>Under the profile with preset options, choose <code>PacBio/Oxford Nanopore read to reference mapping (map-pb)</code>. Then click on <code>Run Tool</code>.</p>
+<p><img alt="" src="img/map-pb.png" /></p>
+<p><strong>4</strong> Run the same alignment, but choose as preset options <code>Long assembly to reference mapping. Divergence is far below 20% (asm20)</code>.</p>
+<p>Rename then the two alignments using the edit function (<em>pen symbol</em> in the history). Use for example names <code>Contig1_2_mappb</code> and <code>Contig1_2_asm20</code>, to distinguish alignment options and reference genome.</p>
+<p><strong>5</strong> The aligned genomes are not sorted by coordinates. Sort the alignments using <code>Samtools sort</code> (Find the tool under <code>Genomic file manipulation --&gt; SAM/BAM --&gt; Samtools sort ...</code>). In the options, choose the two aligned files with multiple selection. Then click on <code>Run Tool</code>.</p>
+<p><strong>6</strong> Download the two alignments to your computer. To do so, click on the <em>disk symbol</em> of each file in your history, and for each download both the Dataset (alignments in <code>bam</code> format) and their index files (in <code>bai</code> format). Download as well the reference genome in <code>fasta</code> format (<code>DNA_Contig1_2.fasta</code> from the history).</p>
+<p><strong>7</strong> Open IGV on your computer. Load the reference first: go on <code>Genome --&gt; Load genome from file</code> and select the <code>fasta</code> file you downloaded. Then load the two alignments: go on <code>File --&gt; Load from file</code> and select the <code>bam</code> and <code>bai</code> files you downloaded, together. You can now visualize the alignments.</p>
+<p><img alt="" src="img/IGV.png" /></p>
+<summary>Questions:
+<p>
+<i> Look at the alignments in IGV. What do you notice about the alignments? What is the difference between the two alignments? Do you think one of them is better than the other? Choose on of the two alignments for the next steps.
+</i>
+</p>
+</summary>
+
+<p><strong>8</strong> Repeat the alignment with Minimap2 (using the chosen alignment option from the question above) and the sorting, but using the reference genomes for Contig 1 and for Contig 2 searaately. <strong>Note:</strong> you can run all at once by choosing multiple reference genomes in the options!</p>
+<summary>Questions:
+<p>
+<i> Download the two references for Contig 1 and 2, and the two sorted alignments. Load the references from the menu `Genomes` in IGV, and then open the two alignments using the menu `File` in IGV.
+
+- Why do you see fluctuations in coverage and large regions without any apparent subgenome
+SNPs?
+
+- What are the major differences between the stats for the reads mapped to Contigs1&2
+versus contig1 and contig2? What is your interpretation of the differences?
+</i>
+</p>
+</summary>
+
+<h4 id="rna-data-alignment">RNA Data Alignment<a class="headerlink" href="#rna-data-alignment" title="Permanent link">&para;</a></h4>
+<p><strong>9</strong> First, group the 24 RNA-seq libraries into two dataset lists, one list of pairs for S10 libraries and
+another for Tienshan libraries. so we can work with multiple samples simultaneously.
+You can do this by selecting the libraries for each genotype and choosing <code>Build Lists of Dataset
+Pairs</code>. </p>
+<p><img alt="" src="img/buildlist.png" /></p>
+<p>The grouping suggested by Galaxy is wrong, because the paired reads are paired according to <code>_1</code> and <code>_2</code> in their names. Change those two with <code>R1</code> and <code>R2</code>, click on <code>Unpair all</code>, and then click on the suggested corrected pairs with the buttons <code>Pair these datasets</code>.</p>
+<p><img alt="" src="img/groupoptions.png" /></p>
+<p>Your sequences will be substituted by two elements in your history. Here we chose for example to name them <code>S10</code> and <code>TI</code>.</p>
+<p><img alt="" src="img/builtlist.png" /></p>
+<p><strong>10</strong> Do alignment of the RNA-seq lists of raw files to the reference <code>DNA_Contig1_2.fasta</code> using <code>STAR</code>. Go to <code>Genomics analysis --&gt; RNA-seq --&gt; RNA STAR Gapped-read mapper for RNA-seq data</code>. In the options use:</p>
+<ul>
+<li>as data, the parameter <code>Paired-end (as collection)</code>, and then choose one of the two collections (you cannot run them all at once)</li>
+<li>as reference, <code>DNA_Contig1_2.fasta</code>, with Length of SA pre-indexing string equal to <code>9</code></li>
+<li>as index with gene-model, use <code>white_clover_annotations.gtf</code></li>
+<li>as output, <code>Per gene read counts (GeneCounts)</code>.</li>
+</ul>
+<p><strong>11</strong> Use <code>MultiQC</code> to see the quality of the output. The alignment of <code>STAR</code> produces log files which can be used for quality reports. Go on <code>Genomic File Manipulation --&gt; MultiQC</code>. In the options select the tool <code>STAR</code>. Then <code>Insert STAR output</code>, as type of output the <code>Log</code>, and choose the two logs listing collections of <code>STAR</code> alignments. Then click on <code>Run Tool</code>.</p>
+<p><img alt="" src="./img/starMultiQC.png" /></p>
+<p>View the report to see the alignment statistics.</p>
+<p><strong>Final note:</strong> `Galaxy  can also be used to create an automatic workflow that will map the data. This workflow can be useful when running multiple samples. You can
+generate a workflow from the analysis already completed in a history, by going to Settings →
+Extract workflow. You can also create a workflow from scratch using the Workflow editor.</p>
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="index.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Course Introduction" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Course Introduction
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="ucloud.html" class="md-footer__link md-footer__link--next" aria-label="Next: 2.1.Ucloud Access" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              2.1.Ucloud Access
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+      
+      
+    
+    <a href="https://github.com/hds-sandbox/NGS_summer_course_Aarhus" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": ".", "features": ["content.code.annotate", "content.tooltips", "navigation.indexes", "navigation.sections", "navigation.footer", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "assets/javascripts/workers/search.b97dbffb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.6c7ad80a.min.js"></script>
+      
+        <script src="javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
