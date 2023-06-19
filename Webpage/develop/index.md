@@ -1,10 +1,10 @@
 # Introduction to Next Generation Sequencing data
-**A course of the danish healt data science sandbox**
+**A course of the Summer School of Aarhus University  **
+***Computing and didactical support from the Danish Healt Data Science Sandbox***
 
-This course is based on the material developed for the NGS summer school at Aarhus University. The material is organized in four separated jupyter notebooks in both `bash`, `python` and `R` where you will benefit of an interactive coding setup. 
+The material for this course is organized in four separated jupyter notebooks in both `bash`, `python` and `R` where you will benefit of an interactive coding setup on `jupyterlab`. 
 
-If you use any of this material for your research, please cite this course with the DOI below, and acknowledge the Health Data Science Sandbox project of the Novo Nordisk Foundation (grant number NNF20OC0063268). It is of great help to support the project.
-[![DOI](https://zenodo.org/badge/468293635.svg)](https://zenodo.org/badge/latestdoi/468293635)
+
 
 
 ## Course description
@@ -31,7 +31,7 @@ This is an introductory course that needs a basic understanding of the biology b
 - jupyter notebooks for interactive coding
 - lecture slides from the instructor
 
-You can find the links to the material in [the table at the bottom of this page](#course-material).
+You can find the links to the material in the table at the bottom of this page.
 
 ### Course duration
 
@@ -47,19 +47,28 @@ Contact: Samuele Soraggi (samuele at birc.au.dk).
 
 -----------------------------
 
+### Citation
+
+If you use any of this material for your research, please cite this course with the DOI below, and acknowledge the Health Data Science Sandbox project of the Novo Nordisk Foundation (grant number NNF20OC0063268). It is of great help to support the project.
+[![DOI](https://zenodo.org/badge/468293635.svg)](https://zenodo.org/badge/latestdoi/468293635)
 
 
-## Course material
 
-Here you find a table with the instructor's slides and a link to the compiled notebooks, that you can also run on your own following the [instructions](./instructions.md). Data alignment can also be performed on the `Galaxy` interactive webpage (see the manual in the table).
+## Course material 2022
+
+Here you find a table with the instructor's slides from 2022.
 
 | Topic  | Slide | Notebook |
 | ------------- | ------------- | ------------- |
 | Sequencing technologies  | [link](https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/01_sequencing_technologies.pdf)  | -- |
-| Mapping to reference  | [link](https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/02_mapping_to_reference.pdf)  | [Notebook](https://hds-sandbox.github.io/NGS_summer_course_Aarhus/nb/align.html) or [Galaxy guide](https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/galaxy_manual_2022.pdf) |
+| Mapping to reference  | [link](https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/02_mapping_to_reference.pdf)  | [Notebook](https://hds-sandbox.github.io/NGS_summer_course_Aarhus/nb/align.html) |
 | Data visualization  | [link](https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/03_data_visualization.pdf)  | -- |
 | SNPs and structural variants  | [link](https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/04_snp_and_structural_variants.pdf)  | [Notebook](https://hds-sandbox.github.io/NGS_summer_course_Aarhus/nb/vcf.html) |
 | RNA sequencing  | [link](https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/05_rna_sequencing.pdf)  | [Notebook](https://hds-sandbox.github.io/NGS_summer_course_Aarhus/nb/bulk.html) |
 | De-novo assembly  | [link](https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/06_de_novo_assembly.pdf)  | -- |
 | Microbiomes and metagenomics  | [link](https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/07_microbiomes_and_metagenomics.pdf)  | -- |
 | Single cell RNA sequencing | [link](https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/08_single_cell_day.pdf)  | [Notebook](https://hds-sandbox.github.io/NGS_summer_course_Aarhus/nb/scrna.html) |
+
+## Course material 2023 (on its way after the course's end)
+
+Here you find a table with the instructor's slides and a link to the compiled notebooks, that you can also run on your own following the `instructions` in this webpage. Data alignment can also be performed on the `Galaxy` interactive webpage (see the `galaxy exercise` in this webpage).
