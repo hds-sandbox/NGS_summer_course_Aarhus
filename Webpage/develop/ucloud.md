@@ -27,6 +27,8 @@
 
 ![](./img/running.png)
 
+* You will be able to see `jupyterlab` in your browser. On the left side of the screen you can see various folders. You can find the exercises inside the folder `Notebooks`. You can download any file by right-clicking on it and choosing `Download`. You can also upload files by clicking on the `Upload` button on the top left corner of the screen, if you want to experiment with your own data!
+
 ## Reuse your notebooks and data
 
 The first time you run the Genomics Sandbox, you download data and notebooks. You can reuse them!
