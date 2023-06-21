@@ -1,6 +1,6 @@
 # Introduction to Next Generation Sequencing data
 ## A course of the Summer School of Aarhus University
-**Computing and didactical support from the [Danish Healt Data Science Sandbox](https://hds-sandbox.github.io/)**
+**Computing and didactical support from the [Danish Health Data Science Sandbox](https://hds-sandbox.github.io/)**
 
 The material for this course is organized in four separated jupyter notebooks in both `bash`, `python` and `R` where you will benefit of an interactive coding setup on `jupyterlab`. 
 

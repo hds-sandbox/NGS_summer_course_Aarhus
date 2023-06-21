@@ -6,8 +6,8 @@ site_description: >-
   Analysis of NGS data from alignment to bulk RNA and single cell
 
 # Repository
-repo_name: scrna data analysis
-repo_url: https://github.com/SamueleSoraggi/scsm
+repo_name: NGS Summer School Aarhus
+repo_url: https://github.com/hds-sandbox/NGS_summer_course_Aarhus
 
 # Configuration
 theme:

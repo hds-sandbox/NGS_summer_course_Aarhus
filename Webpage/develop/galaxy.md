@@ -23,7 +23,7 @@ collected from Chinese mountains and is adapted to alpine conditions.
 
 1. Install IGV on your computer from [here](https://software.broadinstitute.org/software/igv/download). This is a genome browser you will use to look at some files.
 2. Create an account at [usegalaxy.org](https://usegalaxy.org) and log into galaxy.
-3. Find the course data by going to [this web address](https://usegalaxy.org/u/samuele.soraggi/h/ngs2023) and by clicking on `Import this history` (top left corner of the page).
+3. Find the course data by going to [this web address](https://usegalaxy.org/u/samuele.soraggi/h/copy-of-ngs-2023-course) and by clicking on `Import this history` (top left corner of the page).
 
 #### Data
 
@@ -62,7 +62,7 @@ Through `Galaxy`, we build a workflow applying tools to the data. We will look a
 
 #### Quality control
 
-**1)** Run FastQC on the PacBio Hifi reads and on two of the Illumina RNA-seq libraries. FastQC does quality control of the raw sequence data, providing an overview of the data which can help identify if there are any problems that should be addressed before further analysis. 
+**1** Run FastQC on the PacBio Hifi reads and on two of the Illumina RNA-seq libraries. FastQC does quality control of the raw sequence data, providing an overview of the data which can help identify if there are any problems that should be addressed before further analysis. 
    
 In the tool menu, click on `FASTQ quality control --> FASTQC read quality reports`. You will see a window with *tool parameters*: for the first option (raw read data from history), choose multiple files and select `Hifi_reads_white_clover.fastq` plus other `fastq` files you want to see the quality of (example in figure below).  Then click on the button `Run Tool`.
 ![](./img/fastqc.png)
