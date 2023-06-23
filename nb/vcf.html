@@ -1791,7 +1791,7 @@ mkdir -p Data_for_VCF_analysis</div>
 <ul>
 <li>Hifi reads mapped to Contig1: <code>HIFI_contig_1.bam</code></li>
 <li>Hifi reads mapped to Contig2: <code>HIFI_contig_2.bam</code></li>
-<li>Hifi reads mapped to Contig 1 and 2: <code>HIFI_contig_1_2_asm5.bam</code> (you can of course choose the one with the <code>map-pb</code> alignment option from the alignment notebook)</li>
+<li>Hifi reads mapped to Contig 1 and 2: <code>HIFI_contig_1_2_asm20.bam</code> (you can of course choose the one with the <code>map-pb</code> alignment option from the alignment notebook)</li>
 <li>S10 RNAseq reads mapped to  Contig 1 and 2 (After merging the bam files): <code>RNA_S10_merged.bam</code></li>
 <li>Ti RNAseq reads mapped to  Contig 1 and 2 (After merging the bam files): <code>RNA_TI_merged.bam</code></li>
 </ul>
@@ -2874,8 +2874,9 @@ Note that this command will generate a new filtered VCF file in the "VCF_Files" 
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Read the filtered VCF files in python and generate the same plots as above. We can read the VCF file and generate all the plots in one cell this time.</p>
-<p>Check how many positions have been eliminated by the filter and compare the plots with the ones for the unfiltered VCFs.</p>
+<hr>
+<p>We read the filtered VCF file for Contig1 in python and generate the same plots as before. We can read the VCF file and generate all the plots in one cell this time.</p>
+<p>We check how many positions have been eliminated by the filter and compare the plots with the ones for the unfiltered VCFs.</p>
 <p>If you consider that there are still positions with with low quality you can change the filter and repeat the process.</p>
 
 </div>
@@ -2938,7 +2939,7 @@ plot_variant_hist(Hifi_Contig1_filtered, 'MQ', "darkred")</div>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<div class="alert-success"> <font size="+2"> <b> TASK </b> </font> </div><p>The rest of the notebook is an exercise with some explanations about genotype counting. The code will work only if you complete correctly the empty cells. Some cells are filled in to help.</p>
+<div class="alert-success"> <font size="+2"> <b> TASK </b> </font> </div><p><strong>This exercise covers the rest of the notebook and contains explanations as well</strong>. The code will work only if you complete correctly the empty cells. Some cells are filled in to help.</p>
 <ul>
 <li>Compare the VCF files before and after filtering in IGV. In the two cells below generate the same plots as above using the filtered VCF files for Contig 2 and Contig 1 + 2.  You will just need to copy the three command lines from the cell above and replace the name of the VCF files.</li>
 </ul>
@@ -3306,11 +3307,11 @@ You should observe that the metrics for the RNA-seq vcf files are quite differen
                 </div>
             </clipboard-copy>
         </div>
-            <div class="highlight-ipynb hl-python"><pre><span></span><span class="err">!</span><span class="n">bcftools</span> <span class="n">view</span> <span class="o">-</span><span class="n">i</span> <span class="s1">&#39;add filter thresholds here&#39;</span> <span class="n">results</span><span class="o">/</span><span class="n">VCF_Files</span><span class="o">/</span><span class="n">RNA_S10_merged</span><span class="o">.</span><span class="n">vcf</span> <span class="o">-</span><span class="n">O</span> <span class="n">v</span> <span class="o">&gt;</span> <span class="n">results</span><span class="o">/</span><span class="n">VCF_Files</span><span class="o">/</span><span class="n">RNA_S10_merged_filtered</span><span class="o">.</span><span class="n">vcf</span>
-<span class="err">!</span><span class="n">bcftools</span> <span class="n">view</span> <span class="o">-</span><span class="n">i</span> <span class="s1">&#39;add filter thresholds here&#39;</span> <span class="n">results</span><span class="o">/</span><span class="n">VCF_Files</span><span class="o">/</span><span class="n">RNA_TI_merged</span><span class="o">.</span><span class="n">vcf</span> <span class="o">-</span><span class="n">O</span> <span class="n">v</span> <span class="o">&gt;</span> <span class="n">results</span><span class="o">/</span><span class="n">VCF_Files</span><span class="o">/</span><span class="n">RNA_TI_merged_filtered</span><span class="o">.</span><span class="n">vcf</span>
+            <div class="highlight-ipynb hl-python"><pre><span></span><span class="err">!</span><span class="n">bcftools</span> <span class="nb">filter</span> <span class="o">-</span><span class="n">i</span> <span class="s1">&#39;add filter thresholds here&#39;</span> <span class="n">results</span><span class="o">/</span><span class="n">VCF_Files</span><span class="o">/</span><span class="n">RNA_S10_merged</span><span class="o">.</span><span class="n">vcf</span> <span class="o">-</span><span class="n">O</span> <span class="n">v</span> <span class="o">&gt;</span> <span class="n">results</span><span class="o">/</span><span class="n">VCF_Files</span><span class="o">/</span><span class="n">RNA_S10_merged_filtered</span><span class="o">.</span><span class="n">vcf</span>
+<span class="err">!</span><span class="n">bcftools</span> <span class="nb">filter</span> <span class="o">-</span><span class="n">i</span> <span class="s1">&#39;add filter thresholds here&#39;</span> <span class="n">results</span><span class="o">/</span><span class="n">VCF_Files</span><span class="o">/</span><span class="n">RNA_TI_merged</span><span class="o">.</span><span class="n">vcf</span> <span class="o">-</span><span class="n">O</span> <span class="n">v</span> <span class="o">&gt;</span> <span class="n">results</span><span class="o">/</span><span class="n">VCF_Files</span><span class="o">/</span><span class="n">RNA_TI_merged_filtered</span><span class="o">.</span><span class="n">vcf</span>
 </pre></div>
-<div id="cell-27" class="clipboard-copy-txt">!bcftools view -i 'add filter thresholds here' results/VCF_Files/RNA_S10_merged.vcf -O v > results/VCF_Files/RNA_S10_merged_filtered.vcf
-!bcftools view -i 'add filter thresholds here' results/VCF_Files/RNA_TI_merged.vcf -O v > results/VCF_Files/RNA_TI_merged_filtered.vcf</div>
+<div id="cell-27" class="clipboard-copy-txt">!bcftools filter -i 'add filter thresholds here' results/VCF_Files/RNA_S10_merged.vcf -O v > results/VCF_Files/RNA_S10_merged_filtered.vcf
+!bcftools filter -i 'add filter thresholds here' results/VCF_Files/RNA_TI_merged.vcf -O v > results/VCF_Files/RNA_TI_merged_filtered.vcf</div>
     
         </div>
     </div>
@@ -3968,15 +3969,23 @@ A quick way to count how many positions are in the VCF file is by suing the simp
                 </div>
             </clipboard-copy>
         </div>
-            <div class="highlight-ipynb hl-python"><pre><span></span><span class="err">!</span><span class="o">./</span><span class="n">bcftools</span> <span class="nb">filter</span>  <span class="o">-</span><span class="n">i</span> <span class="s1">&#39;GT[0]=&quot;AR&quot; &amp;&amp; GT[1]=&quot;AR&quot;&#39;</span> <span class="n">results</span><span class="o">/</span><span class="n">VCF_Files</span><span class="o">/</span><span class="n">TI_Contig_1_merged</span><span class="o">.</span><span class="n">vcf</span> <span class="o">|</span> <span class="n">grep</span> <span class="o">-</span><span class="n">c</span> <span class="o">-</span><span class="n">v</span> <span class="s2">&quot;^#&quot;</span>
-<span class="err">!</span><span class="o">./</span><span class="n">bcftools</span> <span class="nb">filter</span>  <span class="o">-</span><span class="n">i</span> <span class="s1">&#39;GT[0]=&quot;AR&quot; &amp;&amp; GT[1]=&quot;AA&quot;&#39;</span> <span class="n">results</span><span class="o">/</span><span class="n">VCF_Files</span><span class="o">/</span><span class="n">TI_Contig_1_merged</span><span class="o">.</span><span class="n">vcf</span> <span class="o">|</span> <span class="n">grep</span> <span class="o">-</span><span class="n">c</span> <span class="o">-</span><span class="n">v</span> <span class="s2">&quot;^#&quot;</span>
-<span class="err">!</span><span class="o">./</span><span class="n">bcftools</span> <span class="nb">filter</span>  <span class="o">-</span><span class="n">i</span> <span class="s1">&#39;GT[0]=&quot;AA&quot; &amp;&amp; GT[1]=&quot;AR&quot;&#39;</span> <span class="n">results</span><span class="o">/</span><span class="n">VCF_Files</span><span class="o">/</span><span class="n">TI_Contig_1_merged</span><span class="o">.</span><span class="n">vcf</span> <span class="o">|</span> <span class="n">grep</span> <span class="o">-</span><span class="n">c</span> <span class="o">-</span><span class="n">v</span> <span class="s2">&quot;^#&quot;</span>
-<span class="err">!</span><span class="o">./</span><span class="n">bcftools</span> <span class="nb">filter</span>  <span class="o">-</span><span class="n">i</span> <span class="s1">&#39;GT[0]=&quot;AA&quot; &amp;&amp; GT[1]=&quot;AA&quot;&#39;</span> <span class="n">results</span><span class="o">/</span><span class="n">VCF_Files</span><span class="o">/</span><span class="n">TI_Contig_1_merged</span><span class="o">.</span><span class="n">vcf</span> <span class="o">|</span> <span class="n">grep</span> <span class="o">-</span><span class="n">c</span> <span class="o">-</span><span class="n">v</span> <span class="s2">&quot;^#&quot;</span>
+            <div class="highlight-ipynb hl-python"><pre><span></span><span class="err">!</span><span class="n">echo</span> <span class="s2">&quot;AR + AR:&quot;</span>
+<span class="err">!</span><span class="n">bcftools</span> <span class="nb">filter</span>  <span class="o">-</span><span class="n">i</span> <span class="s1">&#39;GT[0]=&quot;AR&quot; &amp;&amp; GT[1]=&quot;AR&quot;&#39;</span> <span class="n">results</span><span class="o">/</span><span class="n">VCF_Files</span><span class="o">/</span><span class="n">TI_Contig_1_merged</span><span class="o">.</span><span class="n">vcf</span> <span class="o">|</span> <span class="n">grep</span> <span class="o">-</span><span class="n">c</span> <span class="o">-</span><span class="n">v</span> <span class="s2">&quot;^#&quot;</span>
+<span class="err">!</span><span class="n">echo</span> <span class="s2">&quot;AR + AA:&quot;</span>
+<span class="err">!</span><span class="n">bcftools</span> <span class="nb">filter</span>  <span class="o">-</span><span class="n">i</span> <span class="s1">&#39;GT[0]=&quot;AR&quot; &amp;&amp; GT[1]=&quot;AA&quot;&#39;</span> <span class="n">results</span><span class="o">/</span><span class="n">VCF_Files</span><span class="o">/</span><span class="n">TI_Contig_1_merged</span><span class="o">.</span><span class="n">vcf</span> <span class="o">|</span> <span class="n">grep</span> <span class="o">-</span><span class="n">c</span> <span class="o">-</span><span class="n">v</span> <span class="s2">&quot;^#&quot;</span>
+<span class="err">!</span><span class="n">echo</span> <span class="s2">&quot;AA + AR:&quot;</span>
+<span class="err">!</span><span class="n">bcftools</span> <span class="nb">filter</span>  <span class="o">-</span><span class="n">i</span> <span class="s1">&#39;GT[0]=&quot;AA&quot; &amp;&amp; GT[1]=&quot;AR&quot;&#39;</span> <span class="n">results</span><span class="o">/</span><span class="n">VCF_Files</span><span class="o">/</span><span class="n">TI_Contig_1_merged</span><span class="o">.</span><span class="n">vcf</span> <span class="o">|</span> <span class="n">grep</span> <span class="o">-</span><span class="n">c</span> <span class="o">-</span><span class="n">v</span> <span class="s2">&quot;^#&quot;</span>
+<span class="err">!</span><span class="n">echo</span> <span class="s2">&quot;AA + AA:&quot;</span>
+<span class="err">!</span><span class="n">bcftools</span> <span class="nb">filter</span>  <span class="o">-</span><span class="n">i</span> <span class="s1">&#39;GT[0]=&quot;AA&quot; &amp;&amp; GT[1]=&quot;AA&quot;&#39;</span> <span class="n">results</span><span class="o">/</span><span class="n">VCF_Files</span><span class="o">/</span><span class="n">TI_Contig_1_merged</span><span class="o">.</span><span class="n">vcf</span> <span class="o">|</span> <span class="n">grep</span> <span class="o">-</span><span class="n">c</span> <span class="o">-</span><span class="n">v</span> <span class="s2">&quot;^#&quot;</span>
 </pre></div>
-<div id="cell-41" class="clipboard-copy-txt">!./bcftools filter  -i 'GT[0]="AR" && GT[1]="AR"' results/VCF_Files/TI_Contig_1_merged.vcf | grep -c -v "^#"
-!./bcftools filter  -i 'GT[0]="AR" && GT[1]="AA"' results/VCF_Files/TI_Contig_1_merged.vcf | grep -c -v "^#"
-!./bcftools filter  -i 'GT[0]="AA" && GT[1]="AR"' results/VCF_Files/TI_Contig_1_merged.vcf | grep -c -v "^#"
-!./bcftools filter  -i 'GT[0]="AA" && GT[1]="AA"' results/VCF_Files/TI_Contig_1_merged.vcf | grep -c -v "^#"</div>
+<div id="cell-41" class="clipboard-copy-txt">!echo "AR + AR:"
+!bcftools filter  -i 'GT[0]="AR" && GT[1]="AR"' results/VCF_Files/TI_Contig_1_merged.vcf | grep -c -v "^#"
+!echo "AR + AA:"
+!bcftools filter  -i 'GT[0]="AR" && GT[1]="AA"' results/VCF_Files/TI_Contig_1_merged.vcf | grep -c -v "^#"
+!echo "AA + AR:"
+!bcftools filter  -i 'GT[0]="AA" && GT[1]="AR"' results/VCF_Files/TI_Contig_1_merged.vcf | grep -c -v "^#"
+!echo "AA + AA:"
+!bcftools filter  -i 'GT[0]="AA" && GT[1]="AA"' results/VCF_Files/TI_Contig_1_merged.vcf | grep -c -v "^#"</div>
     
         </div>
     </div>
