@@ -1,6 +1,7 @@
 ### SDO outlyingness for scater PCA-based filtering (adjOutlyingness of the R robust package used in scater for scrna filtering)
 ###  (adjOutlyingness.R of the R `robust` package used in `scater` for scrna filtering in R)
 
+import allel
 import numpy as np
 from robustbase import mad
 from sklearn.decomposition import PCA
