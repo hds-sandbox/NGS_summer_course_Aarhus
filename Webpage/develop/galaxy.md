@@ -25,6 +25,8 @@ collected from Chinese mountains and is adapted to alpine conditions.
 2. Create an account at [usegalaxy.org](https://usegalaxy.org) and log into galaxy.
 3. Find the course data by going to [this web address](https://usegalaxy.org/u/samuele.soraggi/h/copy-of-ngs-2023-course) and by clicking on `Import this history` (top left corner of the page).
 
+**Note:** If usegalaxy.org has availability problems, you can use the other server [https://usegalaxy.eu/](https://usegalaxy.eu/) and get the data at [this link](https://usegalaxy.eu/u/samuele.soraggi/h/ngs2023). You might need to create an account there as well.
+
 #### Data
 
 You will be working with two types of sequencing data.
