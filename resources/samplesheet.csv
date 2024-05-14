@@ -1,0 +1,9 @@
+sample,fastq_1,fastq_2,strandedness,condition
+Control_3,778339/merge/Irrel_kd_3.fastq.gz,,unstranded,control
+Control_2,778339/merge/Irrel_kd_2.fastq.gz,,unstranded,control
+Control_1,778339/merge/Irrel_kd_1.fastq.gz,,unstranded,control
+Mov10_oe_3,778339/merge/Mov10_oe_3.fastq.gz,,unstranded,MOV10_overexpression
+Mov10_oe_2,778339/merge/Mov10_oe_2.fastq.gz,,unstranded,MOV10_overexpression
+Mov10_oe_1,778339/merge/Mov10_oe_1.fastq.gz,,unstranded,MOV10_overexpression
+Mov10_kd_3,778339/merge/Mov10_kd_3.fastq.gz,,unstranded,MOV10_knockdown
+Mov10_kd_2,778339/merge/Mov10_kd_2.fastq.gz,,unstranded,MOV10_knockdown

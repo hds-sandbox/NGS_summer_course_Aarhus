@@ -1,0 +1,963 @@
+**Motivation**
+
+We will use `Seurat` as the main tool for the analysis, where we will also apply some other packages. Seurat has a comprehensive [manual webpage](https://satijalab.org/seurat/) that includes many different tutorials you can use for further practicing. Needed packages for this workshop are loaded with the function `library()`, which will make the tools available for us.
+
+An alternative and well-established tool for \`python\` users is [scanpy](https://scanpy.readthedocs.io/en/stable/).
+
+**About the data**
+
+The testis is a complex organ composed of multiple cell types: germ cells at different stages of maturation and several somatic cell types supporting testicular structure and spermatogen-esis; Sertoli cells, peritubular cells, Leydig cells and other interstitial cells, as outlined in the figure below.
+
+![](https://hds-sandbox.github.io/scRNASeq_course/img/celltypes.png)
+
+Technological developments have recently made it possible to perform single-cell RNA sequencing (scRNAseq) of all cell types in a tissue. Understanding how scRNAseq data is processed and how to interpret the data is crucial for our ability to draw correct biological conclusions. In this workshop we will perform an introductory analysis of single cell RNAseq: do Quality Control on your cells, normalize and scale your data, visualize and detect cell types and genes dominating in the various cell types, and performing functional analysis on those lists of genes.
+
+**Learning objectives:**
+
+-   Analyse your single cell RNAseq data with the R package Seurat
+-   Load your data
+-   Perform QC and clean your data
+-   Normalize the data and perform dimensionality reduction
+-   Cluster your cells
+-   Find markers for each of your clusters
+-   Integrate data from other samples
+
+## Setup
+
+```{r message=FALSE}
+suppressWarnings(
+suppressMessages({
+library(tidyverse);
+library(Seurat);
+library(SeuratDisk);
+library(patchwork);
+library(sctransform);
+library(pheatmap);
+library(annotables);
+library(clusterProfiler);
+library(org.Hs.eg.db);
+library(pathview)
+}))
+```
+
+The Seurat functions will help us run all the necessary steps of the analysis from preprocessing, to clustering and visualization. There are also several helper and wrapper functions from other libraries that we will use to run the analysis. Use the `help()` function to see what another function does, and it should appear on the `help tab`
+
+```{r}
+help(FindClusters)
+```
+
+## Loading datasets
+
+Data can be loaded from different possible formats, which usually has as a dedicated function for loading. For example, the `Read10X()` function reads in the output of the [cellranger](https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/what-is-cell-ranger) pipeline from 10X, returning a unique molecular identified (UMI) count matrix. The values in this matrix represent the number of molecules for each feature (i.e. gene; row) that are detected in each cell (column).
+
+```{r}
+sample_2 <- Read10X(data.dir = "Data/cellranger_sample2/outs/filtered_feature_bc_matrix/")
+sample_3 <- Read10X(data.dir = "Data/cellranger_sample3/outs/filtered_feature_bc_matrix/")
+```
+
+We next use the count matrix to create a `Seurat` object, which is the main data structure used in the study.
+
+```{r}
+# Initialize the Seurat object with the raw (non-normalized data).
+sample_2 <- CreateSeuratObject(counts = sample_2, project = "spermatogenesis")
+sample_3 <- CreateSeuratObject(counts = sample_3, project = "spermatogenesis")
+```
+
+## Exploring the Seurat Object
+
+Summary information about `Seurat` objects can be had quickly and easily using standard R functions. Object shape/dimensions can be found using the `dim`, `ncol`, and `nrow` functions; cell and feature names can be found using the `colnames` and `rownames` functions, respectively, or the `dimnames` function. A vector of names of `Assay` and `DimReduc` objects contained in a `Seurat` object can be obtained by using `names`.
+
+```{r}
+# General info about the data
+sample_2
+```
+
+`nrow()` and `ncol()` provide the number of features and cells in the active assay, respectively.
+
+```{r}
+dim(x = sample_2)
+```
+
+### Assay object
+
+For typical scRNA-seq experiments, a Seurat object will have a single Assay ("RNA"). This assay will also store multiple 'transformations' of the data, including raw counts (@counts slot), normalized data (@data slot), and scaled data for dimensional reduction (@scale.data slot).
+
+For more complex experiments, an object could contain multiple assays. These could include multi-modal data types (CITE-seq antibody-derived tags, ADTs), or imputed/batch-corrected measurements. Each of those assays has the option to store the same data transformations as well.
+
+The slots of the `Assay` object contain the count matrix and its transformations, but it can also contain gene metadata
+
+| Slot            | Function                                            |
+|-----------------|-----------------------------------------------------|
+| `counts`        | Stores unnormalized data such as raw counts or TPMs |
+| `data`          | Normalized data matrix                              |
+| `scale.data`    | Scaled data matrix                                  |
+| `meta.features` | Feature-level meta data                             |
+
+### Accessing data from the Seurat Object
+
+Pulling specific `Assay`, objects can be done with the double `[[` [extract operator](https://www.rdocumentation.org/packages/base/versions/3.5.1/topics/Extract). Adding new objects to a `Seurat` object is also done with the double `[[` [extract operator](https://www.rdocumentation.org/packages/base/versions/3.5.1/topics/Extract). If you want to know all the objects inside the `Seurat` object, you can use the `names()` function.
+
+```{r}
+#write assay names and print info about them
+names(x = sample_2)
+sample_2[["RNA"]]
+```
+
+You can also access the data inside the Assay using the double extract operator `[[` on an Assay name, followed by `@layers` operator and the name of the data (\@counts, @data or @scale.data). **Note** the `.` instead of 0s! This means that the table is in `sparse` format, which makes it less heavy than a full matrix!
+
+```{r}
+str(sample_2[["RNA"]])
+#head(sample_2[["RNA"]])
+```
+
+Cell-level meta data (as a data frame) can be accessed using the `@` operator and the `meta.data` slot. You can also access individual columns using the `$` sigil. Pulling with the `$` sigil means only one bit of meta data can be pulled at a time, though tab-autocompletion has been enabled for it, making it ideal for interactive use. Adding cell-level meta data can be set using the `AddMetaData` function or the `$` sigil.
+
+```{r}
+# Cell-level meta data is stored as a data frame
+# Standard data frame functions work on the meta data data frame
+head(sample_2@meta.data)
+```
+
+### Subsetting data
+
+You can subset Seurat objects using the function `subset()`. You can subset based on metadata, expression level of a gene or an identity class. Here you can find some examples:
+
+```{r}
+# Subset on the expression level of a gene/feature
+subset(x = sample_2, subset = CAP1 > 3)
+```
+
+```{r}
+# Subset on a value in the object meta data
+subset(x = sample_2, subset =  nCount_RNA > 1000) # metadata
+```
+
+### Saving and loading a Seurat object
+
+You can save the Seurat object using the H5Seurat file format:
+
+```{r}
+#SaveH5Seurat(sample_2, filename = "./sample_2.h5Seurat")
+```
+
+To load a H5Seurat object, use the following function `LoadH5Seurat()`:
+
+```{r}
+#sample_2 <- LoadH5Seurat("./sample_2.h5Seurat")
+```
+
+## QC and selecting cells for further analysis
+
+Seurat allows you to easily explore QC metrics and filter cells based on any user-defined criteria. A few QC metrics [commonly used](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4758103/) by the community include:
+
+-   The number of unique genes detected in each cell.
+
+    -   Low-quality cells or empty droplets will often have very few genes
+    -   Cell doublets or multiplets may exhibit an aberrantly high gene count
+
+-   Similarly, the total number of molecules detected within a cell (correlates strongly with unique genes)
+
+-   The percentage of reads that map to the mitochondrial genome
+
+    -   Low-quality / dying cells often exhibit extensive mitochondrial contamination
+
+The number of unique genes and total molecules are automatically calculated during `CreateSeuratObject()`. However, we calculate mitochondrial QC metrics ourselves, since we need an identifier for mitochondrial genes, and there is not a standard one. In our case, we can use the `PercentageFeatureSet()` function, which calculates the percentage of counts originating from a set of features, using all genes starting with `MT-` as a set of mitochondrial genes
+
+```{r mito, fig.height=7, fig.width=13}
+# The `$` sigil can add columns to object metadata. This is a great place to stash QC stats
+sample_2$percent.mt <- PercentageFeatureSet(sample_2, pattern = "^MT-")
+```
+
+### Visualize and evaluate quality measures
+
+#### Violin plots
+
+We can make use of violin plots to show the distribution of values for different metrics in our data. This is done using the `VlnPlot()` function. The function can take several metrics all together and produce a combined plot with our metrics of interest:
+
+```{r qc_before, fig.height=7, fig.width=13}
+VlnPlot(sample_2, features = c("nFeature_RNA", "nCount_RNA", "percent.mt"), ncol = 3)
+```
+
+Here we simply look at the distribution of transcripts per cells, detected genes per cell and mithocondrial %. Note how the distribution is bimodal. This usually denotes **a cluster of low-quality cells and one of viable cells**. Sometimes filtering out the data points on the bottom-most sides of those graphs removes a lot of cells from a dataset, but this is quite a normal thing, and there is no need to be worried about it. The top side of the distributions show a tail with few cells having a lot of transcripts and genes. It is also good to filter out some of those extreme values - **they could be doublets (multiple cells sequenced as one), and they also badly influence normalization**.
+
+In this dataset there are few cell with a high percentage of mitocondrial content. Those are precisely 245 if we set 0.1 (that is 10%) as a threshold. A value between 10% and 20% is the usual standard when filtering single cell datasets.
+
+We can do some plots to have a look at quality measures combined together.
+
+#### Counts vs Genes
+
+This is a typical plot, where you look at the total transcripts per cells (x axis) and detected genes per cell (y axis). Usually, those two measures grow together. Points with a lot of transcripts and genes might be **multiplets** (multiple cells sequenced together as one), while very few transcripts and genes denote the presence of only ambient RNA or **very low quality sequencing** of a cell.
+
+In order to create this plot, we make use of the `FeatureScatter()` function:
+
+```{r qc_before2, fig.height=7, fig.width=13}
+# FeatureScatter is typically used to visualize feature-feature relationships, but can be used for anything calculated by the object, i.e. columns in object metadata, PC scores etc.
+
+FeatureScatter(sample_2, feature1 = "nCount_RNA", feature2 = "nFeature_RNA") 
+```
+
+### Filtering cells and choosing thresholds
+
+**Mitocondrial content**: In this dataset there are few cells with a high percentage of mitocondrial content. Those are precisely 245 if we set 10% as a threshold. A value between 10% and 20% is the usual standard when filtering single cell datasets.
+
+In addition, we will filter cells that are in both extremes of the distributions for **number of detected genes** and **number of total transcripts per cell**. This this case, it seems reasonable to exclude:
+
+-   Cells that have unique counts over 30000 or less than 5000
+-   Cells that have unique detected genes over 6000 or below 2000.
+
+Once we have chosen our thresholds, we can filter our dataset using the `subset()` function. The argument `subset` allows us to create a filtering parameter using our QC metrics.
+
+```{r}
+MIN_COUNTS = 5000  #minimum number of transcripts per cell
+MAX_COUNTS = 30000 #maximum number of transcripts per cell
+MIN_GENES = 2000   #minimum number of genes per cell
+MAX_GENES = 6000   #maximum number of genes per cell
+MAX_MITO = 10      #mitocondrial percentage treshold)
+
+sample_2 <- subset(sample_2, subset = nFeature_RNA > MIN_GENES & nFeature_RNA < MAX_GENES &
+                     nCount_RNA > MIN_COUNTS & nCount_RNA < MAX_COUNTS &
+                     percent.mt < 10)
+```
+
+We can now recheck our QC plots:
+
+```{r qc_after, fig.height=7, fig.width=13}
+VlnPlot(sample_2, features = c("nFeature_RNA", "nCount_RNA", "percent.mt"), ncol = 3)
+FeatureScatter(sample_2, feature1 = "nCount_RNA", feature2 = "nFeature_RNA") 
+```
+
+## Normalization and scaling
+
+### Normalizing the data
+
+After removing unwanted cells from the dataset, the next step is to normalize the data. By default, we employ a global-scaling normalization method "LogNormalize" that normalizes the feature expression measurements for each cell by the total expression, multiplies this by a scale factor (10,000 by default), and log-transforms the result. Normalized values are stored in `sample_2[["RNA"]]@data`.
+
+```{r normalize}
+sample_2 <- NormalizeData(sample_2)
+```
+
+### Identification of highly variable features (feature selection)
+
+We next calculate a subset of features that exhibit **high cell-to-cell variation in the dataset** (i.e, they are highly expressed in some cells, and lowly expressed in others). Seurat authors and others [others](https://www.nature.com/articles/nmeth.2645) have found that focusing on these genes in downstream analysis helps to highlight biological signal in single-cell datasets.
+
+The procedure in Seurat is described in detail [here](https://doi.org/10.1016/j.cell.2019.05.031), and improves on previous versions by directly modeling the **mean-variance relationship** inherent in single-cell data, and is implemented in the `FindVariableFeatures()` function. By default, it identifies 2,000 variable features per dataset. These will be used in downstream analysis, like PCA.
+
+```{r}
+sample_2 <- FindVariableFeatures(sample_2, selection.method = 'vst', nfeatures = 2000)
+```
+
+We can access a dataframe with our variable features using the function `VariableFeatures()`:
+
+```{r}
+# Identify the 10 most highly variable genes
+top10 <- head(VariableFeatures(sample_2), 10)
+print(top10)
+```
+
+We can plot variable features with the function `VariableFeaturePlot()`, and add labels using `LabelPoints()` function.
+
+```{r var_features, fig.height=5, fig.width=11}
+plot1 <- VariableFeaturePlot(sample_2) # Plot without labels
+plot2 <- LabelPoints(plot = plot1, points = top10, repel = TRUE) # Plot with labels. repel = TRUE will jitter the dots
+plot1 + plot2
+```
+
+### Scaling the data
+
+Next, we apply a linear transformation ('scaling') that is a **standard pre-processing step prior to dimensional reduction techniques like PCA**. The `ScaleData()` function:
+
+-   Shifts the expression of each gene, so that the mean expression across cells is 0
+-   Scales the expression of each gene, so that the variance across cells is 1
+    -   This step gives equal weight in downstream analyses, so that highly-expressed genes do not dominate
+-   The results of this are stored in `sample_2[["RNA"]]@scale.data`
+
+```{r}
+all.genes <- rownames(sample_2)
+sample_2 <- ScaleData(sample_2, features = all.genes)
+```
+
+## Perform Dimensionality reduction and visualization
+
+Next we perform PCA on the scaled data. By default, only the previously determined variable features are used as input, but can be defined using `features` argument if you wish to choose a different subset.
+
+```{r}
+sample_2 <- RunPCA(sample_2, features = VariableFeatures(object = sample_2))
+```
+
+Seurat provides several useful ways of visualizing both cells and features that define the PCA, including `VizDimReduction()`, `DimPlot()`, and `DimHeatmap()`
+
+```{r pca_viz, message=TRUE}
+# Examine and visualize PCA results a few different ways
+print(sample_2[['pca']], dims = 1:5, nfeatures = 5)
+VizDimLoadings(sample_2, dims = 1:2, reduction = 'pca')
+DimPlot(sample_2, reduction = 'pca')
+```
+
+In particular `DimHeatmap()` allows for easy exploration of the primary sources of heterogeneity in a dataset, and can be useful when trying to decide which PCs to include for further downstream analyses. Starting from the PC1, you can see how **genes separate in that PCA dimension**, creating a lot of variance in the data and determining a pattern which underlies some biological process. Further PC components will have **lower and lower separation between the genes** (features), until there is no clear separation and just noise. Those **noisy PCA components are of little use for analysis**.\
+
+```{r single-heatmap}
+DimHeatmap(sample_2, dims = 1, cells = 500,
+           nfeatures = 30, # number of genes to plot
+           balanced = TRUE) # balanced = TRUE will show equal number of positive and negative loadings
+```
+
+```{r multi-heatmap, fig.height=15, fig.width=9}
+DimHeatmap(sample_2, dims = 1:15, cells = 500, nfeatures = 30, balanced = TRUE)
+```
+
+### Determine how many PCA dimensions to use
+
+To overcome the extensive technical noise in any single feature for scRNA-seq data, Seurat clusters cells based on their PCA scores, with each PC essentially representing a 'metafeature' that combines information across a correlated feature set. The top principal components therefore represent a robust compression of the dataset. However, how many components should we choose to include? 10? 20? 100?
+
+We could already see how components became mostly noise from the heatmap plots. We can also double check with an **elbow plot,** representing the cumulated variance in our PCA components. When the plot becomes quite flat, we **choose that point as a cut for PCA components**.
+
+```{r elbow_plot, fig.height=3, fig.width=5}
+ElbowPlot(sample_2)
+```
+
+Here one can choose somewhere around PC 8-10 as a cutoff. It is not a problem to choose either 8 or 10, but choosing 50 could include much noise rendering some steps of the analysis badly influenced by it.
+
+### Run non-linear dimensional reduction (UMAP/tSNE)
+
+Seurat offers several dimensional reduction techniques, such as tSNE and UMAP, to visualize and explore these datasets. The goal of these algorithms is to learn the **underlying structure of the huge data matrix** in order to place similar cells together in low-dimensional space. UMAP and tSNE are the most popular techniques, but **UMAP has become the favourite being nothing more than an improvement of tSNE.**
+
+```{r umap}
+sample_2 <- RunUMAP(sample_2, dims = 1:10)
+```
+
+```{r umapplot, fig.height=5, fig.width=5}
+DimPlot(sample_2, reduction = 'umap')
+```
+
+## Cell clustering
+
+To cluster the cells, we next apply modularity optimization techniques such as the Louvain algorithm (default) or SLM [[SLM, Blondel *et al*., Journal of Statistical Mechanics]](http://dx.doi.org/10.1088/1742-5468/2008/10/P10008), to iteratively group cells together, with the goal of optimizing the standard modularity function. The `FindClusters()` function implements this procedure, and contains a resolution parameter that sets the 'granularity' of the downstream clustering, with increased values leading to a greater number of clusters.
+
+It is recommended to set this parameter between 0 and not much beyond 1 (most of the times a value below one is appropriate), as it typically returns good results for single-cell datasets. Significant exceptions to those values might be useful in very large datasets with many cell types and subtypes. Usually, you look at known markers of cell types on the UMAP plot, and find a parameter doing a clustering matching the desired separation. We will see that 0.3 is appropriate in our case.
+
+```{r cluster}
+sample_2 <- FindNeighbors(sample_2, dims = 1:10)
+sample_2 <- FindClusters(sample_2, resolution = 0.3)
+```
+
+The new clusters are saved in a new column of the metadata dataframe. The column name includes the resolution, so that multiple resolutions can be experimented with, without overwriting previous results.
+
+```{r}
+head(sample_2@meta.data)
+```
+
+Seurat will consider by default the latest calculated clustering as the default one. You can see that by calling the `Idents()` function (or looking at the column `seurat_clusters` in the metadata of the assay).
+
+```{r}
+head( Idents(sample_2) )
+```
+
+### Cluster visualization
+
+Finally we can visualize our clusters in the data using the `DimPlot()` function.
+
+```{r}
+DimPlot(sample_2, reduction = 'umap')
+```
+
+## Finding differentially expressed markers
+
+Seurat can **help you find markers that define clusters via differential expression** using the `FindAllMarkers()` function. By default, it identifies positive and negative markers of a single cluster (specified in `ident.1`), compared to all other cells. `FindAllMarkers()` automates this process for all clusters, but you can also test groups of clusters vs. each other, or against all cells using the `FindMarkers()` function. `FindMarkers()` function is **specially useful to identify specific markers for subclusters of cells.**
+
+**Note**: the function `FindAllMarkers()` can take several minutes with default options. However, you can use the package `future` to allow parallel calculations on a multicore CPU. For example, we allow up to 8 sessions simultaneously with the command plan. Depending on the size of the dataset and which comparisons you want to do, you can use various options as shown in the three examples below..
+
+```{r}
+library(future)
+plan("multisession", workers = 8)
+
+# Find all positive markers with at least logfc > 0.25 (option logfc.threshold), 
+# a p-value lower than 0.001 (option return.thresh) and are expressed in 10% more
+# cells in a cluster against the other (option min.diff.pct)
+all.markers <- FindAllMarkers(sample_2, logfc.threshold = 0.25, 
+                              return.thresh = 0.001,
+                              min.diff.pct = 0.1, 
+                              only.pos = T)
+
+# A cluster vs another (ident.1 vs ident.2)
+#cluster0v1.markers <- FindMarkers(sample_2, ident.1 = 0, ident.2 = c(1))
+
+# A cluster vs other clusters (ident.1 vs multiple ident.2)
+#cluster0v1_2.markers <- FindMarkers(sample_2, ident.1 = 0, ident.2 = c(1,2))
+```
+
+The results look like this:
+
+```{r}
+head(all.markers)
+```
+
+-   p_val : p_value of the test used for differential expression (unadjusted)
+-   avg_log2FC : log fold-change of the average expression between the two groups. Positive values indicate that the feature is more highly expressed in the first group.
+-   pct.1 : The percentage of cells where the feature is detected in the first group
+-   pct.2 : The percentage of cells where the feature is detected in the second group
+-   p_val_adj : Adjusted p-value, based on Bonferroni correction using all features in the dataset.
+-   gene : feature names will appear as row names using `FindMarkers()`, or as a column with `FindAllMarkers()`
+-   cluster : using the `FindAllMarkers()` will return which cluster had each marker
+
+Using threshold parameters in your analysis helps speeding up calculations, because you will exclude many genes that would not be discriminatory anyway for your analysis (such as significant ones with almost no foldchange). If all parameters are not set, you will thus observe a **dramatic increase in time.** As another option to speed up these computations, `max.cells.per.ident` can be set. This will downsample each identity class to have no more cells than whatever this is set to. While there is generally going to be a loss in statistical power, the speed increases can be significant and the most highly differentially expressed features will likely still rise to the top.
+
+```{r}
+# find markers for every cluster compared to all remaining cells, report only the positive ones with a LFC above 0.25 and at least 25% of cells express that feature.
+all.markers %>% group_by(cluster) %>% slice_max(n = 2, order_by = avg_log2FC) # Show top 2 markers for each cluster
+```
+
+You can easily save your marker dataframes using `write.table()`
+
+```{r}
+write.table(x = all.markers, file = "./sample_2_all_markers.tsv", col.names = TRUE, row.names = FALSE, sep = "\t", quote = FALSE)
+```
+
+### Alternate testing for differential expression
+
+As a default, Seurat performs differential expression based on the non-parametric Wilcoxon rank sum test. Nontheless, the following differential expression tests are currently supported:
+
+-   "wilcox" : Wilcoxon rank sum test (default)
+-   "bimod" : Likelihood-ratio test for single cell feature expression, (McDavid et al., Bioinformatics, 2013)
+-   "roc" : Standard AUC classifier
+-   "t" : Student's t-test
+-   "poisson" : Likelihood ratio test assuming an underlying negative binomial distribution. Use only for UMI-based datasets
+-   "negbinom" : Likelihood ratio test assuming an underlying negative binomial distribution. Use only for UMI-based datasets
+-   "LR" : Uses a logistic regression framework to determine differentially expressed genes. Constructs a logistic regression model predicting group membership based on each feature individually and compares this to a null model with a likelihood ratio test.
+-   "MAST" : GLM-framework that treates cellular detection rate as a covariate (Finak et al, Genome Biology, 2015) (Installation instructions)
+-   "DESeq2" : DE based on a model using the negative binomial distribution (Love et al, Genome Biology, 2014) (Installation instructions)
+
+For MAST and DESeq2, please ensure that these packages are installed separately in order to use them as part of Seurat. Once installed, use the `test.use` parameter can be used to specify which DE test to use. For example, the ROC test returns the 'classification power' for any individual marker (ranging from 0 - random, to 1 - perfect).
+
+```{r}
+cluster0.markers <- FindMarkers(sample_2, ident.1 = 0, logfc.threshold = 0.25, min.diff.pct = 0.1, test.use = "roc", only.pos = TRUE)
+```
+
+### Visualization of marker genes
+
+Seurat includes several **tools for visualizing marker expression**. `VlnPlot()` (shows expression probability distributions across clusters), and `FeaturePlot()` (visualizes feature expression on a UMAP or PCA plot) are some of the most commonly used visualizations. It is also suggested that you exploring `RidgePlot()`, and `DotPlot()` as additional methods to view your dataset.
+
+```{r}
+# You can visualize several markers at the same time using the features argument
+VlnPlot(sample_2, features = c("ID4", "MKI67","CD14"))
+FeaturePlot(sample_2, features = c("ID4", "MKI67","CD14"))
+RidgePlot(sample_2, features = c("ID4", "MKI67","CD14"))
+DotPlot(object = sample_2, features = c("ID4", "MKI67","CD14"))
+```
+
+`DoHeatmap()` generates an **expression heatmap for given cells and features**. In this case, we are plotting the top 5 markers (or all markers if less than 5) for each cluster.
+
+```{r fig.height = 10, fig.width = 7}
+all.markers %>%
+    group_by(cluster) %>%
+    top_n(n = 5, wt = avg_log2FC) -> top5
+DoHeatmap(sample_2, features = top5$gene) + NoLegend()
+```
+
+## Cluster annotation through known markers
+
+We try to identify clusters of cells by looking at the expression of relevant marker genes. This requires a previous biological knowledge of those cell types, such that we can input the markers. Below, we define a list of markers, where for each cell type we define a list of markers. Then we will plot every list of markers on the UMAP plot:
+
+```{r}
+markers <- list() #make an empty dictionary
+### SPERMATOCYTOGENESIS
+markers[['SpermatogoniaA']] = c('ID4','HMGA1')
+markers[['SpermatogoniaB']] = c('MKI67','DMRT1','STRA8')
+markers[['SpermatocytesI']] = c('MEIOB','SYCP1','TEX101','PRSS50')
+markers[['SpermatocytesII']] = c('PIWIL1','SPATA16','CLGN','ACRV1')
+### SPERMIOGENESIS
+markers[['Round.Spt']] = c('SPATA9','SPAM1') #Round spermatids
+markers[['Elong.Spt']] = c('PRM1','PRM2','PRM3','AKAP4') #Elongated spermatids
+### SOMATIC CELLS
+markers[['Sertoli']] = c('VIM','CTSL')
+markers[['Macroph']] = c('CD14','CD163','TYROPB')
+markers[['Leydig']] = c('CFD')
+markers[['Endothelial']] = c('CD34')
+markers[['Myoid']] = c('ACTA2')
+
+# remove markers missing in the dataset
+
+for (i in names(markers)){
+  markers[[i]] = intersect(markers[[i]], rownames(sample_2))
+}
+```
+
+```{r}
+FeaturePlot(sample_2, features = markers[['SpermatogoniaA']])
+```
+
+```{r}
+FeaturePlot(sample_2, features = markers[['SpermatogoniaB']])
+```
+
+```{r}
+FeaturePlot(sample_2, features = markers[['SpermatocytesI']])
+```
+
+```{r}
+FeaturePlot(sample_2, features = markers[['SpermatocytesII']])
+```
+
+```{r}
+FeaturePlot(sample_2, features = markers[['Round.Spt']])
+```
+
+```{r}
+FeaturePlot(sample_2, features = markers[['Elong.Spt']])
+```
+
+**Sertoli are often not possible to identify. They are big in size, meaning they are often not isolated successfully because they break**. Many of their markers are in common with other somatic cells. Also, their function as nurse cells for germ cells of the testis means that their marker genes are also expressed. We can see that CTSL is expressed in some germ cells, but not in other clusters, while VIM is expressed in a likely somatic cluster (but it is common to other somatic cell types)
+
+```{r}
+FeaturePlot(sample_2, features = markers[['Sertoli']])
+```
+
+Macrophage cells seem to be absent
+
+```{r}
+FeaturePlot(sample_2, features = markers[['Macroph']])
+```
+
+Leydig cells are likely to be missing as well
+
+```{r}
+FeaturePlot(sample_2, features = markers[['Leydig']])
+```
+
+There is a little endothelial cluster
+
+```{r}
+FeaturePlot(sample_2, features = markers[['Endothelial']])
+```
+
+And also a myoid cluster
+
+```{r}
+FeaturePlot(sample_2, features = markers[['Myoid']])
+```
+
+### Calculating cell scores
+
+Using the `AddModuleScore()` function, you can **use the previous list of different cell markers to give a "score" to each cell,** instead of exploring every gene from your list of markers. This is extremely useful when you want to assign cell types if you have biological knowledge (markers). Nonetheless, you will have to make sure the list of markers will be specific to those clusters, otherwise there is a chance you cannot properly identify clusters using this list.
+
+```{r}
+for (i in names(markers)){
+  sample_2 <- AddModuleScore(sample_2, features = markers[[i]], name = i)
+}
+```
+
+We can visualize the scores either in a `FeaturePlot()` or a `VlnPlot()`. For example, let's take a look at the SpermatogoniaB cell score:
+
+```{r}
+FeaturePlot(sample_2, reduction = "umap", features = "SpermatogoniaB1")
+VlnPlot(sample_2, features = "SpermatogoniaB1", group.by = "seurat_clusters")
+```
+
+We can see a certain amount of cells with a high score in cluster 10. Because the data is so sparse, we have many expressions at zero, and therefore the score (which is based on averaging the markers' expression) is often low. However, it is useful to confirm the visual approach on the UMAP plot. Lets check the SpermatogoniaA
+
+```{r}
+FeaturePlot(sample_2, reduction = "umap", features = "SpermatogoniaA1")
+VlnPlot(sample_2, features = "SpermatogoniaA1", group.by = "seurat_clusters")
+```
+
+We can confirm that the cell type is in cluster 0.
+
+In conclusion to this part of the tutorial, we can say that the set of features used to calculate module scores may not be specific enough to accurately depict a cell type. Some clusters seem to have just enough expression of those genes to have positive scores, and single cell dropouts makes it very difficult to score a cell based only on a single gene. However, it works very well in most scenarios, and eventually also adding selecting marker genes from the `FindMarkers()` function (given that you know the connection of those markers with specific cell types).
+
+### Assigning names to clusters
+
+Now that we know what kind of cell types our clusters are, we can name them properly. We create a dictionary where each number has assigned the new cluster name.
+
+```{r}
+new_names = c(
+    '0'='SpermatogoniaA',
+    '1'='RoundSpermatids',
+    '2'='SpermatocitesII',
+    '3'='RoundSpermatids',
+    '4'='SpermatocitesI',
+    '5'='ElongSpermatids',
+    '6'='ElongSpermatids',
+    '7'='RoundSpermatids',
+    '8'='RoundSpermatids',
+    '9'='ElongSpermatids',
+    '10'='SpermatogoniaB',
+    '11'='Somatic'
+)
+```
+
+Now we apply the new names and save them in a new meta.data variable called "cluster_names":
+
+```{r}
+sample_2$cluster_names <- recode(Idents(sample_2), !!!new_names)
+
+Idents(sample_2) <- "cluster_names"
+```
+
+Finally, we visualize the new cluster names!
+
+```{r}
+DimPlot(sample_2, reduction = "umap", label = TRUE)
+DoHeatmap(sample_2, features = unlist(markers))
+```
+
+## Selecting and subclustering
+
+If we **suspect that a cluster might be composed of an heterogeneous population of cells**, we can subset that group of cells and find subclusters of cells. This is the case for the cell types found in late spermatogonia and spermatocites.
+
+### Subsetting the data
+
+We can subset our Seurat object using the `subset()` function and selecting our clusters of interest from the `idents` argument. Now, we try to define four substages happening at the spermatocite level (and starting at the end of Spermatogonia B). The markers are defined below. First of all we have to subset the Seurat object with the command `subset` through the three clusters we want to reannotate.
+
+```{r}
+# Clusters of interest and their markers
+clusters <- c('SpermatogoniaB','SpermatocitesI','SpermatocitesII')
+sample_subset <- subset(x = sample_2, idents = clusters)
+
+markers[['Leptotene']] = c('SYCE2','SCML1')
+markers[['Zygotene']] = c('LY6K', 'SYCP1')
+markers[['Pachytene']] = c('PIWIL1','CCDC112')
+markers[['Diplotene']] = c('OVOL2','CCNA1', 'CDK1','AURKA')
+```
+
+Let's look at the marker plots of these specific clusters. The `Leptotene` stage characterizes the second half of the `SpermatogoniaB` cluster:
+
+```{r}
+FeaturePlot(sample_subset, features = markers[['Leptotene']] )
+```
+
+We can clearly see the `Zygotene`area defined by its markers:
+
+```{r}
+FeaturePlot(sample_subset, features = markers[['Zygotene']] )
+```
+
+`Pachytene` is very clear as well
+
+```{r}
+FeaturePlot(sample_subset, features = markers[['Pachytene']] )
+```
+
+`Diplotene` markers are show a distinguishable pattern covering the cluster `SpermatociteII`, though one of the markers is also covering other areas.
+
+```{r}
+FeaturePlot(sample_subset, features = markers[['Diplotene']] )
+```
+
+We can again calculate and visualize scores:
+
+```{r}
+for (i in c('Leptotene','Zygotene','Pachytene','Diplotene')){
+  sample_subset <- AddModuleScore(sample_subset, features = markers[[i]], name = i)
+}
+```
+
+### Recalculate clusters
+
+Now we can recalculate our neighbours and the clusters. We use a resolution of 0.4 and look at how this matches the markers.
+
+```{r}
+sample_subset <- FindNeighbors(sample_subset)
+sample_subset <- FindClusters(sample_subset, resolution = 0.4)
+```
+
+```{r}
+FeaturePlot(sample_subset, reduction = "umap", features = c('Leptotene1','Zygotene1','Pachytene1','Diplotene1'), min.cutoff = 0 )
+
+```
+
+```{r}
+VlnPlot(sample_subset, features = c('Leptotene1','Zygotene1','Pachytene1','Diplotene1'), group.by = "seurat_clusters", same.y.lims = T)
+```
+
+And we can visualize our subclustering using `DimPlot()`:
+
+```{r}
+DimPlot(sample_subset, reduction = "umap")
+```
+
+A resolution of 0.4 seems perfect to depict a clear separation between the four stages. In the same way as before, we annotate the clusters and remember that one of them preserves the old name `SpermatogoniaB`, since it does not show any expression of the markers of interest.
+
+```{r}
+new_names = c(
+    '0'='Diplotene',
+    '1'='Pachytene',
+    '2'='Diplotene',
+    '3'='SpermatogoniaB',
+    '4'='Leptotene',
+    '5'='Diplotene',
+    '6'='Zygotene',
+    '7'='Pachytene',
+    '8'='Diplotene')
+
+sample_subset$cluster_names <- recode(Idents(sample_subset), !!!new_names)
+```
+
+### Differential expression
+
+We can find specific differences between the subclusters found in here:
+
+```{r}
+subset_markers <- FindAllMarkers(sample_subset, logfc.threshold = 0.25, min.diff.pct = .1, return.thresh = .001, only.pos = TRUE)
+
+subset_markers %>%
+group_by(cluster) %>%
+    top_n(n = 10, wt = avg_log2FC) -> subset_top10
+
+head(subset_top10)
+```
+
+We should be able to find at least some of the markers used in the plots. However, it can be that those do not appear because there are many other coexpressed genes with high expression values.
+
+```{r}
+DoHeatmap(sample_subset, features = subset_top10$gene, ) + NoLegend()
+```
+
+We can find some of the marker genes. For example `SCML1` for leptotene cells, `SYCP1` and `LY6K` for zygotene, `CCDC112` and `PIWIL1` for pachitene, `CCNA1` for zygotene. Below we can plot only our known marker genes we started with.
+
+```{r}
+DoHeatmap(sample_subset, features = unlist(markers[c("Leptotene","Zygotene","Pachytene","Diplotene")])) + NoLegend()
+```
+
+### Reintegrating the subclusters
+
+Since we have created a subset of the original data, how can we integrate the new subclusters back into the dataset? We will need to do some data wrangling
+
+First we create a new metadata variable in the original Seurat object
+
+```{r}
+sample_2$subclusters <- as.character(sample_2$cluster_names)
+```
+
+The new subclusters are found in the subset metadata. We only need to get the cell names and change the original dataset accordingly
+
+```{r}
+subset_cells <- rownames(sample_subset@meta.data)
+sample_2$subclusters[rownames(sample_2@meta.data) %in% subset_cells] <- as.character(sample_subset$cluster_names)
+```
+
+We can visualize the before and after very easily now:
+
+```{r}
+p1 <- DimPlot(sample_2, reduction = "umap", group.by = "cluster_names", label = T)
+p2 <- DimPlot(sample_2, reduction = "umap", group.by = "subclusters", label = T)
+
+p1 + p2
+```
+
+## Cluster correlations
+
+An useful method we can use to check the quality of our clusters is to compute cluster correlations. Unfortunately, Seurat does not provide a straight forward method, but it is fairly simple to calculate. First we make use of the `AverageExpression()` function, which, as the name implies, will compute the average expression of the groups of cells (clusters or other types of groups).
+
+```{r}
+av.exp <- AverageExpression(sample_2, slot = "data", group.by = 'subclusters')
+av.exp <- av.exp$RNA
+
+head(av.exp)
+```
+
+Then we calculate the correlations between the columns (clusters) and plot it using the `pheatmap()` package.
+
+```{r}
+pheatmap(cor(av.exp), treeheight_col = 0, breaks = seq(-1,1,length.out = 100), display_numbers = T)
+```
+
+## Functional analysis
+
+The next step on our analysis of single cell RNAseq data is to annotate our genes! We have now a list of markers. However, they are just names! What do they do? What is their function? Can we get any biological insights to our data? The answer to this question is: **functional analysis**. With our lists of genes, we will ask different databases about what are our genes doing, where, are they associated with a disease, etc. The problem with these databases is that not all of them use the same identifiers for the genes, so we will need to annotate our results with extra information before we proceed with the functional analysis.
+
+### Annotate with `annotables`
+
+A very easy way to annotate your results with extra information is to use the package `annotables`. The package contains several tables of information about genes from different organisms and in different versions. To be precise, our reads were aligned to the human genome verion GRCh38, so we **need to make sure we annotate our genes with the same version of the genome!**
+
+```{r}
+head(grch38)
+```
+
+We can see that we have info about the gene ID, the entrez ID, gene name, chromosome position, start, end, strand, biotype and description. Very handy! Let's add that info to our shrunken results!
+
+```{r}
+ids <- grch38 %>% dplyr::filter(symbol %in% all.markers$gene) 
+res_ids <- inner_join(all.markers, ids, by=c("gene"="symbol"))
+res_ids
+```
+
+### Databases
+
+Here are some examples of databases that provide knowledge about genes related to a specific topic:
+
+-   **Gene Ontology (GO):** database of gene ontology biological processes, cellular components and molecular functions - based on Ensembl or Entrez gene IDs or official gene symbols
+-   **KEGG:** database of biological pathways - based on Entrez gene IDs
+-   **MSigDB:** database of gene sets
+-   **Reactome:** database of biological pathways
+-   **Human Phenotype Ontology:** database of genes associated with human disease
+-   **CORUM:** database of protein complexes for human, mouse, rat
+
+This is by no means an exhaustive list, there are many other databases available that are not listed here
+
+### Over representation analysis
+
+One way to check if a list of genes is enriched in a specific biological term is over-representation analysis. By comparing the frequency of these terms in the gene list to their expected frequency in a reference set (e.g., all genes in an organism) and performing a hypergeometric test, we can identify functional categories that are significantly enriched among the genes being studied.
+
+The hypergeometric test is a statistical method used in over-representation analysis to determine whether the occurrence of specific items (e.g., genes associated with a particular function) within a sample is significantly different from what would be expected by chance. It involves constructing a contingency table to compare the observed counts to the expected counts based on a null hypothesis.
+
+|              | Genes of Interest (GOI) | Background Genes (All Genes) |
+|--------------|-------------------------|------------------------------|
+| Term Present | **A**                   | **B**                        |
+| Term Absent  | **C**                   | **D**                        |
+
+In this table:
+
+-   **A**: The number of genes in your list (Genes of Interest) that are associated with the specific term being tested.
+-   **B**: The number of genes in the background set (All Genes) that are associated with the specific term being tested.
+-   **C**: The number of genes in your list that are **not** associated with the specific term being tested.
+-   **D**: The number of genes in the background set that are **not** associated with the specific term being tested.
+
+The hypergeometric test then calculates the probability of observing the current arrangement of genes (A) and non-genes (C) in your list, given the total number of genes in the background set (A + B + C + D), the number of genes associated with the term in the background set (B), and the size of your list (A + C).
+
+The p-value obtained from the hypergeometric test reflects the probability of seeing a result as extreme as the one observed, assuming that the null hypothesis (no enrichment) is true. If the p-value is small (typically below a chosen significance threshold), it suggests that the term is significantly over-represented in your list of genes of interest, indicating its potential biological relevance to the experimental context.
+
+Onto the analysis! As explained above, we first need to create a gene background, that is, all the genes found in our analysis.
+
+```{r}
+# Create background dataset for hypergeometric testing using all genes tested for significance in the results
+all_genes <- dplyr::filter(res_ids, !is.na(gene)) %>% 
+  pull(ensgene) %>% 
+  as.character() 
+
+# Extract significant results
+sig <- dplyr::filter(res_ids, p_val_adj < 0.05 & !is.na(ensgene))
+
+# Split the dataframe into a list by the cluster
+sig <- sig %>% dplyr::group_by(cluster) %>% group_split()
+
+sig_genes_cluster0 <- sig[[1]] %>% 
+  pull(ensgene) %>% 
+  as.character()
+```
+
+We will be using the R package `clusterProfiler` for functional analysis! It provides different functions to perform over representation analysis on GO terms, Disease Ontologies, KEGG pathways, etc. Let's check if our differentially expressed genes are enriched in GO terms. We are using human gene IDs from ENSEMBL, so we need to specify that in `keyType` and `OrgDb`.
+
+```{r}
+# Perform enrichment analysis
+ego <- enrichGO(gene = sig_genes_cluster0, 
+                universe = all_genes,
+                keyType = "ENSEMBL",
+                OrgDb = org.Hs.eg.db, 
+                pAdjustMethod = "BH", 
+                readable = TRUE)
+
+head(ego)
+```
+
+The enrichment results table shows which of the GO terms were found enriched in our significant genes! We can take a look at the adjusted p-value (`p.adjust`), and a `Description` explaining what does the GO term mean.
+
+#### Visualize result
+
+Nonetheless, looking at tables is not fun, is it? Let's make a plot! We can use the `dotplot()` function to do a dot plot showing each GO term description along side with their enrichment values.
+
+```{r enrichGO, fig.height=10, fig.width=5}
+dotplot(ego, showCategory=20)
+```
+
+There are many other functions that allow you to perform enrichment analysis on other databases. Here are some examples:
+
+-   `enrichKEGG()`: KEGG is a database resource for understanding high-level functions and utilities of the biological system, such as the cell, the organism and the ecosystem, from molecular-level information
+-   `enrichDAVID()`: Database for Annotation, Visualization and Integrated Discovery (DAVID) provides a comprehensive set of functional annotation tools for investigators to understand the biological meaning behind large lists of genes.
+-   `enrichWP()`: WikiPathways is an open, collaborative platform dedicated to the collection and reuse of biological pathways contributed and updated by the research community.
+-   `enrichDO()`: Disease Ontology is a tool that provides consistent, reusable and sustainable descriptions of human disease terms, phenotype characteristics and related medical vocabularies.
+
+### Gene set representation analysis
+
+Gene Set Enrichment Analysis (GSEA) is another powerful method used to understand how predefined sets of genes (gene sets) might be related to specific experimental conditions or biological processes. It helps identify whether certain gene sets are consistently upregulated or downregulated in a ranked list of genes based on their differential expression levels.
+
+Imagine you have a long list of genes ranked by how much their expression changes between two conditions (e.g., healthy vs. disease). GSEA doesn't just look at individual genes; it focuses on groups of genes that work together, like a team with a common function. These gene sets could represent things like pathways, functions, or processes.
+
+Here's how GSEA works:
+
+1.  Ranking Genes: You start by ranking all your genes based on their differential expression, putting the most upregulated genes at the top and the most downregulated genes at the bottom.
+2.  Gene Sets: Next, you take predefined gene sets (like "cell cycle genes" or "immune response genes") and see if the genes in these sets tend to be found at the top or bottom of your ranked list.
+3.  Enrichment Score: GSEA calculates an enrichment score that shows whether the gene set's members are clustered towards the top or bottom of the list. A high enrichment score means those genes are more consistently upregulated, while a low score means they're more consistently downregulated.
+4.  Statistical Significance: To determine if the enrichment score is significant, GSEA uses a statistical test and computes a p-value. If the p-value is small, it suggests that the gene set is enriched and likely related to the experimental condition.
+
+![gsea](https://hds-sandbox.github.io/bulk_RNAseq_course/img/08c_FA_GSEA/gsea_overview.png) We will perform a GSEA test on the KEGG database using the `gseKEGG()` function. As explained before, we will need to rank our list of genes first. We will do so by their shrunken LFC. In order to test the KEGG database, we need to use the entrez IDs instead of ensembl IDs. Fortunately, we already have them from our previous annotation step!
+
+```{r}
+# Extract entrez IDs. IDs should not be duplicated or NA
+res_entrez <- dplyr::filter(res_ids, entrez != "NA" & entrez != "NULL" & duplicated(entrez)==F)
+
+# Split the dataframe into a list by the cluster
+res_entrez <- res_entrez %>% dplyr::group_by(cluster) %>% group_split()
+
+## Extract the foldchanges
+foldchanges_cluster0 <- res_entrez[[1]]$avg_log2FC
+
+## Name each fold change with the corresponding Entrez ID
+names(foldchanges_cluster0) <- res_entrez[[1]]$entrez
+
+## Sort fold changes in decreasing order
+foldchanges_cluster0 <- sort(foldchanges_cluster0, decreasing = TRUE)
+
+head(foldchanges_cluster0)
+```
+
+```{r}
+# Run GSEA of KEGG
+gseaKEGG <- gseKEGG(geneList = foldchanges_cluster0, # ordered named vector of fold changes (Entrez IDs are the associated names)
+              organism = "hsa", # we are testing Homo sapiens
+              pvalueCutoff = 0.05, # padj cutoff value
+              verbose = FALSE)
+
+gseaKEGG_results <- gseaKEGG@result
+head(gseaKEGG_results)
+```
+
+You can see in the results which KEGG pathways are enriched! As always, you could save this results table:
+
+```{r}
+write.table(x = gseaKEGG_results, file = "./gsea_kegg_cluster0.tsv", sep = "\t", col.names = T, row.names = F, quote = F)
+```
+
+#### Visualize the result
+
+We can check individual results using the `gseaplot()` function. Let's check an example!
+
+```{r gseaplot_KEGG}
+## Plot the GSEA plot for a single enriched pathway:
+gseaplot(gseaKEGG, geneSetID = gseaKEGG_results$ID[1])
+```
+
+If you are also interested in checking how the pathway is affected in each step of the way, check out the function `pathway()`! It will create a pathway plot, coloring the genes that are affected by your LFC values.
+
+```{r pathview}
+## Output images for a single significant KEGG pathway
+pathview(gene.data = foldchanges_cluster0,
+              pathway.id = gseaKEGG_results$ID[1],
+              species = "hsa",
+              limit = list(gene = 2, # value gives the max/min limit for foldchanges
+              cpd = 1))
+```
+
+For example:
+
+![pathway_example](https://hds-sandbox.github.io/bulk_RNAseq_course/img/08c_FA_GSEA/hsa03040.pathview.png) You can visualize the result of your own KEGG pathway like this:
+
+```{r pathway_plot}
+knitr::include_graphics(paste0("./",gseaKEGG_results$ID[1],".png"))
+```
+
+As before, there are many other functions that allow you to perform GSEA on other databases. Here are some examples:
+
+-   `gseGO()`: Gene Ontology database is a model of how genes encode biological functions at the molecular, cellular and tissue system levels.
+-   `gseWP()`: WikiPathways is an open, collaborative platform dedicated to the collection and reuse of biological pathways contributed and updated by the research community.
+-   `gseDO()`: Disease Ontology is a tool that provides consistent, reusable and sustainable descriptions of human disease terms, phenotype characteristics and related medical vocabularies.
+
+## End notes
+
+In this introductory workshop on single cell RNA-seq data analysis, we've covered vital steps: loading count matrices, quality checks and filtering, normalization and scaling, dimensionality reduction and visualization, clustering, finding marker genes and functional analysis. You're now well-equipped to extract meaningful insights from your data, revealing the intricate workings of genes in biological processes. If you liked this, check out our full version at our [webpage](https://github.com/hds-sandbox/scRNAseq_course)! See you next time!
+
+## Session info
+
+Finally, it is always a good idea to print the packages and versions we are using in our analysis. We can do this with the `sessionInfo()` function.
+
+```{r}
+sessionInfo()
+```

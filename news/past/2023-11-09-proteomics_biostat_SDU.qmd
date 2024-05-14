@@ -1,0 +1,11 @@
+---
+title: "Updates from SDU"
+description: "Updated Proteomics Sandbox App supporting of a Biostatistics course at SDU"
+Organizers: Jacob Fredegaard Hansen
+date: 2023-11-09
+Dates: "9 November 2023"
+Location: SDU
+categories: [proteomics, course, SDU]
+---
+
+The Proteomics Sandbox Application has recently undergone a significant update, enhancing its security features to ensure safer usage for its users. In this latest iteration, Sandbox data scientist Jacob Fredegaard Hansen has expanded the app's software suite by introducing two new tools: DIA-NN and MZmine, catering to the metabolomics field. Furthermore, the pre-existing software within the application has been refreshed and updated to the latest versions, ensuring that the Proteomics Sandbox Application remains at the cutting-edge of the field. Excitingly, this application will be actively utilized in the course "BMB831: Biostatistics in R II" at the University of Southern Denmark throughout this autumn, showcasing its relevance and applicability in academic settings.

@@ -1,0 +1,11 @@
+---
+title: "Transcriptomics Sandbox app launched on UCloud!"
+description: "Transcriptomics Sandbox app launched on UCloud!"
+Organizers: Jose AR Herrera
+date: 2022-11-15
+Dates: "15 November 2022"
+Location: KU
+categories: [transcriptomics, ucloud]
+---
+
+We have deployed our second standalone Sandbox app on UCloud! Please see the [Access](https://hds-sandbox.github.io/access/UCloud) page for instructions on how to find our Sandbox apps on UCloud - This one is titled 'Transcriptomics Sandbox' and module documentation is linked from the UCloud app page as well as here in [Modules](https://hds-sandbox.github.io/modules).

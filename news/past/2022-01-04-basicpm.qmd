@@ -1,0 +1,11 @@
+---
+title: "Basics of Personalized Medicine - MSc course"
+description: "Basics of Personalized Medicine - MS in Personal Medicine program"
+Organizers: Jennifer Bartell
+date: 2022-04-01
+Dates: "1 April 2022"
+Location: AAU
+categories: [personalized-medicine, AAU]
+---
+
+The first course supported by the Sandbox is launching this month - 'Basics of Personalized Medicine' - where students in the new Master in Personal Medicine program at University of Copenhagen are introduced to predictive modeling using electronic health records.

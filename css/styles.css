@@ -1,0 +1,5 @@
+
+.grid-cell img {
+    max-width: 50%; /* Make the image responsive */
+    height: 50%; /* Maintain aspect ratio */
+  }

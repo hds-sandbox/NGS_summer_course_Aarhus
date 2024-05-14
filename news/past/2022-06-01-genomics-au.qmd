@@ -1,0 +1,11 @@
+---
+title: "Genomics course at Aarhus University"
+description: "Genomics course at Aarhus University"
+Organizers: Samuele Soraggi
+date: 2022-06-01
+Dates: "1 June 2022"
+Location: AU
+categories: [genomics, AU]
+---
+
+A month-long course in Genomics taught by Professors Mikkel Schierup and Stig Andersen has started with lead supercomputing support on UCloud by Sandbox data scientist and course instructor Samuele Soraggi. Computational exercises in NGS analysis were deployed in a UCloud project for use by 47 graduate students with primarily molecular biology and clinical backgrounds and no prior supercomputing experience! Post-course update: We received many positive reviews on use of the Genomics Sandbox training materials on UCloud! 

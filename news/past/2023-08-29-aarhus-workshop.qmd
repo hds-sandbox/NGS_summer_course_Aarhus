@@ -1,0 +1,12 @@
+---
+title: "Sandbox workshop in Aarhus"
+description: "3 days of Sandbox demos at Aarhus University"
+Organizers: Samuele Soraggi
+date: 2023-08-29
+Dates: "29 August 2023"
+Location: AU
+categories: [workshop, AU]
+---
+
+
+Sandbox data scientist Samuele Soraggi hosted a three day speed run through Sandbox apps at the Bioinformatics Research Center. The 26 participants joined for genomics, transcriptomics, and/or proteomics app demos depending on their interests. This thorough omics demo had maxed out participant sign-ups and an enthusiastic crew enjoyed the sessions alongside a bit of networking across disciplines. We plan to host more of these type of workshops given the event's success!

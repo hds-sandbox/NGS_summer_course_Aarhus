@@ -1,0 +1,13 @@
+---
+title: "Bulk RNA-seq course at University of Copenhagen"
+description: "Bulk RNA-seq course at University of Copenhagen"
+Organizers: Jennifer Bartell
+date: 2022-08-18
+Dates: "18 August 2022"
+Location: KU
+categories: [transcriptomics, course, KU, HeaDS, reNEW]
+---
+
+Today we began teaching our brand new bulk RNA-seq course to researchers (from PhD students to professors) at SUND at the University of Copenhagen. We had 32 workshop participants join us for two days of lectures and exercises on UCloud. We'd like to extend our thanks to our workshop collaborators, data scientists from the SUND DataLab at KU's Center for Health Data Science as well as the genomics platform at the NNF Center for Stem Cell Medicine (reNEW). 
+
+For those that could not enroll for this session, you can find the relevant material [here](https://hds-sandbox.github.io/bulk_RNAseq_course/).

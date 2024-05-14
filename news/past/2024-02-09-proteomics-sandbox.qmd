@@ -1,0 +1,11 @@
+---
+title: "Course support at SDU"
+#description: "Data Scientist, Copenhagen University"
+Organizers: Jacob Fredegaard Hansen
+date: 2024-02-09
+Dates: "9 February 2024"
+Location: SDU
+categories: [proteomics, SDU, course]
+---
+
+During the Spring Semester 2024, Sandbox data scientist Jacob Fredegaard Hansen will be assisting with teaching and tools in the course BMB834: Protein Structure, Dynamics, and Modelling at the University of Southern Denmark. Here, Jacob will provide Sandbox support, and materials will be used for applying computational methods for protein structure retrieval and visualization, as well as for applying high-performance computing (HPC) methods for protein structure modeling.ß

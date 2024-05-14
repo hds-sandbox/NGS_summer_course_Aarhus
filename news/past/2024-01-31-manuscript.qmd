@@ -1,0 +1,11 @@
+---
+title: "A primer for Synthetic health data"
+#description: "Data Scientist, Copenhagen University"
+Organizers: Jennifer Bartell
+date: 2024-01-31
+Dates: "31 January 2024"
+Location: 
+categories: [manuscript, synthetic-data, KU, AAU]
+---
+
+In collaboration with Prof. Henning Langberg at KU Public Health and funding from Erhvervsfyrtaarn Sund Vaegt, Jennifer Bartell has developed a manuscript that discusses technical, regulatory, and deployment solutions and challenges for synthetic health data from a broad perspective. This manuscript was developed in collaboration with Sandbox partners Sander Boisen Valentin and Martin Boegsted of AAU, and we plan to submit it to a journal soon. For now, check out [our manuscript on arXiv](https://arxiv.org/abs/2401.17653)!

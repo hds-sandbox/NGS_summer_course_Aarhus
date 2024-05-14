@@ -1,0 +1,11 @@
+---
+title: "DDSA PhD meetup and D3A conference"
+#description: "Data Scientist, Copenhagen University"
+Organizers: Jennifer Bartell
+date: 2024-02-01
+Dates: "1 February 2024"
+Location: DDSA
+categories: [conference, DDSA]
+---
+
+Several Sandbox staff represented the project at both the DDSA PhD Meetup with a practical presentation on research data management and with posters at D3A, the national data science meeting. It was nice to meet up in person and also make new connections with the excellent cadre of conference attendees. Thanks to the DDSA secretariat for their invitation and organizational efforts.

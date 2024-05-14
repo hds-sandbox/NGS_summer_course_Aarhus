@@ -1,0 +1,11 @@
+---
+title: "Jakob Skelmose"
+description: "Data Scientist, Aalborg University"
+#https://emojidb.org/quarto-emojis for emojis copypaste
+---
+
+![](jaKob.jpg){width=300}
+
+[![](Github_black.png){width=50}](https://github.com/tzuV)   [![](Outlook.png){width=50}](mailto:jbks@dcm.aau.dk?subject=Test)   [![](mapPin.png){width=50}](https://www.klinisk.aau.dk/forskning/forskningsenheder-og-centre/center-for-clinical-data-science)   [![](www.png){width=50}](https://vbn.aau.dk/da/persons/148971)   
+
+Jakob is a Sandbox data scientist based at the university of Aalborg. His work is mainly focused on applications related to synthetic data, both for research and teaching purposes.

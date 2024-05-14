@@ -1,0 +1,46 @@
+project:
+  type: website
+
+website:
+  title: 'Health Data Science Sandbox'
+  navbar:
+    logo: /img/logo.png
+    left:
+      - href: index.qmd
+        text: Home
+      - href: news.qmd
+        text: News
+      - href: access/index.qmd
+        text: HPC access
+      - href: modules/index.qmd
+        text: Modules
+#      - href: workshop/workshop_april2024.qmd
+#        text: Workshop
+      - text: Datasets
+        menu:
+          - href: datasets/datapolicy.qmd
+          - href: datasets/synthdata.qmd
+      - href: about/about.qmd
+        text: About
+      - href: contact/contact.qmd
+        text: Contact
+
+    right: 
+      - icon: github
+        href: https://github.com/hds-sandbox
+        aria-label: GitHub
+      - icon: linkedin
+        href: https://www.linkedin.com/company/ucph-heads
+        aria-label: LinkedIn
+      - icon: twitter
+        href: https://twitter.com/ucph_heads
+        aria-label: Twitter   
+
+format:
+  html:
+    theme: 
+      light: [materia, css/materialight.scss]
+      dark: darkly
+    toc: true
+#    include-in-header:
+#      - file: "resources/bioschema.html"

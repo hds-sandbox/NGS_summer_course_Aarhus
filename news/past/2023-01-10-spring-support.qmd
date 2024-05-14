@@ -1,0 +1,23 @@
+---
+title: "Sandbox support for Spring 2023 courses"
+description: "Sandbox support for Spring 2023 courses"
+Organizers: Jennifer Bartell
+date: 2023-01-10
+Dates: "10 January 2023"
+Location: KU
+categories: [courses, population-genomics, personalized-medicine, single-cell, HeaDS, reNEW, transcriptomics]
+---
+
+The Health Data Science sandbox is working with the following courses during spring 2023:
+
+
+
+- **Sandbox support for Population Genomics**
+
+Exercises for an [MS course on Population Genomics](https://kursuskatalog.au.dk/en/course/117821/Population-Genomics) taught by Prof. Kasper Munch at Aarhus University are being implemented on UCloud by Sandbox data scientist Samuele Soraggi. Students will explore the training materials on UCloud during the Spring 2023 semester, after which the materials will be accessible to any UCloud user via the Genomics Sandbox App.  
+
+- **Fra real-world data til personlig medicin with Course Platform & Sandbox support**
+The second round of the course ['Fra real-world data til personlig medicin'](https://personligmedicin.ku.dk/kursus/realworld/) in KU's MS in Personlig Medicin begins in January with an introduction to CLL-TIM, a predictive model for chronic lymphocytic leukemia deployed by Prof. Carsten Niemann, an introduction by Sandbox coordinator Jennifer Bartell to the new Course Platform at Computerome built with Sandbox help for hosting courses with HPC resources, and an introduction to building predictive models using TidyModels in R by Prof. Rasmus Broendum. The course will run through April with 10 continuing education students building their own predictive models using a new and improved synthetic CLL dataset developed by Sandbox data scientist Sander Boisen Valentin. Jennifer and Rasmus are also manning the Sandbox Slack workspace to field student questions about the dataset and their model building.
+
+ - **Sandbox support for 'Single-cell, Single-Molecule: The Next Level in Cell Biology'**
+An NNF-funded course, ['Single-cell, Single-Molecule: The Next Level in Cell Biology'](https://kursuskatalog.au.dk/en/course/118020/Single-cell-Single-molecule-The-Next-Level-in-Cell-Biology) combining experimental and computational approaches to RNA sequencing is starting at Aarhus University. In addition to course-responsible professor Stig Andersen and co-teachers Victoria Birkedal and Thomas Boesen, Sandbox PI Mikkel Schierup will be contributing along with Sandbox data scientist Samuele Soraggi. Samuele is adapting the Transcriptomics App material on UCloud to supply tutorials and exercises for this hefty course as well as serving as a teaching assistant. The course materials will be available to all users of the Transcriptomics Sandbox App on UCloud in the future.

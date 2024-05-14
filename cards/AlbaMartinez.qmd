@@ -1,0 +1,13 @@
+---
+title: "Alba Refoyo Martinez"
+description: "Data Scientist, Copenhagen University"
+#https://emojidb.org/quarto-emojis for emojis copypaste
+---
+
+![](alba.jpg){width=300}
+
+[![](LinkedIN.png){width=50}](https://dk.linkedin.com/in/albarefoyo)   [![](Github_black.png){width=50}](https://github.com/albarema)   [![](Outlook.png){width=50}](alba.martinez@sund.ku.dk?subject=Test)   [![](mapPin.png){width=50}](https:heads.ku.dk) [![](www.png){width=50}](https://albarema.github.io) 
+
+
+Alba is a Sandbox data scientist based at the University of Copenhagen. During her academic background as a PhD and Postdoc she has developed a solid expertise in large-scale genomics and pipelines development on computing clusters.
+

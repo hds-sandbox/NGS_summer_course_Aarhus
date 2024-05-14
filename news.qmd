@@ -1,0 +1,27 @@
+---
+title: "News"
+format:
+  html:
+    page-layout: full
+listing:
+  - id: "upcoming_event"
+    image-height: 300px
+    grid-columns: 4
+    image-placeholder: "./img/logo.png"
+    fields: [image,title, description,categories, date]
+    contents: news/upcoming/*.qmd
+    type: grid
+    sort:
+      - "date asc"
+  - id: "past_event"
+    fields: [title, Dates, Location, Organizers]
+    field-display-names:
+      title: "Event title"
+    contents: news/past/*.qmd
+    type: table
+    sort:
+      - "date desc"  
+---
+
+
+Sandbox data scientists routinely lead or contribute to courses and workshops at host universities in Denmark. Check out upcoming events here! All our past events are listed in the table below. 

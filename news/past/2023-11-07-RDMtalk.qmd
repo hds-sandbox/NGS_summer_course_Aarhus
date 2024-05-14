@@ -1,0 +1,11 @@
+---
+title: "From Data Chaos to Data Harmony"
+description: "From Data Chaos to Data Harmony: Managing NGS Data in a Wetlab - at the annual DeiC conference"
+Organizers: Jennifer Bartell
+date: 2023-11-07
+Dates: "7 November 2023"
+Location: DeiC conference
+categories: [conference, data-management, talk]
+---
+
+Sandbox data scientist Jose Alejandro Romero Herrera gave a talk in the Data Management speaker track at the annual Danish E-Infrastructure Consortium (DeiC) conference in Kolding, Denmark. The talk was well received at the biggest DeiC conference ever (250 participants).

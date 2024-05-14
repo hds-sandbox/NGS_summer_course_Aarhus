@@ -1,0 +1,35 @@
+---
+title: "HPC access"
+format:
+  html:
+    page-layout: full
+---
+
+
+The Sandbox is collaborating with the two major academic high performance computing platforms in Denmark. Computerome is located at the Technical University of Denmark (and co-owned by the University of Copenhagen) while UCloud is owned by the University of Southern Denmark. These HPC platforms each have their own strengths which we leverage in the Sandbox in different ways.
+
+## UCloud
+
+[UCloud](https://cloud.sdu.dk/app/login) is a relatively new HPC platform that can be accessed by students at Danish universities (via a WAYF university login). It has a user friendly graphical user interface that supports straightforward project, user, and resource management. UCloud provides access to many tools via selectable Apps matched with a range of flexible compute resources, and the Sandbox is deploying training modules in this form such that any UCloud user can easily access Sandbox materials independently. The Sandbox is also hosting workshops and training events on UCloud in conjunction with in-person training. 
+
+:::{.callout-tip title="Access Sandbox Apps on UCloud"}
+Find detailed instructions on accessing Sandbox apps [here](UCloud.qmd) via UCloud. Check out UCloud's extensive user docs [here](https://docs.cloud.sdu.dk/index.html).  
+:::
+
+## Computerome
+
+[Computerome](https://computerome.dk/) is the home of many sensitive health datasets via collaborations between DTU, KU, Rigshospitalet, and other major health sector players in the Capital Region of Denmark. Computerome has recently launched their secure cloud platform, [DELPHI](https://computerome.dk/solutions/delphi), and in collaboration with the Sandbox has built a [Course Platform](https://computerome.dk/solutions/course-platform) on the same backbone such that courses and training can be conducted in the same environment as real research would be performed in the secure cloud. The Sandbox is supporting courses in the Course Platform, but it is also available for independent use by educators at Danish universities. Please see their website for more information on independent use and pricing, and [contact us](mailto:nhds_sandbox@sund.ku.dk) if you'd like to collaborate on hosting a course on Computerome. We can help with tool installation, environment testing, and user support (ranging from using the environment to course content if we have Sandbox staff with matching expertise).
+
+Participants in courses co-hosted by the Sandbox can check [here](Computerome.qmd) for access instructions. 
+
+## GenomeDK
+
+In development.
+
+## Any other computing cluster
+
+In development.
+
+## Your local PC
+
+In development.

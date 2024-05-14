@@ -1,0 +1,11 @@
+---
+title: "NNF Collaborative Data Science award news: the SE3D project!"
+#description: "Data Scientist, Copenhagen University"
+Organizers: Jennifer Bartell
+date: 2023-12-12
+Dates: "12 December 2023"
+Location: KU
+categories: [novo-nordisk-foundation, grant, AAU, KU]
+---
+
+Today we got the news that we will be able to hire 5 new research staff focused on synthetic health data over the next 4 years. The SE3D project -  Synthetic health data: ethical development and deployment via deep learning approaches - will be led by Sandbox PIs Martin Boegsted (AAU) and Anders Krogh (KU) alongside Sandbox project lead Jennifer Bartell (KU) and a new collaborator, Prof. Jan Trzaskowski from AAU Law. We're really excited to set up this research arm that shares so many Sandbox interests and potential for interaction. The project starts from 1 May 2024, with much thanks to the NNF for their continued support of our ideas. Look out for job ads in the spring from KU and AAU!
