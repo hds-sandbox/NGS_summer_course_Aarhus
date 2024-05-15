@@ -511,32 +511,25 @@
     "text": "sss"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Introduction to Next Generation Sequencing data",
-    "section": "",
-    "text": "Computing and didactical support from the Danish Health Data Science Sandbox\n\n\n\nThe material for this course is organized in four separated jupyter notebooks in both bash, python and R where you will benefit of an interactive coding setup on jupyterlab. Each lesson is in the menu above.\n\n\nThe first exercise lesson is executed with the web interface usegalaxy.org. Click on 1.Galaxy Exercise in the menu for instructions)\n\n\n\n\nThe following exercise lessons will work on a computing environment with jupyterlab. Use 2.Instructions to find out how to run it, selecting the computing environment you need (danish clusters uCloud and GenomeDK, your PC, or another cluster).\n\n\n\nif you need to have a look at the exercises as a reference, then the menu 3.Compiled exercises contains all the compiled exercises on jupyterlab in a document format, from which you can also copy-paste the code."
-  },
-  {
     "objectID": "index.html#course-material",
     "href": "index.html#course-material",
     "title": "Introduction to Next Generation Sequencing data",
-    "section": "",
-    "text": "The material for this course is organized in four separated jupyter notebooks in both bash, python and R where you will benefit of an interactive coding setup on jupyterlab. Each lesson is in the menu above.\n\n\nThe first exercise lesson is executed with the web interface usegalaxy.org. Click on 1.Galaxy Exercise in the menu for instructions)"
+    "section": "Course material",
+    "text": "Course material\nThe material for this course is organized in four separated jupyter notebooks in both bash, python and R where you will benefit of an interactive coding setup on jupyterlab. Each lesson is in the menu above.\n\nFirst exercise\nThe first exercise lesson is executed with the web interface usegalaxy.org. Click on 1.Galaxy Exercise in the menu for instructions)"
   },
   {
     "objectID": "index.html#following-exercises",
     "href": "index.html#following-exercises",
     "title": "Introduction to Next Generation Sequencing data",
-    "section": "",
-    "text": "The following exercise lessons will work on a computing environment with jupyterlab. Use 2.Instructions to find out how to run it, selecting the computing environment you need (danish clusters uCloud and GenomeDK, your PC, or another cluster)."
+    "section": "Following exercises",
+    "text": "Following exercises\nThe following exercise lessons will work on a computing environment with jupyterlab. Use 2.Instructions to find out how to run it, selecting the computing environment you need (danish clusters uCloud and GenomeDK, your PC, or another cluster)."
   },
   {
     "objectID": "index.html#compiled-exercises",
     "href": "index.html#compiled-exercises",
     "title": "Introduction to Next Generation Sequencing data",
-    "section": "",
-    "text": "if you need to have a look at the exercises as a reference, then the menu 3.Compiled exercises contains all the compiled exercises on jupyterlab in a document format, from which you can also copy-paste the code."
+    "section": "Compiled exercises",
+    "text": "Compiled exercises\nif you need to have a look at the exercises as a reference, then the menu 3.Compiled exercises contains all the compiled exercises on jupyterlab in a document format, from which you can also copy-paste the code."
   },
   {
     "objectID": "index.html#course-material-2022",
