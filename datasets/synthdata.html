@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2024-01-01">
 
-<title>Introduction to NGS data analysis</title>
+<title>Introduction to NGS data analysis - Synthetic data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,24 +24,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -79,10 +80,10 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./images/NGSlogo.png" alt="" class="navbar-logo">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/NGSlogo.png" alt="" class="navbar-logo">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Introduction to NGS data analysis</span>
     </a>
   </div>
@@ -93,7 +94,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
 </ul>
@@ -122,144 +123,112 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#progress-and-challenges" id="toc-progress-and-challenges" class="nav-link active" data-scroll-target="#progress-and-challenges">progress and challenges</a>
+  <ul class="collapse">
+  <li><a href="#defining-synthetic-data" id="toc-defining-synthetic-data" class="nav-link" data-scroll-target="#defining-synthetic-data">Defining synthetic data</a></li>
+  <li><a href="#generating-synthetic-data" id="toc-generating-synthetic-data" class="nav-link" data-scroll-target="#generating-synthetic-data">Generating synthetic data</a></li>
+  <li><a href="#evaluating-synthetic-data" id="toc-evaluating-synthetic-data" class="nav-link" data-scroll-target="#evaluating-synthetic-data">Evaluating synthetic data</a></li>
+  <li><a href="#rules-for-synthetic-data-in-the-sandbox" id="toc-rules-for-synthetic-data-in-the-sandbox" class="nav-link" data-scroll-target="#rules-for-synthetic-data-in-the-sandbox">Rules for synthetic data in the Sandbox</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
-
-
-
-<section id="introduction-to-next-generation-sequencing-data" class="level1 centered">
-<h1 class="centered">Introduction to Next Generation Sequencing data</h1>
-<div style="text-align: center;">
-<p><strong>Computing and didactical support from the <a href="https://hds-sandbox.github.io/">Danish Health Data Science Sandbox</a></strong></p>
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Synthetic data</h1>
 </div>
-<section id="course-material" class="level2">
-<h2 class="anchored" data-anchor-id="course-material">Course material</h2>
-<p>The material for this course is organized in four separated jupyter notebooks in both <code>bash</code>, <code>python</code> and <code>R</code> where you will benefit of an interactive coding setup on <code>jupyterlab</code>. Each lesson is in the menu above.</p>
-<section id="first-exercise" class="level3">
-<h3 class="anchored" data-anchor-id="first-exercise">First exercise</h3>
-<p>The first exercise lesson is executed with the web interface <a href="https://usegalaxy.org/">usegalaxy.org</a>. Click on <code>1.Galaxy Exercise</code> in the menu for instructions)</p>
-</section>
-</section>
-<section id="following-exercises" class="level2">
-<h2 class="anchored" data-anchor-id="following-exercises">Following exercises</h2>
-<p>The following exercise lessons will work on a computing environment with <code>jupyterlab</code>. Use <code>2.Instructions</code> to find out how to run it, selecting the computing environment you need (danish clusters <code>uCloud</code> and <code>GenomeDK</code>, your PC, or another cluster).</p>
-</section>
-<section id="compiled-exercises" class="level2">
-<h2 class="anchored" data-anchor-id="compiled-exercises">Compiled exercises</h2>
-<p>if you need to have a look at the exercises as a reference, then the menu <code>3.Compiled exercises</code> contains all the compiled exercises on <code>jupyterlab</code> in a document format, from which you can also copy-paste the code.</p>
-</section>
-</section>
-<section id="course-overview" class="level1">
-<h1>Course overview</h1>
-<div class="callout callout-style-default callout-note callout-titled" title="">
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 1, 2024</p>
+    </div>
+  </div>
+  
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">May 15, 2024</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="progress-and-challenges" class="level1">
+<h1>progress and challenges</h1>
+<section id="defining-synthetic-data" class="level2">
+<h2 class="anchored" data-anchor-id="defining-synthetic-data">Defining synthetic data</h2>
+<p>It is necessary to clarify what we mean when we refer to synthetic data within the Sandbox project. While the term has been used for decades to describe all kinds of ‘non-real’ data including those derived from models and simulations, developments in deep generative modeling have dramatically expanded our understanding of what synthetic data can be. In the age of deepfakes and news articles written entirely by ChatGPT, synthetic data derived from deep learning is in a wholly different class from data simulated with a mechanistic or agent-based model.</p>
+<p>The Sandbox is actually interested in any form of synthetic data - our highest priority is providing safe-to-use data to trainees and researchers that does not raise any concerns about sensitive data with respect to the EU’s General Data Protection Regulation (GDPR) and local Danish data regulations. So, we are using both old school and new school forms of data synthesis. However, the discussion on this page is heavily weighted towards our interest in new school synthesis - with our connections to generative modeling researchers and high quality data, we are naturally interested in figuring out a safe way to deploy synthetic datasets derived from deep learning and other high similarity approaches.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="The TLDR for synthetic data in the Sandbox">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+The TLDR for synthetic data in the Sandbox
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>After the course, you will have knowledge of bioinformatics methods for analyzing genomes using NGS data, including knowledge of the existing types of genome data, how the different types of data can be displayed and analyzed, the current methods for genome assembly and analysis, their accuracy and how they can be used. The course will enable you to devise and run a project that makes use of NGS data.</p>
-<ul>
-<li><strong>Prerequisites:</strong> This is an introductory course that needs a basic understanding of the biology behind sequencing, and not necessarily programming experience (though this would help!).</li>
-</ul>
-<p>-<strong>Syllabus:</strong> - Describe key challenges in the analysis of NGS data</p>
-<pre><code>- Explain the theoretical foundation for methods that use NGS for assembly and analysis of genomes
-
-- Discuss the bioinformatic methods for genome analysis and hypothesize what drives the outcome of the methods
-
-- Review original literature within the subjects and relate the discussed topics to analysis scenarios
-
-- Apply bioinformatics tools within the selected application areas and reflect on the results, formulating your own conclusion in the proposed tasks</code></pre>
-<ul>
-<li><p><strong>Time:</strong> 20 hours (for reading through the code, executing it, answering questions). The material fits 4-5 days lessons.</p></li>
-<li><p><strong>Supporting Materials:</strong></p>
-<ul>
-<li>jupyter notebooks for interactive coding</li>
-<li>lecture slides from the instructor</li>
-</ul></li>
-</ul>
-<p>You can find the links to the material in the table at the bottom of this page.</p>
-<ul>
-<li><p><strong>Course authors</strong></p>
-<ul>
-<li><p><a href="https://pure.au.dk/portal/da/persons/mikkel-heide-schierup(aa7cd7f5-b8cf-4781-b6a6-be522a7b335c).html" class="md-button">Mikkel H Schierup</a></p></li>
-<li><p><a href="https://pure.au.dk/portal/da/persons/stig-uggerhoej-andersen(dbcd376b-110b-489a-8f6d-85dd2268277d).html" class="md-button">Stig U Andersen</a></p></li>
-<li><p><a href="https://www.linkedin.com/in/samuelesoraggi/" class="md-button">Samuele Soraggi</a></p></li>
-<li><p><a href="https://www.linkedin.com/in/peter-s%C3%B8rud-porsborg/" class="md-button">Peter S Porsborg</a></p></li>
-<li><p><a href="https://www.linkedin.com/in/adri%C3%A1n-g%C3%B3mez-repoll%C3%A9s-66b496105/?originalSubdomain=es" class="md-button">Adrián G Repollés</a></p></li>
-</ul></li>
-<li><p><strong>License:</strong> <a href="https://creativecommons.org/licenses/by/4.0/">Course Content is licensed under Creative Commons Attribution 4.0 International License</a></p></li>
-<li><p><strong>Citation:</strong> If you use any of this material for your research, please cite this course with the DOI below, and acknowledge the Health Data Science Sandbox project of the Novo Nordisk Foundation (grant number NNF20OC0063268). It is of great help to support the project. <a href="https://zenodo.org/badge/latestdoi/468293635"><img src="https://zenodo.org/badge/468293635.svg" class="img-fluid" alt="DOI"></a></p></li>
-<li><p><strong>Contact:</strong> Samuele Soraggi (samuele at birc.au.dk) for technical issues in using the material.</p></li>
-</ul>
+<pre><code>- The development of synthetic datasets should be viewed as a research project. The technology is generally untested with few examples of public roll-out, and its deployment should be future-proofed as much as possible against attacks and potential sensitive data disclosure.
+- Synthetic data generation and evaluation approaches should be tailored     to each dataset of interest. With current technology, it is unlikely that high quality, safe-to-share datasets will be produced at any kind of production scale without a massive effort devoted to pre-processing, data harmonization, and customized routines for different families of datasets.
+- The Sandbox is not openly sharing any synthetic datasets generated from person-specific sensitive data. We think these datasets will be useful to approved researchers that ideally gain access via an approved data portal with registration and data use agreements with relevant data authorities. We are not currently that portal.</code></pre>
 </div>
 </div>
-<section id="course-material-2022" class="level2">
-<h2 class="anchored" data-anchor-id="course-material-2022">Course material 2022</h2>
-<p>Here you find a table with the instructor’s slides from 2022.</p>
-<table class="table">
-<thead>
-<tr class="header">
-<th>Topic</th>
-<th>Slide</th>
-<th>Notebook</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Sequencing technologies</td>
-<td><a href="https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/01_sequencing_technologies.pdf">link</a></td>
-<td>–</td>
-</tr>
-<tr class="even">
-<td>Mapping to reference</td>
-<td><a href="https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/02_mapping_to_reference.pdf">link</a></td>
-<td><a href="https://hds-sandbox.github.io/NGS_summer_course_Aarhus/nb/align.html">Notebook</a></td>
-</tr>
-<tr class="odd">
-<td>Data visualization</td>
-<td><a href="https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/03_data_visualization.pdf">link</a></td>
-<td>–</td>
-</tr>
-<tr class="even">
-<td>SNPs and structural variants</td>
-<td><a href="https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/04_snp_and_structural_variants.pdf">link</a></td>
-<td><a href="https://hds-sandbox.github.io/NGS_summer_course_Aarhus/nb/vcf.html">Notebook</a></td>
-</tr>
-<tr class="odd">
-<td>RNA sequencing</td>
-<td><a href="https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/05_rna_sequencing.pdf">link</a></td>
-<td><a href="https://hds-sandbox.github.io/NGS_summer_course_Aarhus/nb/bulk.html">Notebook</a></td>
-</tr>
-<tr class="even">
-<td>De-novo assembly</td>
-<td><a href="https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/06_de_novo_assembly.pdf">link</a></td>
-<td>–</td>
-</tr>
-<tr class="odd">
-<td>Microbiomes and metagenomics</td>
-<td><a href="https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/07_microbiomes_and_metagenomics.pdf">link</a></td>
-<td>–</td>
-</tr>
-<tr class="even">
-<td>Single cell RNA sequencing</td>
-<td><a href="https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/08_single_cell_day.pdf">link</a></td>
-<td><a href="https://hds-sandbox.github.io/NGS_summer_course_Aarhus/nb/scrna.html">Notebook</a></td>
-</tr>
-</tbody>
-</table>
 </section>
-<section id="course-material-2024" class="level2">
-<h2 class="anchored" data-anchor-id="course-material-2024">Course material 2024</h2>
-<p>Here you find a table with the instructor’s slides and a link to the compiled notebooks, that you can also run on your own following the <code>instructions</code> in this webpage. Data alignment can also be performed on the <code>Galaxy</code> interactive webpage (see the <code>galaxy exercise</code> in this webpage).</p>
+<section id="generating-synthetic-data" class="level2">
+<h2 class="anchored" data-anchor-id="generating-synthetic-data">Generating synthetic data</h2>
+<p>We have explored the performance of copulas, multiple imputation, sequential synthesis, and several generative adversarial network (GAN) approaches with a cancer dataset which we were developing for a course in the MS in Personal Medicine program at University of Copenhagen. We quickly discovered that factors such as missingness, collinearity, and the ratio of patients to features cause just as many problems for synthetic data generation as they do in predictive modeling. We are currently evaluating the above techniques as well as additional deep learning approaches such as variational autoencoders (VAEs) and Bayesian graphs against a collection of benchmark health datasets to better understand the positives and negatives of each technique when faced with common challenges in real world health data.</p>
+<p>Recently, a few interesting libraries / pipelines have been released that enable testing of different synthetic data generation approaches alongside a range of evaluation metrics. We are actively exploring these tools as we test different generation approaches and examining their implementation of evaluation metrics. We plan to add additional components and features as we resolve challenges with different target datasets.</p>
+</section>
+<section id="evaluating-synthetic-data" class="level2">
+<h2 class="anchored" data-anchor-id="evaluating-synthetic-data">Evaluating synthetic data</h2>
+<p>There are 3 key principles to consider when judging the overall quality of a synthetic dataset: fidelity to the original dataset, risk to privacy, and prediction utility. Fidelity and utility are often grouped together as similarity to the original data which exists in a trade-off with privacy - the more similar your synthetic dataset to the original, the higher your risk to patient privacy. However, the distinction between them is important as they can be achieved independently of each other depending on the project frame. Fidelity refers to reproduction of the multivariate shape and structure of the original data (including complex nonlinear relationships) while utility refers to how well the synthetic dataset matches the predictive accuracy of the original dataset. Risk to privacy includes both risk of patient reidentification and risk of sensitive information disclosure about a patient. There are many proposed evaluation metrics for measuring different aspects of these three qualities. We are actively investigating the performance of these metrics against our different datasets.</p>
+<p><img src="../images/SynthDataQualities.png" class="img-fluid"></p>
+<p>We should point out that while using quantitative metrics to assess privacy preservation is a critical step in creating a synthetic dataset, positive results do not absolve us from any concerns regarding risk to privacy in the synthetic data. Regulatory guidelines regarding the safety of synthetic data and the ability to openly share it are extremely unclear. No authorities have specified quantitative cut-offs using these metrics that enable open release, for example. For this reason, we have developed our own internal guidelines for how to handle this aspect of the project, which are based on a comprehensive examination of relevant EU and Danish legislation (i.e.&nbsp;the GDPR, the Artificial Intelligence Act, the Danish Health Law, and the Danish Data Protection Act). We continue work on synthesis with hope that new legislation such as the development of the European Health Data Space will provide further guidance in the future.</p>
+</section>
+<section id="rules-for-synthetic-data-in-the-sandbox" class="level2">
+<h2 class="anchored" data-anchor-id="rules-for-synthetic-data-in-the-sandbox">Rules for synthetic data in the Sandbox</h2>
+<p>We are currently focused on exploring methods and metrics by developing reproducible, well documented examples and use cases of synthetic data in partnership with other researchers, legal advisors, and data authorities. We’re relying primarily on publicly available tabular health datasets in this exploration phase, but we will also work with sensitive data in the future. Our rules aim to preserve the trust of the public in how their health data is handled by data authorities and researchers.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Sandbox Rules for Synthetic Data">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Sandbox Rules for Synthetic Data
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<pre><code>1. Creation of synthetic data involves processing sensitive data, and this requires obtaining project approvals from data authorities when performing this work on sensitive data. Any synthetic data work with restricted-access, sensitive data by the Sandbox will only be conducted with these approvals in place in the frame of a research project.
+2. Goals for each synthetic dataset project should be defined at project initiation: how will the synthetic dataset be used, who is the intended audience, and how might it be shared? This frame should govern every consequent decision for that dataset and be shared alongside the final dataset.
+3. Quantitative metrics for fidelity, utility, and privacy preservation should be implemented for each dataset and shared alongside the final dataset.
+4. A cost-benefit analysis should be performed after the project is completed - is any risk to privacy appropriately balanced by value of the dataset in achieving its stated aims and contributing to the public good?
+5. Data authorities with ethical and strategic stakes in who accesses the synthetic dataset should be included in decisions about how it is used and who is allowed to access it. 
+6. Synthetic datasets created from person-specific sensitive data rather than population characteristics can still pose privacy risks, and any users of the dataset should be approved and registered. The Sandbox will not release any such datasets publicly and will instead work with appropriate data authorities to decide how such datasets should be governed in a responsible way. </code></pre>
+</div>
+</div>
 
 
 </section>

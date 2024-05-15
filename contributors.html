@@ -93,7 +93,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
 </ul>
@@ -122,147 +122,95 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#credit-table" id="toc-credit-table" class="nav-link active" data-scroll-target="#credit-table">CRediT table</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 
 
 
-<section id="introduction-to-next-generation-sequencing-data" class="level1 centered">
-<h1 class="centered">Introduction to Next Generation Sequencing data</h1>
-<div style="text-align: center;">
-<p><strong>Computing and didactical support from the <a href="https://hds-sandbox.github.io/">Danish Health Data Science Sandbox</a></strong></p>
-</div>
-<section id="course-material" class="level2">
-<h2 class="anchored" data-anchor-id="course-material">Course material</h2>
-<p>The material for this course is organized in four separated jupyter notebooks in both <code>bash</code>, <code>python</code> and <code>R</code> where you will benefit of an interactive coding setup on <code>jupyterlab</code>. Each lesson is in the menu above.</p>
-<section id="first-exercise" class="level3">
-<h3 class="anchored" data-anchor-id="first-exercise">First exercise</h3>
-<p>The first exercise lesson is executed with the web interface <a href="https://usegalaxy.org/">usegalaxy.org</a>. Click on <code>1.Galaxy Exercise</code> in the menu for instructions)</p>
-</section>
-</section>
-<section id="following-exercises" class="level2">
-<h2 class="anchored" data-anchor-id="following-exercises">Following exercises</h2>
-<p>The following exercise lessons will work on a computing environment with <code>jupyterlab</code>. Use <code>2.Instructions</code> to find out how to run it, selecting the computing environment you need (danish clusters <code>uCloud</code> and <code>GenomeDK</code>, your PC, or another cluster).</p>
-</section>
-<section id="compiled-exercises" class="level2">
-<h2 class="anchored" data-anchor-id="compiled-exercises">Compiled exercises</h2>
-<p>if you need to have a look at the exercises as a reference, then the menu <code>3.Compiled exercises</code> contains all the compiled exercises on <code>jupyterlab</code> in a document format, from which you can also copy-paste the code.</p>
-</section>
-</section>
-<section id="course-overview" class="level1">
-<h1>Course overview</h1>
-<div class="callout callout-style-default callout-note callout-titled" title="">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>After the course, you will have knowledge of bioinformatics methods for analyzing genomes using NGS data, including knowledge of the existing types of genome data, how the different types of data can be displayed and analyzed, the current methods for genome assembly and analysis, their accuracy and how they can be used. The course will enable you to devise and run a project that makes use of NGS data.</p>
-<ul>
-<li><strong>Prerequisites:</strong> This is an introductory course that needs a basic understanding of the biology behind sequencing, and not necessarily programming experience (though this would help!).</li>
-</ul>
-<p>-<strong>Syllabus:</strong> - Describe key challenges in the analysis of NGS data</p>
-<pre><code>- Explain the theoretical foundation for methods that use NGS for assembly and analysis of genomes
-
-- Discuss the bioinformatic methods for genome analysis and hypothesize what drives the outcome of the methods
-
-- Review original literature within the subjects and relate the discussed topics to analysis scenarios
-
-- Apply bioinformatics tools within the selected application areas and reflect on the results, formulating your own conclusion in the proposed tasks</code></pre>
-<ul>
-<li><p><strong>Time:</strong> 20 hours (for reading through the code, executing it, answering questions). The material fits 4-5 days lessons.</p></li>
-<li><p><strong>Supporting Materials:</strong></p>
-<ul>
-<li>jupyter notebooks for interactive coding</li>
-<li>lecture slides from the instructor</li>
-</ul></li>
-</ul>
-<p>You can find the links to the material in the table at the bottom of this page.</p>
-<ul>
-<li><p><strong>Course authors</strong></p>
-<ul>
-<li><p><a href="https://pure.au.dk/portal/da/persons/mikkel-heide-schierup(aa7cd7f5-b8cf-4781-b6a6-be522a7b335c).html" class="md-button">Mikkel H Schierup</a></p></li>
-<li><p><a href="https://pure.au.dk/portal/da/persons/stig-uggerhoej-andersen(dbcd376b-110b-489a-8f6d-85dd2268277d).html" class="md-button">Stig U Andersen</a></p></li>
-<li><p><a href="https://www.linkedin.com/in/samuelesoraggi/" class="md-button">Samuele Soraggi</a></p></li>
-<li><p><a href="https://www.linkedin.com/in/peter-s%C3%B8rud-porsborg/" class="md-button">Peter S Porsborg</a></p></li>
-<li><p><a href="https://www.linkedin.com/in/adri%C3%A1n-g%C3%B3mez-repoll%C3%A9s-66b496105/?originalSubdomain=es" class="md-button">Adrián G Repollés</a></p></li>
-</ul></li>
-<li><p><strong>License:</strong> <a href="https://creativecommons.org/licenses/by/4.0/">Course Content is licensed under Creative Commons Attribution 4.0 International License</a></p></li>
-<li><p><strong>Citation:</strong> If you use any of this material for your research, please cite this course with the DOI below, and acknowledge the Health Data Science Sandbox project of the Novo Nordisk Foundation (grant number NNF20OC0063268). It is of great help to support the project. <a href="https://zenodo.org/badge/latestdoi/468293635"><img src="https://zenodo.org/badge/468293635.svg" class="img-fluid" alt="DOI"></a></p></li>
-<li><p><strong>Contact:</strong> Samuele Soraggi (samuele at birc.au.dk) for technical issues in using the material.</p></li>
-</ul>
-</div>
-</div>
-<section id="course-material-2022" class="level2">
-<h2 class="anchored" data-anchor-id="course-material-2022">Course material 2022</h2>
-<p>Here you find a table with the instructor’s slides from 2022.</p>
+<p>Jose Alejandro Romero Herrera <a href="https://orcid.org/0000-0002-4765-2087">:custom-orcid:</a> <a href="https://github.com/joseale2310">:simple-github:</a></p>
+<section id="credit-table" class="level2">
+<h2 class="anchored" data-anchor-id="credit-table">CRediT table</h2>
 <table class="table">
 <thead>
 <tr class="header">
-<th>Topic</th>
-<th>Slide</th>
-<th>Notebook</th>
+<th>CRediT role</th>
+<th>Initials</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Sequencing technologies</td>
-<td><a href="https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/01_sequencing_technologies.pdf">link</a></td>
-<td>–</td>
+<td><a href="https://credit.niso.org/contributor-roles/conceptualization/">Conceptualization</a></td>
+<td></td>
 </tr>
 <tr class="even">
-<td>Mapping to reference</td>
-<td><a href="https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/02_mapping_to_reference.pdf">link</a></td>
-<td><a href="https://hds-sandbox.github.io/NGS_summer_course_Aarhus/nb/align.html">Notebook</a></td>
+<td><a href="https://credit.niso.org/contributor-roles/data-curation/">Data curation</a></td>
+<td></td>
 </tr>
 <tr class="odd">
-<td>Data visualization</td>
-<td><a href="https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/03_data_visualization.pdf">link</a></td>
-<td>–</td>
+<td><a href="https://credit.niso.org/contributor-roles/formal-analysis/">Formal Analysis</a></td>
+<td></td>
 </tr>
 <tr class="even">
-<td>SNPs and structural variants</td>
-<td><a href="https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/04_snp_and_structural_variants.pdf">link</a></td>
-<td><a href="https://hds-sandbox.github.io/NGS_summer_course_Aarhus/nb/vcf.html">Notebook</a></td>
+<td><a href="https://credit.niso.org/contributor-roles/funding-acquisition/">Funding acquisition</a></td>
+<td></td>
 </tr>
 <tr class="odd">
-<td>RNA sequencing</td>
-<td><a href="https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/05_rna_sequencing.pdf">link</a></td>
-<td><a href="https://hds-sandbox.github.io/NGS_summer_course_Aarhus/nb/bulk.html">Notebook</a></td>
+<td><a href="https://credit.niso.org/contributor-roles/investigation/">Investigation</a></td>
+<td></td>
 </tr>
 <tr class="even">
-<td>De-novo assembly</td>
-<td><a href="https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/06_de_novo_assembly.pdf">link</a></td>
-<td>–</td>
+<td><a href="https://credit.niso.org/contributor-roles/methodology/">Methodology</a></td>
+<td></td>
 </tr>
 <tr class="odd">
-<td>Microbiomes and metagenomics</td>
-<td><a href="https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/07_microbiomes_and_metagenomics.pdf">link</a></td>
-<td>–</td>
+<td><a href="https://credit.niso.org/contributor-roles/project-administration/">Project administration</a></td>
+<td></td>
 </tr>
 <tr class="even">
-<td>Single cell RNA sequencing</td>
-<td><a href="https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/08_single_cell_day.pdf">link</a></td>
-<td><a href="https://hds-sandbox.github.io/NGS_summer_course_Aarhus/nb/scrna.html">Notebook</a></td>
+<td><a href="https://credit.niso.org/contributor-roles/resources/">Resources</a></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><a href="https://credit.niso.org/contributor-roles/software/">Software</a></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><a href="https://credit.niso.org/contributor-roles/supervision/">Supervision</a></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><a href="https://credit.niso.org/contributor-roles/validation/">Validation</a></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><a href="https://credit.niso.org/contributor-roles/visualization/">Visualization</a></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><a href="https://credit.niso.org/contributor-roles/writing-original-draft/">Writing - original draft</a></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><a href="https://credit.niso.org/contributor-roles/writing-review-editing/">Writing - review &amp; editing</a></td>
+<td></td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="course-material-2024" class="level2">
-<h2 class="anchored" data-anchor-id="course-material-2024">Course material 2024</h2>
-<p>Here you find a table with the instructor’s slides and a link to the compiled notebooks, that you can also run on your own following the <code>instructions</code> in this webpage. Data alignment can also be performed on the <code>Galaxy</code> interactive webpage (see the <code>galaxy exercise</code> in this webpage).</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

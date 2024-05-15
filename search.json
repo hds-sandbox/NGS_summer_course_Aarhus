@@ -1,0 +1,681 @@
+[
+  {
+    "objectID": "workshop/workshop_Conference2023.html",
+    "href": "workshop/workshop_Conference2023.html",
+    "title": "\nSandbox Workshop\n",
+    "section": "",
+    "text": "Sandbox Workshop"
+  },
+  {
+    "objectID": "workshop/workshop_Conference2023.html#the-sandbox-concept",
+    "href": "workshop/workshop_Conference2023.html#the-sandbox-concept",
+    "title": "\nSandbox Workshop\n",
+    "section": "The Sandbox concept",
+    "text": "The Sandbox concept\nThe Health Data Science Sandbox aims to be a training resource for bioinformaticians, data scientists, and those generally curious about how to investigate large biomedical datasets. We are an active and developing project seeking interested users (both trainees and educators). All of our open-source materials are available on our Github page and much more information is available on the rest of the website you are currently visiting! We work with both UCloud and Computerome (major Danish academic supercomputers) - see our HPC Access page for more info on each set up."
+  },
+  {
+    "objectID": "workshop/workshop_Conference2023.html#access-sandbox-resources",
+    "href": "workshop/workshop_Conference2023.html#access-sandbox-resources",
+    "title": "\nSandbox Workshop\n",
+    "section": "Access Sandbox resources",
+    "text": "Access Sandbox resources\nWe currently provide training materials and resources as topical apps on UCloud, the supercomputer located at the University of Southern Denmark. To use these resources, you’ll need the following:\n\na Danish university ID so you can sign on to UCloud via WAYF. See this guide and/or follow along with our live demo.\nthe ability to navigate in linux / RStudio / Jupyter. You don’t need to be an expert, but it is beyond our ambitions (and course material) to teach you how to code and how to run analyses simultaneously. We recommend a basic R or Python course before diving in.\nour invite link to the correct UCloud project that will be shared on the day of the workshop. This way, we can provide you compute resources for the active sessions of the workshop. To use Sandbox materials outside of the workshop, you’ll need to check with the local DeiC office at your university about how to request compute hours on UCloud."
+  },
+  {
+    "objectID": "workshop/workshop_Conference2023.html#try-out-a-module",
+    "href": "workshop/workshop_Conference2023.html#try-out-a-module",
+    "title": "\nSandbox Workshop\n",
+    "section": "Try out a module",
+    "text": "Try out a module\nSo our Sandbox data scientists have finished their intro at the workshop? Great, now it’s time to choose your poison (cough) topic of interest for today. Your options are below:\n ### Genomics If you’re interested in NGS technologies and applications ranging from genome assembly to variant calling to metagenomics, join Sandbox Data Scientist Samuele Soraggi in testing out our Genomics Sandbox app. This app supports a semester-length course on NGS as well as a Population Genomics course run regularly at Aarhus University. Sign into UCloud and then click this invite link.\n ### Transcriptomics If you’re interested in bulk or single cell RNA sequencing analysis and visualization, join Sandbox Data Scientist Jose Alejandro Romero Herrera (Alex) in testing out our Transcriptomics Sandbox app. This app supports regular 3-4 day workshops at University of Copenhagen and provides stand-alone visualisation tools. Sign into UCloud and then click this invite link.\n ### Proteomics Interested in modern methods for protein structure prediction? Join Sandbox Data Scientist Jacob Fredegaard Hansen as he walks you through how to use ColabFold on UCloud. Jacob can also demo our Proteomics Sandbox, which contains a suite of proteomics analysis tools that will support a future course in clinical proteomics but is already available on UCloud for interested users. Sign into UCloud and then click this invite link."
+  },
+  {
+    "objectID": "workshop/workshop_Conference2023.html#discussion-and-feedback",
+    "href": "workshop/workshop_Conference2023.html#discussion-and-feedback",
+    "title": "\nSandbox Workshop\n",
+    "section": "Discussion and feedback",
+    "text": "Discussion and feedback\nWe hope you enjoyed the live demo. If you have broader questions, suggestions, or concerns, now is the time to raise them! If you are totally toast for the day, remember that you can check out longer versions of our tutorials as well as other topics and tools in each of the Sandbox modules or join us for a multi-day in person course.\nAs data scientists, we also would be really happy for some quantifiable info and feedback - we want to build things that the Danish health data science community is excited to use. Please answer these 5 questions for us before you head out for the day (link activated on day of the workshop).\n\nNice meeting you and we hope to see you again!"
+  },
+  {
+    "objectID": "workshop/workshop_april2024.html#access-sandbox-resources",
+    "href": "workshop/workshop_april2024.html#access-sandbox-resources",
+    "title": "Sandbox Workshop",
+    "section": "Access Sandbox resources",
+    "text": "Access Sandbox resources\nOur first choice is to provide all the training materials, tutorials, and tools as interactive apps on UCloud, the supercomputer located at the University of Southern Denmark. Anyone using these resources needs the following:\n\na Danish university ID so you can sign on to UCloud via WAYF1.\n\n \n\n for UCloud Access click here \n\n \n\nbasic ability to navigate in Linux/RStudio/Jupyter. You don’t need to be an expert, but it is beyond our ambitions (and course material) to teach you how to code from zero and how to run analyses simultaneously. We recommend a basic R or Python course before diving in.\nFor workshop participants: Use our invite link to the correct UCloud workspace that will be shared on the day of the workshop. This way, we can provide you with compute resources for the active sessions of the workshop2 Click the link below after your first uCloud access and accept the invite that shows.\n\n \n\n Invite link to uCloud workspace \n\n   \n\n\n\n\n\n\nNote\n\n\n\nOur apps can run on other clusters, simply by pulling a so-called docker container. You only need to have either docker or singularity installed on the cluster. GenomeDK supports singularity and thus can run our learning material as well. Ask us if you want to help the apps out of uCloud. Instructions will soon be available within our HPC access instructions."
+  },
+  {
+    "objectID": "workshop/workshop_april2024.html#our-omics-apps",
+    "href": "workshop/workshop_april2024.html#our-omics-apps",
+    "title": "Sandbox Workshop",
+    "section": "Our OMICS apps",
+    "text": "Our OMICS apps\nThe agenda starts with an introduction to High Performance Computing (HPC) and uCloud. You will try two apps during the workshop, but we are developing others, and have deployed three apps already.\n \n\n\n\nProteomics Sandbox: Our sandbox modern with a suite of proteomics analysis tools, used for example in clinical proteomics. This app is not alone, since our data scientist Jacob has also made the app ColabFold on UCloud, with methods for protein structure prediction.\n\n\n \n\n\n\nTranscriptomics Sandbox : Our sandbox for bulk or single-cell RNA sequencing analysis and visualization - amongst others two regular workshops and provides stand-alone visualization tools. In the next update, we will introduce advanced tutorials for more complex single-cell RNA sequencing analysis from some of our supported courses.\n\n\n \n\n\n\nGenomics Sandbox: Our sandbox NGS data analysis and applications range from genome assembly to variant calling to metagenomics. We have currently a semester-long population genomics course and an NGS course with many applications (alignment, VCF analysis, bulk-RNA data, single-cell RNA sequencing)"
+  },
+  {
+    "objectID": "workshop/workshop_april2024.html#discussion-and-feedback",
+    "href": "workshop/workshop_april2024.html#discussion-and-feedback",
+    "title": "Sandbox Workshop",
+    "section": "Discussion and feedback",
+    "text": "Discussion and feedback\nWe hope you enjoyed the live demo. If you have broader questions, suggestions, or concerns, now is the time to raise them! If you are totally toast for the day, remember that you can check out longer versions of our tutorials as well as other topics and tools in each of the Sandbox modules or join us for a multi-day in-person course (follow our news here).\nAs data scientists, we also would be really happy for some quantifiable info and feedback - we want to build things that the Danish health data science community is excited to use. Please answer these 5 questions for us before you head out for the day 3.\n \n\n\n\n\n\n\n\nNice meeting you and we hope to see you again!"
+  },
+  {
+    "objectID": "workshop/workshop_april2024.html#footnotes",
+    "href": "workshop/workshop_april2024.html#footnotes",
+    "title": "Sandbox Workshop",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nOther institutions (e.g. hospitals, libraries, …) can log on through WAYF. See all institutions here↩︎\nTo use Sandbox materials outside of the workshop: remember that each new user has hundreds of hours of free computing credit and around 50GB of free storage, which can be used to run any uCloud software. If you run out of credit (which takes a long time) you’ll need to check with the local DeiC office at your university about how to request compute hours on UCloud. Contact us at the Sandbox if you need help or want more information.↩︎\nlink activated on day one of the workshop.↩︎"
+  },
+  {
+    "objectID": "news/upcoming/2024-07-01-NGS-analysis.html",
+    "href": "news/upcoming/2024-07-01-NGS-analysis.html",
+    "title": "Intro to NGS data analysis - Summer School",
+    "section": "",
+    "text": "This workshop is a regularly hosted summer school to teach NGS data analysis, and is taught by Stig Andersen, Mikkel Schierup, and Samuele Soraggi (supporting via the HDS Sandbox). You can find additional information here."
+  },
+  {
+    "objectID": "news/past/2022-09-06-genomics-launch.html",
+    "href": "news/past/2022-09-06-genomics-launch.html",
+    "title": "Genomics Sandbox app launched on UCloud!",
+    "section": "",
+    "text": "We have deployed our first standalone Sandbox app on UCloud! Please see the Access page for instructions on how to find our Sandbox apps on UCloud - this first one is titled ‘Genomics Sandbox’ and module documentation is linked from the UCloud app page as well as here in Modules."
+  },
+  {
+    "objectID": "news/past/2023-05-31-rollout-ucloud.html",
+    "href": "news/past/2023-05-31-rollout-ucloud.html",
+    "title": "Sandbox App updates on UCloud rolled out",
+    "section": "",
+    "text": "New versions of the Genomics Sandbox App, the Transcriptomics Sandbox App, and the Proteomics Sandbox App have all been launched on UCloud this month! Check out the new components in the training modules such as a GWAS module in Genomics and new tools in Transcriptomics and Proteomics. Updates were also informed by the different courses supported during Spring 2023. With these courses wrapping up this month, the associated new training materials have also been included in the new versions of the apps."
+  },
+  {
+    "objectID": "news/past/2022-11-30-advancedstatlearning.html",
+    "href": "news/past/2022-11-30-advancedstatlearning.html",
+    "title": "Sandbox support for ‘Advanced Statistical Learning’",
+    "section": "",
+    "text": "Sandbox data scientist Samuele Soraggi spent two weeks teaching for the Fall 2023 course ‘Advanced Statistical Learning’ taught by Prof. Asger Hobolth at Aarhus University."
+  },
+  {
+    "objectID": "news/past/2022-06-01-genomics-au.html",
+    "href": "news/past/2022-06-01-genomics-au.html",
+    "title": "Genomics course at Aarhus University",
+    "section": "",
+    "text": "A month-long course in Genomics taught by Professors Mikkel Schierup and Stig Andersen has started with lead supercomputing support on UCloud by Sandbox data scientist and course instructor Samuele Soraggi. Computational exercises in NGS analysis were deployed in a UCloud project for use by 47 graduate students with primarily molecular biology and clinical backgrounds and no prior supercomputing experience! Post-course update: We received many positive reviews on use of the Genomics Sandbox training materials on UCloud!"
+  },
+  {
+    "objectID": "news/past/2023-12-12-SE3D.html",
+    "href": "news/past/2023-12-12-SE3D.html",
+    "title": "NNF Collaborative Data Science award news: the SE3D project!",
+    "section": "",
+    "text": "Today we got the news that we will be able to hire 5 new research staff focused on synthetic health data over the next 4 years. The SE3D project - Synthetic health data: ethical development and deployment via deep learning approaches - will be led by Sandbox PIs Martin Boegsted (AAU) and Anders Krogh (KU) alongside Sandbox project lead Jennifer Bartell (KU) and a new collaborator, Prof. Jan Trzaskowski from AAU Law. We’re really excited to set up this research arm that shares so many Sandbox interests and potential for interaction. The project starts from 1 May 2024, with much thanks to the NNF for their continued support of our ideas. Look out for job ads in the spring from KU and AAU!"
+  },
+  {
+    "objectID": "news/past/2024-02-09-proteomics-sandbox.html",
+    "href": "news/past/2024-02-09-proteomics-sandbox.html",
+    "title": "Course support at SDU",
+    "section": "",
+    "text": "During the Spring Semester 2024, Sandbox data scientist Jacob Fredegaard Hansen will be assisting with teaching and tools in the course BMB834: Protein Structure, Dynamics, and Modelling at the University of Southern Denmark. Here, Jacob will provide Sandbox support, and materials will be used for applying computational methods for protein structure retrieval and visualization, as well as for applying high-performance computing (HPC) methods for protein structure modeling.ß"
+  },
+  {
+    "objectID": "news/past/2023-08-29-aarhus-workshop.html",
+    "href": "news/past/2023-08-29-aarhus-workshop.html",
+    "title": "Sandbox workshop in Aarhus",
+    "section": "",
+    "text": "Sandbox data scientist Samuele Soraggi hosted a three day speed run through Sandbox apps at the Bioinformatics Research Center. The 26 participants joined for genomics, transcriptomics, and/or proteomics app demos depending on their interests. This thorough omics demo had maxed out participant sign-ups and an enthusiastic crew enjoyed the sessions alongside a bit of networking across disciplines. We plan to host more of these type of workshops given the event’s success!"
+  },
+  {
+    "objectID": "news/past/2023-01-18-bulk-KU.html",
+    "href": "news/past/2023-01-18-bulk-KU.html",
+    "title": "Second bulk RNA-seq course at the University of Copenhagen",
+    "section": "",
+    "text": "On 18th of January we taught the second iteration of our bulk RNA-seq course to researchers (from PhD students to professors) at SUND at the University of Copenhagen. We had ~50 workshop participants joining us for three days of lectures and exercises on UCloud. This time, we introduced preprocessing theory (read QC, alignment and quantification) and the use of automated workflows using the nf-core rnaseq pipeline.\nFor those that could not enroll for this session, you can find the updated material here. We have moved the datasets and slides to a zenodo repository\nWe’d like to extend our thanks to our workshop collaborators, data scientists from the SUND DataLab at KU’s Center for Health Data Science as well as the genomics platform at the NNF Center for Stem Cell Medicine (reNEW)."
+  },
+  {
+    "objectID": "news/past/2022-08-18-bulk-ku.html",
+    "href": "news/past/2022-08-18-bulk-ku.html",
+    "title": "Bulk RNA-seq course at University of Copenhagen",
+    "section": "",
+    "text": "Today we began teaching our brand new bulk RNA-seq course to researchers (from PhD students to professors) at SUND at the University of Copenhagen. We had 32 workshop participants join us for two days of lectures and exercises on UCloud. We’d like to extend our thanks to our workshop collaborators, data scientists from the SUND DataLab at KU’s Center for Health Data Science as well as the genomics platform at the NNF Center for Stem Cell Medicine (reNEW).\nFor those that could not enroll for this session, you can find the relevant material here."
+  },
+  {
+    "objectID": "news/past/2024-04-18-sandbox-workshop.html",
+    "href": "news/past/2024-04-18-sandbox-workshop.html",
+    "title": "Workshop: Digging into the Health Data Science Sandbox",
+    "section": "",
+    "text": "This workshop offers an introduction to the training materials and tools of the Health Data Science Sandbox, a national infrastructure project. The Sandbox team is building training resources and guides for learning bioinformatics, predictive modeling in precision medicine, high performance computing and data carpentry that is accessible to all Danish university employees (PhD students and up) via academic supercomputing infrastructure.\nYou will be introduced to our current training set-up, meet our helpful data scientists, be guided through how to use our apps, and can make requests for the next topic we tackle!"
+  },
+  {
+    "objectID": "news/past/2024-01-31-manuscript.html",
+    "href": "news/past/2024-01-31-manuscript.html",
+    "title": "A primer for Synthetic health data",
+    "section": "",
+    "text": "In collaboration with Prof. Henning Langberg at KU Public Health and funding from Erhvervsfyrtaarn Sund Vaegt, Jennifer Bartell has developed a manuscript that discusses technical, regulatory, and deployment solutions and challenges for synthetic health data from a broad perspective. This manuscript was developed in collaboration with Sandbox partners Sander Boisen Valentin and Martin Boegsted of AAU, and we plan to submit it to a journal soon. For now, check out our manuscript on arXiv!"
+  },
+  {
+    "objectID": "news/past/2023-06-19-KU-bulk.html",
+    "href": "news/past/2023-06-19-KU-bulk.html",
+    "title": "Workshop on bulkRNA-seq data",
+    "section": "",
+    "text": "Our teaching team (from the Sandbox, the HeaDS DataLab, and reNEW’s genomics platform) hosted another 3 day workshop on bulk RNA-seq. The 34 participants used the updated version of the UCloud Transcriptomics App which provided the smoothest experience yet for both trainers and trainees. A new goal for the next course run is to add a student project to support independent implementation and exploration of the course content."
+  },
+  {
+    "objectID": "access/index.html",
+    "href": "access/index.html",
+    "title": "HPC access",
+    "section": "",
+    "text": "The Sandbox is collaborating with the two major academic high performance computing platforms in Denmark. Computerome is located at the Technical University of Denmark (and co-owned by the University of Copenhagen) while UCloud is owned by the University of Southern Denmark. These HPC platforms each have their own strengths which we leverage in the Sandbox in different ways."
+  },
+  {
+    "objectID": "access/index.html#ucloud",
+    "href": "access/index.html#ucloud",
+    "title": "HPC access",
+    "section": "UCloud",
+    "text": "UCloud\nUCloud is a relatively new HPC platform that can be accessed by students at Danish universities (via a WAYF university login). It has a user friendly graphical user interface that supports straightforward project, user, and resource management. UCloud provides access to many tools via selectable Apps matched with a range of flexible compute resources, and the Sandbox is deploying training modules in this form such that any UCloud user can easily access Sandbox materials independently. The Sandbox is also hosting workshops and training events on UCloud in conjunction with in-person training.\n\n\n\n\n\n\nAccess Sandbox Apps on UCloud\n\n\n\nFind detailed instructions on accessing Sandbox apps here via UCloud. Check out UCloud’s extensive user docs here."
+  },
+  {
+    "objectID": "access/index.html#computerome",
+    "href": "access/index.html#computerome",
+    "title": "HPC access",
+    "section": "Computerome",
+    "text": "Computerome\nComputerome is the home of many sensitive health datasets via collaborations between DTU, KU, Rigshospitalet, and other major health sector players in the Capital Region of Denmark. Computerome has recently launched their secure cloud platform, DELPHI, and in collaboration with the Sandbox has built a Course Platform on the same backbone such that courses and training can be conducted in the same environment as real research would be performed in the secure cloud. The Sandbox is supporting courses in the Course Platform, but it is also available for independent use by educators at Danish universities. Please see their website for more information on independent use and pricing, and contact us if you’d like to collaborate on hosting a course on Computerome. We can help with tool installation, environment testing, and user support (ranging from using the environment to course content if we have Sandbox staff with matching expertise).\nParticipants in courses co-hosted by the Sandbox can check here for access instructions."
+  },
+  {
+    "objectID": "access/index.html#genomedk",
+    "href": "access/index.html#genomedk",
+    "title": "HPC access",
+    "section": "GenomeDK",
+    "text": "GenomeDK\nIn development."
+  },
+  {
+    "objectID": "access/index.html#any-other-computing-cluster",
+    "href": "access/index.html#any-other-computing-cluster",
+    "title": "HPC access",
+    "section": "Any other computing cluster",
+    "text": "Any other computing cluster\nIn development."
+  },
+  {
+    "objectID": "access/index.html#your-local-pc",
+    "href": "access/index.html#your-local-pc",
+    "title": "HPC access",
+    "section": "Your local PC",
+    "text": "Your local PC\nIn development."
+  },
+  {
+    "objectID": "access/genomedk.html",
+    "href": "access/genomedk.html",
+    "title": "Introduction to NGS data analysis",
+    "section": "",
+    "text": "sss"
+  },
+  {
+    "objectID": "access/UCloud.html",
+    "href": "access/UCloud.html",
+    "title": "UCloud",
+    "section": "",
+    "text": "User accounts on UCloud are enabled by university login credentials using WAYF (Where Are You From). Access the WAYF login portal here, and then find your affiliated Danish university using the search bar. After login, we suggest setting up Two Factor Authentication by clicking on the icon in the top-right corner of the screen. Once you are an approved user of UCloud, you can access the Sandbox environment via different ‘Sandbox’ apps linked to topical modules that you deploy using your own storage and computing resources - just go to Apps once you have signed into UCloud and search ‘Sandbox’ to find what we have deployed. Each app page has its own Documentation link that will direct you to Sandbox-based usage guidelines which may be customized to the app’s particular tools and scope. Apps will have different ‘courses’ that you can initially choose which make a personal copy of training materials in your workspace for you to edit.\nEach Danish university has its usage relationship with UCloud as governed by their local front office of DeiC - check with your university IT support / DeiC representatives about requesting computational resources. For example, the University of Copenhagen has previously allotted an initial chunk of free UCloud compute hours to staff (from PhD students to professors as well as non-academic staff). If you have further questions about getting compute resources, please contact Sandbox staff.\nExtensive documentation on the general use of UCloud (how to use apps and run jobs, etc.) is available in the UCloud user guide.\n\n\n\n\n\n\nTip\n\n\n\nClick on the images to view them in full size.\n\n\n\n\n\n\nLog onto UCloud at the address http://cloud.sdu.dk using university credentials.\n\n\n\nWhen you are logged in, choose the project from the dashboard (highlighted in red) from which you would like to utilize compute resources. Every user has their personal workspace (My workspace). You can also provision your own project (check with your local DeiC office if you’re new to UCloud) or you can be invited to someone else’s project. If you’ve previously selected a project, it will be launched by default. If it’s your first time, you’ll be in your workspace. If you’ve joined one of our courses or workshops, your instructor will let you know which to choose.\nFor this example, we select Sandbox_workshop.\n\n\n\nDashboard: your workspace\n\n\nOn the left side, you can see the structure of the project (content changes when you select a different project):\n\nFiles: all folders/files you have access to. You can navigate through folders, download, upload, or share files with collaborators. You might have varying rights across folders, mostly depending on whether they are yours or have been shared with you\nShares/Projects: you have been invited to\nResources: allocated to your workspace or a project (shared)\nApps: gain access to the apps catalog on ucloud. We refer to apps as the software applications that can be deployed on the cloud. It’s recommended to explore the featured ones. Use the search bar to find the sandbox apps\nRuns: from where you submit your jobs and past runs information\n\n\n\n\n\n\n\nImportant\n\n\n\nDon’t forget to accept the invitation to access new projects. Remember to switch projects to access other files and resources. Test switching among projects and observe how the dashboard changes.\n\n\nAt the bottom left corner, you will find your user ID, which you may need to provide once the course starts or for future collaborations, such as being added to other people’s projects. You can also find it on UCloud docs.\nIn the dashboard, you will also find news, your favorite apps, recent runs, resources, and other notifications between other applications: - Resource allocations: indicate your currently allocated resources (e.g., KU employees have access to 1000kr in computing). - Grant applications: apply for more resources (computing or storage if you run out of them)\n\n\n\nThen click on Apps in the left panel to investigate what tools and environments you can use (green circle). The easiest way to find Sandbox resources is to search via the toolbar (red circle). In this example, we’ll select the Genomics Sandbox (which will bring you to the submission screen).\n\n\n\nDashboard: all apps\n\n\n\n\n\n\n\n\nTip\n\n\n\nMark them as favorites so they appear on your dashboard.\n\n\n\n\n\nClick on the app button to get into the settings window. First, we recommend reading the documentation of the app (highlighted in green). Then, you can configure the app as shown below, or be provided with a configuration file made available in a workshop’s project folders (import parameters) which will take care of everything for you.\n\n\n\nDashboard jobs: configuration step\n\n\nIn this example, we configure our session by:\n\nentering a job name (descriptive of the task)\nselecting the time (in hours) we want to use a node for (it can be modified afterward)\nselecting a 4 CPU standard node with 24 GB memory\nchoosing the course “Introduction to NGS Data Analysis”\noptional: add folders to access while in this job\nhitting submit (there may be a wait)\n\n\n\n\n\n\n\nImportant\n\n\n\nThe first 3 steps set up our computing resources for the period we want to work and can be customized as needed. However, only step 2 can be modified after submitting the job. For some of the Sandbox apps, you might want to select folders (Home and the Notebooks/Data from the module to avoid downloading it every time you start a new job). If you are in doubt, read the documentation specific to the app you are interested in.\nSelect the version of the app (if in doubt, use the latest one). This allows you to run specific versions of software.\n\n\nThere are different types of apps, and therefore, interfaces. Some, like RStudio or Jupyter Notebooks, have their own graphical user interface, whereas others are command-line interfaces. Lastly, you can also deploy a virtual desktop and virtual machine, which allow you to spin up a virtual computer.\n\n\n\nWait to go through the queue. When the session starts, the timer begins to count down. In a couple of minutes, you should be able to open the interface through the button (green circle) in a new window (refresh the window if needed).\n\n\n\nDashboard jobs: running the app\n\n\nThis page will remain open while you work (or you can return to it via ‘Runs’ in the left panel). You can end your session early by pressing and holding ‘Stop application’ (pink circle), you can see how much time you have left (red circle) and you can add hours to your session as you go (buttons in blue square).\n\n\n\nIf you are testing the genomic app, your interface should look like in the image below. Different apps might use other development environments. In this case, you will be working from JupyterLab. You can open Jupyter Notebooks (yellow square), R studio (blue square) or a terminal (black square) among others. In this case, #1 and #2 have all the software and packages that you will need pre-installed (this is not the case with Python 3 to the left).\n\n\n\nJupyterLab interface: running the app\n\n\nYou can navigate through the different folders and start running the Python notebooks (pink arrow).\n\n\n\nJupyterLab interface: openning notebook\n\n\nIf you are an advanced user, you can also create your own Python files and select the kernel NGS (python) to use the pre-installed software. Learn how to manage (upload and download new data) and share files that you have created/developed with collaborators here.\n\n\n\n\n\n\nTip\n\n\n\nCreate your own directories to save the output of your jobs. You will be able to access them later in your project folders under the resources you are using\nIf you haven’t created any directories, look for the generated files under a folder with the same name as the job name you used.\n\n\nYou are ready to start using Ucloud and the sandbox tools!\n\n\n\nDashboard: your workspace\nDashboard: all apps\nDashboard jobs: configuration step\nDashboard jobs: running the app\nJupyterLab interface: running the app\nJupyterLab interface: openning notebook"
+  },
+  {
+    "objectID": "access/UCloud.html#example-how-to-open-a-sandbox-app",
+    "href": "access/UCloud.html#example-how-to-open-a-sandbox-app",
+    "title": "UCloud",
+    "section": "",
+    "text": "Log onto UCloud at the address http://cloud.sdu.dk using university credentials.\n\n\n\nWhen you are logged in, choose the project from the dashboard (highlighted in red) from which you would like to utilize compute resources. Every user has their personal workspace (My workspace). You can also provision your own project (check with your local DeiC office if you’re new to UCloud) or you can be invited to someone else’s project. If you’ve previously selected a project, it will be launched by default. If it’s your first time, you’ll be in your workspace. If you’ve joined one of our courses or workshops, your instructor will let you know which to choose.\nFor this example, we select Sandbox_workshop.\n\n\n\nDashboard: your workspace\n\n\nOn the left side, you can see the structure of the project (content changes when you select a different project):\n\nFiles: all folders/files you have access to. You can navigate through folders, download, upload, or share files with collaborators. You might have varying rights across folders, mostly depending on whether they are yours or have been shared with you\nShares/Projects: you have been invited to\nResources: allocated to your workspace or a project (shared)\nApps: gain access to the apps catalog on ucloud. We refer to apps as the software applications that can be deployed on the cloud. It’s recommended to explore the featured ones. Use the search bar to find the sandbox apps\nRuns: from where you submit your jobs and past runs information\n\n\n\n\n\n\n\nImportant\n\n\n\nDon’t forget to accept the invitation to access new projects. Remember to switch projects to access other files and resources. Test switching among projects and observe how the dashboard changes.\n\n\nAt the bottom left corner, you will find your user ID, which you may need to provide once the course starts or for future collaborations, such as being added to other people’s projects. You can also find it on UCloud docs.\nIn the dashboard, you will also find news, your favorite apps, recent runs, resources, and other notifications between other applications: - Resource allocations: indicate your currently allocated resources (e.g., KU employees have access to 1000kr in computing). - Grant applications: apply for more resources (computing or storage if you run out of them)\n\n\n\nThen click on Apps in the left panel to investigate what tools and environments you can use (green circle). The easiest way to find Sandbox resources is to search via the toolbar (red circle). In this example, we’ll select the Genomics Sandbox (which will bring you to the submission screen).\n\n\n\nDashboard: all apps\n\n\n\n\n\n\n\n\nTip\n\n\n\nMark them as favorites so they appear on your dashboard.\n\n\n\n\n\nClick on the app button to get into the settings window. First, we recommend reading the documentation of the app (highlighted in green). Then, you can configure the app as shown below, or be provided with a configuration file made available in a workshop’s project folders (import parameters) which will take care of everything for you.\n\n\n\nDashboard jobs: configuration step\n\n\nIn this example, we configure our session by:\n\nentering a job name (descriptive of the task)\nselecting the time (in hours) we want to use a node for (it can be modified afterward)\nselecting a 4 CPU standard node with 24 GB memory\nchoosing the course “Introduction to NGS Data Analysis”\noptional: add folders to access while in this job\nhitting submit (there may be a wait)\n\n\n\n\n\n\n\nImportant\n\n\n\nThe first 3 steps set up our computing resources for the period we want to work and can be customized as needed. However, only step 2 can be modified after submitting the job. For some of the Sandbox apps, you might want to select folders (Home and the Notebooks/Data from the module to avoid downloading it every time you start a new job). If you are in doubt, read the documentation specific to the app you are interested in.\nSelect the version of the app (if in doubt, use the latest one). This allows you to run specific versions of software.\n\n\nThere are different types of apps, and therefore, interfaces. Some, like RStudio or Jupyter Notebooks, have their own graphical user interface, whereas others are command-line interfaces. Lastly, you can also deploy a virtual desktop and virtual machine, which allow you to spin up a virtual computer.\n\n\n\nWait to go through the queue. When the session starts, the timer begins to count down. In a couple of minutes, you should be able to open the interface through the button (green circle) in a new window (refresh the window if needed).\n\n\n\nDashboard jobs: running the app\n\n\nThis page will remain open while you work (or you can return to it via ‘Runs’ in the left panel). You can end your session early by pressing and holding ‘Stop application’ (pink circle), you can see how much time you have left (red circle) and you can add hours to your session as you go (buttons in blue square).\n\n\n\nIf you are testing the genomic app, your interface should look like in the image below. Different apps might use other development environments. In this case, you will be working from JupyterLab. You can open Jupyter Notebooks (yellow square), R studio (blue square) or a terminal (black square) among others. In this case, #1 and #2 have all the software and packages that you will need pre-installed (this is not the case with Python 3 to the left).\n\n\n\nJupyterLab interface: running the app\n\n\nYou can navigate through the different folders and start running the Python notebooks (pink arrow).\n\n\n\nJupyterLab interface: openning notebook\n\n\nIf you are an advanced user, you can also create your own Python files and select the kernel NGS (python) to use the pre-installed software. Learn how to manage (upload and download new data) and share files that you have created/developed with collaborators here.\n\n\n\n\n\n\nTip\n\n\n\nCreate your own directories to save the output of your jobs. You will be able to access them later in your project folders under the resources you are using\nIf you haven’t created any directories, look for the generated files under a folder with the same name as the job name you used.\n\n\nYou are ready to start using Ucloud and the sandbox tools!\n\n\n\nDashboard: your workspace\nDashboard: all apps\nDashboard jobs: configuration step\nDashboard jobs: running the app\nJupyterLab interface: running the app\nJupyterLab interface: openning notebook"
+  },
+  {
+    "objectID": "datasets/datapolicy.html",
+    "href": "datasets/datapolicy.html",
+    "title": "Data policy",
+    "section": "",
+    "text": "A priority of the Sandbox is to guide health data science learning using real-world-similar datasets. A major component is addressing how to analyze and leverage person-specific data, such as electronic health records, without invading personal privacy or straying from GDPR guidelines on sensitive data use. We are therefore focused on using either publicly accessible datasets (that are generally well anonymized to enable such release) or we are using/creating synthetic datasets that mimic real-world datasets without replicating real people’s data such that they can be identified. In either case, it is essential for Sandbox users to treat person-specific data respectfully and be aware of the additional responsibility and limitations of working with this type of data as part of their career in health data science.\nWe recommend that users interested in this type of data complete an ethics course on research using health datasets before digging into any analysis. A well regarded course that is also often required for using public databases that contain person-specific data is the Human Subject and Data Research Ethics course designed by the Massachusetts Institute of Technology. The course is hosted at CITI, the Collaborative Institutional Training Initiative. Completing the course is free of charge and provides you with a certificate which you may need to upload to certain databases to gain access. Set up an account at CITI, add an Institutional affiliation with ‘Massachusetts Institute of Technology Affiliates’, and then find and complete the course titled ‘Data or Specimens Only Research’ to obtain a certificate (in pdf form)."
+  },
+  {
+    "objectID": "datasets/datapolicy.html#with-respect-to-person-specific-datasets",
+    "href": "datasets/datapolicy.html#with-respect-to-person-specific-datasets",
+    "title": "Data policy",
+    "section": "",
+    "text": "A priority of the Sandbox is to guide health data science learning using real-world-similar datasets. A major component is addressing how to analyze and leverage person-specific data, such as electronic health records, without invading personal privacy or straying from GDPR guidelines on sensitive data use. We are therefore focused on using either publicly accessible datasets (that are generally well anonymized to enable such release) or we are using/creating synthetic datasets that mimic real-world datasets without replicating real people’s data such that they can be identified. In either case, it is essential for Sandbox users to treat person-specific data respectfully and be aware of the additional responsibility and limitations of working with this type of data as part of their career in health data science.\nWe recommend that users interested in this type of data complete an ethics course on research using health datasets before digging into any analysis. A well regarded course that is also often required for using public databases that contain person-specific data is the Human Subject and Data Research Ethics course designed by the Massachusetts Institute of Technology. The course is hosted at CITI, the Collaborative Institutional Training Initiative. Completing the course is free of charge and provides you with a certificate which you may need to upload to certain databases to gain access. Set up an account at CITI, add an Institutional affiliation with ‘Massachusetts Institute of Technology Affiliates’, and then find and complete the course titled ‘Data or Specimens Only Research’ to obtain a certificate (in pdf form)."
+  },
+  {
+    "objectID": "datasets/datapolicy.html#public-domain-data",
+    "href": "datasets/datapolicy.html#public-domain-data",
+    "title": "Data policy",
+    "section": "Public domain data",
+    "text": "Public domain data\nThe intended scope of the Sandbox is broad, and we will be pulling from many different public access databases (especially for training modules on omics analysis). Databases can be topically broad, giant repositories or field-specific, and each may have its own usage rules. We plan to provide our own copies of publically available datasets where allowed to ensure compatibility with the linked module is preserved, but some datasets may need to be downloaded by users themselves under specific access / distribution restrictions. Many omics datasets do not present significant data sensitivity concerns in comparison to real-world data such as electronic health records (EHRs) and clinical trial datasets.\nThere are large public de-identified EHR datasets that serve as benchmark resources for teaching and comparing new methods with old, but these are not numerous and often have restricted usage and sharing terms in addition to being quite dated. Historical approaches to dataset anonymization and de-identification have been substantially challenged in the age of digitalized healthcare and increasing data integration, which means meaningfully large ‘anonymized’ datasets are now rarely released."
+  },
+  {
+    "objectID": "datasets/datapolicy.html#synthetic-data",
+    "href": "datasets/datapolicy.html#synthetic-data",
+    "title": "Data policy",
+    "section": "Synthetic data",
+    "text": "Synthetic data\n\n\n\n\n\n\nVia our collaborators and broader network, the Sandbox has the opportunity to simulate/synthesize data resembling different databases and registries from the Danish health sector. We are exploring methods of creating useful synthetic datasets with national and EU-level data access policies and GDPR restrictions in mind, while developing initial datasets using publicly available data from Danish research studies and other resources.\nUltimately, a new era of synthetic data is rapidly developing. The funded Sandbox proposal focused on generating synthetic data using mechanistic models, agent-based models, or draws from multivariate distributions (such as copulas), which are methods that do not present any significant GDPR-related concerns with sharing the produced datasets as they are derived from population-level characteristics and prior knowledge. However, new deep learning-based methods of data synthesis can theoretically learn complex, nonlinear patterns within a sensitive dataset and generate a synthetic dataset that replicates these patterns. This is a really promising approach for sharing high utility synthetic datasets, but it also elevates risk of accidentally sharing too much about the real dataset and skirting the boundaries of GDPR and ethical data handling. There is an inherent trade-off between privacy preservation and similarity of the synthetic dataset to the original dataset, with method development focused on moving closer to the ideal zone of high privacy AND high similarity. The figure at right is a rough approximation of this relationship versus current families of synthesis methods.\nPlease see Synthetic Data for more information about our approach to this technology."
+  },
+  {
+    "objectID": "datasets/index.html",
+    "href": "datasets/index.html",
+    "title": "Datasets",
+    "section": "",
+    "text": "A priority of the Sandbox is to guide health data science learning using real-world-similar datasets. A major component is addressing how to analyze and leverage person-specific data, such as electronic health records, without invading personal privacy or straying from GDPR guidelines on sensitive data use. We are therefore focused on using either publicly accessible datasets (that are generally well anonymized to enable such release) or we are using/creating synthetic datasets that mimic real-world datasets without replicating real people’s data such that they can be identified. In either case, it is essential for Sandbox users to treat person-specific data respectfully and be aware of the additional responsibility and limitations of working with this type of data as part of their career in health data science.\nWe recommend that users interested in this type of data complete an ethics course on research using health datasets before digging into any analysis. A well regarded course that is also often required for using public databases that contain person-specific data is the Human Subject and Data Research Ethics course designed by the Massachusetts Institute of Technology. The course is hosted at CITI, the Collaborative Institutional Training Initiative. Completing the course is free of charge and provides you with a certificate which you may need to upload to certain databases to gain access. Set up an account at CITI, add an Institutional affiliation with ‘Massachusetts Institute of Technology Affiliates’, and then find and complete the course titled ‘Data or Specimens Only Research’ to obtain a certificate (in pdf form).\n\n\nThe intended scope of the Sandbox is broad, and we will be pulling from many different public access databases in our development of teaching modules. There are classical datasets that serve as benchmark resources for teaching and comparing new methods with old, and also brand new datasets that will support modules on emerging technologies (such as spatial single cell RNA-seq analysis). Databases can be topically broad giant repositories or field-specific, and each may have its own usage rules. We plan to provide our own copies of publically available datasets where allowed to ensure compatibility with the linked module is preserved, but some datasets may need to be downloaded by users themselves under specific access / distribution restrictions.\n\n\n\nThe Sandbox is focused on supporting Danish health data science education and research. Via our collaborators and broader network, we have the opportunity to simulate/synthesize data resembling different databases and registries from the Danish health sector in addition to using traditional data simulation techniques to replicate general datasets. We are exploring methods of creating useful synthetic datasets with local access guidelines/GDPR restrictions in mind, while developing initial datasets using published data from Danish studies and publically available resources."
+  },
+  {
+    "objectID": "datasets/index.html#public-domain-data",
+    "href": "datasets/index.html#public-domain-data",
+    "title": "Datasets",
+    "section": "",
+    "text": "The intended scope of the Sandbox is broad, and we will be pulling from many different public access databases in our development of teaching modules. There are classical datasets that serve as benchmark resources for teaching and comparing new methods with old, and also brand new datasets that will support modules on emerging technologies (such as spatial single cell RNA-seq analysis). Databases can be topically broad giant repositories or field-specific, and each may have its own usage rules. We plan to provide our own copies of publically available datasets where allowed to ensure compatibility with the linked module is preserved, but some datasets may need to be downloaded by users themselves under specific access / distribution restrictions."
+  },
+  {
+    "objectID": "datasets/index.html#syntheticsimulated-data",
+    "href": "datasets/index.html#syntheticsimulated-data",
+    "title": "Datasets",
+    "section": "",
+    "text": "The Sandbox is focused on supporting Danish health data science education and research. Via our collaborators and broader network, we have the opportunity to simulate/synthesize data resembling different databases and registries from the Danish health sector in addition to using traditional data simulation techniques to replicate general datasets. We are exploring methods of creating useful synthetic datasets with local access guidelines/GDPR restrictions in mind, while developing initial datasets using published data from Danish studies and publically available resources."
+  },
+  {
+    "objectID": "news.html",
+    "href": "news.html",
+    "title": "News",
+    "section": "",
+    "text": "Sandbox data scientists routinely lead or contribute to courses and workshops at host universities in Denmark. Check out upcoming events here! All our past events are listed in the table below.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIntro to NGS data analysis - Summer School\n\n\n\nGenomics\n\n\nAU\n\n\ncourse\n\n\n\nFully booked\n\n\n\nJul 1, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHPC launch\n\n\n\nHPC\n\n\nRDM\n\n\nKU\n\n\ncourse\n\n\n\nClick to sign-up\n\n\n\nOct 30, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nHPC Pipes\n\n\n\nsnakemake\n\n\nconda\n\n\nKU\n\n\ncourse\n\n\n\nClick to sign-up\n\n\n\nNov 15, 2024\n\n\n\n\n\n\n\n\nNo matching items\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Event title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nEvent title\n\n\nDates\n\n\nLocation\n\n\nOrganizers\n\n\n\n\n\n\nWorkshop: Digging into the Health Data Science Sandbox\n\n\n18-19 April 2024\n\n\nKU\n\n\nJennifer Bartell\n\n\n\n\nCourse support at SDU\n\n\n9 February 2024\n\n\nSDU\n\n\nJacob Fredegaard Hansen\n\n\n\n\nDDSA PhD meetup and D3A conference\n\n\n1 February 2024\n\n\nDDSA\n\n\nJennifer Bartell\n\n\n\n\nA primer for Synthetic health data\n\n\n31 January 2024\n\n\n \n\n\nJennifer Bartell\n\n\n\n\nNNF Collaborative Data Science award news: the SE3D project!\n\n\n12 December 2023\n\n\nKU\n\n\nJennifer Bartell\n\n\n\n\nUpdates from SDU\n\n\n9 November 2023\n\n\nSDU\n\n\nJacob Fredegaard Hansen\n\n\n\n\nA course on RDS for NGS data\n\n\n7 November 2023\n\n\nDTU\n\n\nJose AR Herrera\n\n\n\n\nFrom Data Chaos to Data Harmony\n\n\n7 November 2023\n\n\nDeiC conference\n\n\nJennifer Bartell\n\n\n\n\n‘Digging into the Health Data Science Sandbox’ workshop\n\n\n7 September 2023\n\n\nAU\n\n\nJennifer Bartell\n\n\n\n\nSandbox workshop in Aarhus\n\n\n29 August 2023\n\n\nAU\n\n\nSamuele Soraggi\n\n\n\n\nWorkshop on bulkRNA-seq data\n\n\n19 June 2023\n\n\nKU\n\n\nJennifer Bartell\n\n\n\n\nSandbox App updates on UCloud rolled out\n\n\n31 May 2023\n\n\nKU\n\n\nJennifer Bartell\n\n\n\n\nSecond bulk RNA-seq course at the University of Copenhagen\n\n\n18 January 2023\n\n\nKU\n\n\nJennifer Bartell\n\n\n\n\nSandbox support for Spring 2023 courses\n\n\n10 January 2023\n\n\nKU\n\n\nJennifer Bartell\n\n\n\n\nSoft launch of the new Course Platform at Computerome\n\n\n8 January 2023\n\n\nKU\n\n\nJesper R Christiansen\n\n\n\n\nSandbox support for ‘Advanced Statistical Learning’\n\n\n30 November 2022\n\n\nAU\n\n\nSamuele Soraggi\n\n\n\n\nSandbox support within ‘Workshops in Applied Bioinformatics’ at SDU\n\n\n15 November 2022\n\n\nSDU\n\n\nJacob Fredegaard Hansen\n\n\n\n\nTranscriptomics Sandbox app launched on UCloud!\n\n\n15 November 2022\n\n\nKU\n\n\nJose AR Herrera\n\n\n\n\nGenomics Sandbox app launched on UCloud!\n\n\n6 September 2022\n\n\nAU\n\n\nSamuele Soraggi\n\n\n\n\nBulk RNA-seq course at University of Copenhagen\n\n\n18 August 2022\n\n\nKU\n\n\nJennifer Bartell\n\n\n\n\nGenomics course at Aarhus University\n\n\n1 June 2022\n\n\nAU\n\n\nSamuele Soraggi\n\n\n\n\nBasics of Personalized Medicine - final wrap-up\n\n\n22 April 2022\n\n\nAAU\n\n\nJennifer Bartell\n\n\n\n\nBasics of Personalized Medicine - MSc course\n\n\n1 April 2022\n\n\nAAU\n\n\nJennifer Bartell\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "modules/bulk_rnaseq.html",
+    "href": "modules/bulk_rnaseq.html",
+    "title": "Bulk RNAseq",
+    "section": "",
+    "text": ":material-web-plus: Course Page\n\nThis workshop material includes a tutorial on how to approach RNAseq data, starting from your count matrix. Thus, the workshop only briefly touches upon laboratory protocols, library preparation, and experimental design of RNA sequencing experiments, mainly for the purpose of outlining considerations in the downstream bioinformatic analysis. This workshop is based on the materials developed by members of the teaching team at the Harvard Chan Bioinformatics Core (HBC), a collection of modified tutorials from the DESeq2 and R language vignettes.\nIntended use: The aim of this repository is to run a comprehensive but introductory workshop on bulk-RNAseq bioinformatic analyses. Each of the modules of this workshop is accompanied by a powerpoint slideshow explaining the steps and the theory behind a typical bioinformatics analysis (ideally with a teacher). Many of the slides are annotated with extra information and/or point to original sources for extra reading material.\n\n\nBy the end of this workshop, you should be able to analyse your own bulk RNAseq count matrix:\n\nNormalize your data.\nExplore your samples with PCAs and heatmaps.\nPerform Differential Expression Analysis.\nAnnotate your results.\n\n!!! agenda “Syllabus” 1. Course Introduction 2. Setup 3. Experimental planning 4. Data Explanation 5. Preprocessing 6. RNAseq counts 7. Exploratory analysis 8. Differential Expression Analysis 9. Functional Analysis 10. Summarized workflow\n!!! info “Workshop prerequisites” - Knowledge of R, Rstudio and Rmarkdown. It is recommended that you have at least followed our workshop R basics - Basic knowledge of RNAseq technology - Basic knowledge of data science and statistics such as PCA, clustering and statistical testing\n\n\n\nCenter for Health Data Science, University of Copenhagen.\nHugo Tavares, Bioinformatics Training Facility, University of Cambridge.\nSilvia Raineri, Center for Stem Cell Medicine (reNew), University of Copenhagen.\nHarvard Chan Bioinformatics Core (HBC), check out their github repo"
+  },
+  {
+    "objectID": "modules/bulk_rnaseq.html#goals",
+    "href": "modules/bulk_rnaseq.html#goals",
+    "title": "Bulk RNAseq",
+    "section": "",
+    "text": "By the end of this workshop, you should be able to analyse your own bulk RNAseq count matrix:\n\nNormalize your data.\nExplore your samples with PCAs and heatmaps.\nPerform Differential Expression Analysis.\nAnnotate your results.\n\n!!! agenda “Syllabus” 1. Course Introduction 2. Setup 3. Experimental planning 4. Data Explanation 5. Preprocessing 6. RNAseq counts 7. Exploratory analysis 8. Differential Expression Analysis 9. Functional Analysis 10. Summarized workflow\n!!! info “Workshop prerequisites” - Knowledge of R, Rstudio and Rmarkdown. It is recommended that you have at least followed our workshop R basics - Basic knowledge of RNAseq technology - Basic knowledge of data science and statistics such as PCA, clustering and statistical testing\n\n\n\nCenter for Health Data Science, University of Copenhagen.\nHugo Tavares, Bioinformatics Training Facility, University of Cambridge.\nSilvia Raineri, Center for Stem Cell Medicine (reNew), University of Copenhagen.\nHarvard Chan Bioinformatics Core (HBC), check out their github repo"
+  },
+  {
+    "objectID": "modules/index.html",
+    "href": "modules/index.html",
+    "title": "Training modules",
+    "section": "",
+    "text": "Sandbox resources have been organized as training modules focused on key topics in health data science. We are constantly adding additional resources and have plans to create additional modules on medical imaging and wearable device data. Feel free to adapt these resources for your own purposes (with credit to the National Health Data Science Sandbox project and other projects they acknowledge in the specific materials).\nYou can access our training modules through:"
+  },
+  {
+    "objectID": "modules/index.html#sandbox-hpc",
+    "href": "modules/index.html#sandbox-hpc",
+    "title": "Training modules",
+    "section": "Data Carpentry and management",
+    "text": "Data Carpentry and management\n\n\n\n\n\n\n\nComputing skills are an important foundation for health data science (and using the above training modules), but formal training is often lacking as biomedical researchers navigate increasingly difficult computational tasks in their projects. These skills range from programming to the use of high-performance computers (HPC) to proper research data management.\n\nRDM for biodata (workshop on how to handle NGS data following simple guidelines to increase the FAIRability of your data)\nHPC launch (workshop in development)\nHPC pipes (workshop in development)\nHeaDS DataLab workshop materials (workshops for programming and good practices developed by the Center for Health Data Science at the University of Copenhagen, which are sometimes co-taught by Sandbox staff! Includes R, python, bash, and git!)"
+  },
+  {
+    "objectID": "modules/index.html#genomics",
+    "href": "modules/index.html#genomics",
+    "title": "Training modules",
+    "section": "Genomics",
+    "text": "Genomics\n\n\n\n\n\n\n\nGenomics is the study of genomes, the complete set of an organism’s DNA. Genomics research now encompasses functional and structural studies, epigenomics, and metagenomics, and genomic medicine is under active implementation and extension in the health sector.\nUse the Genomics Sandbox App on UCloud to explore the resources below:\n\nIntroduction to Next Generation Sequencing data (last update: June 2023)\nIntroduction to Population Genomics (implementation of a course by Prof. Kasper Munch of Aarhus University) (last update: March 2023)\nIntroduction to GWAS (last update: March 2023)"
+  },
+  {
+    "objectID": "modules/index.html#transcriptomics",
+    "href": "modules/index.html#transcriptomics",
+    "title": "Training modules",
+    "section": "Transcriptomics",
+    "text": "Transcriptomics\n\n\n\n\n\n\n\nTranscriptomics is the study of transcriptomes, which investigates RNA transcripts within a cell or tissue to determine what genes are being expressed and in what proportion. These RNA transcripts include mRNAs, tRNA, rRNA, and other non-coding RNA present in a cell.\nUse the Transcriptomics Sandbox App on UCloud to explore these resources:\n\nBulk RNAseq (last update: June 2023)\nSingle-Cell RNAseq (last update: May 2023)\nCirrocumulus (a popular tool for visualizing different types of RNA-seq data and downstream analysis)\nRNAseq in RStudio (RStudio session with pre-installed RNAseq analysis packages for exploring with your own uploaded data)"
+  },
+  {
+    "objectID": "modules/index.html#proteomics",
+    "href": "modules/index.html#proteomics",
+    "title": "Training modules",
+    "section": "Proteomics",
+    "text": "Proteomics\n\n\n\n\n\n\n\nProteomics is the study of proteins that are produced by an organism. Proteomics allows us to analyze protein composition and structure, which have great importance in determining their function.\nUse the Proteomics Sandbox App on UCloud to explore pre-installed tools for proteomics analysis and other resources:\n\nProteomics Sandbox Documentation (last update: May 2023)\nIntroduction to Clinical Proteomics (course under development)\n\nWe also offer a tutorial on UCloud’s ColabFold app, a tool that allows predictions with AlphaFold2 or RoseTTAFold.\n\nColabFold Intro (last update: October 2022)"
+  },
+  {
+    "objectID": "modules/index.html#EHC",
+    "href": "modules/index.html#EHC",
+    "title": "Training modules",
+    "section": "Electronic Health Records",
+    "text": "Electronic Health Records\n\n\n\n\n\n\n\nElectronic health records (EHRs) are digital records kept in the public health sector that record the medical histories of individuals, and access is normally highly restricted to preserve patient privacy. This data is sometimes also shared (partly or in full) in secondary patient registries that support research on a specific disease or condition (such as breast cancer or cystic fibrosis). These datasets are extraordinarily valuable in the development of predictive models used in precision medicine.\nThe chronic lymphocytic leukemia synthetic dataset listed below is generated solely from public data. It is of low utility, so we don’t recommend its use beyond the course it was designed for (with much explanation for the students on its construction and caveats). Please see Synthetic Data for more information.\n\nChronic Lymphocytic Leukemia synthetic dataset created for use in “Fra realworld data til personlig medicin”, a course from the University of Copenhagen’s MS in Personlig Medicin (last update: January 2023)\nIntro to EHR analysis (workshop under development)"
+  },
+  {
+    "objectID": "modules/transcriptomics.html",
+    "href": "modules/transcriptomics.html",
+    "title": "Transcriptomics",
+    "section": "",
+    "text": "Transcriptomics\nTranscriptomics is the study of RNA transcripts and provides insight into gene expression patterns. State-of-the-art approaches rely on high-throughput sequencing of transcripts sampled by various methods."
+  },
+  {
+    "objectID": "modules/AlphaFold_0122.html",
+    "href": "modules/AlphaFold_0122.html",
+    "title": "AlphaFold",
+    "section": "",
+    "text": "AlphaFold\n:fontawesome-brands-github: GitHub Repository\nUpdated: January 2022\nStatus: Under expansion\nThis module will contain a basic standalone tutorial on how to run the newly implemented AlphaFold app in the Sandbox (UCloud version).\nIntended use: The aim of this repository is to on-board users for AlphaFold on Computerome/UCloud.\n!!! abstract “Syllabus” 1. Introduction to protein structural analysis 2. Evaluating predicted structures (AlphaFold DB) 3. Using the AlphaFold app to predict new structures (AlphaFold) 4. Replicating an AlphaFold study 5. Future developments possible with AlphaFold\n!!! info “Workshop requirements” Knowledge of Python and Jupyter notebooks\n\nAcknowledgements\n\nCenter for Health Data Science, University of Copenhagen."
+  },
+  {
+    "objectID": "modules/proteomics.html",
+    "href": "modules/proteomics.html",
+    "title": "Proteomics",
+    "section": "",
+    "text": "Proteomics\nProteomics is the study of proteins summed across a complete sample (ranging from a single cell to a whole organism). High-throughput measurement is conducted using mass spectrometry techniques and protein arrays, and provides insight into protein expression profiles and interactions."
+  },
+  {
+    "objectID": "contributors.html",
+    "href": "contributors.html",
+    "title": "Introduction to NGS data analysis",
+    "section": "",
+    "text": "Jose Alejandro Romero Herrera :custom-orcid: :simple-github:"
+  },
+  {
+    "objectID": "contributors.html#credit-table",
+    "href": "contributors.html#credit-table",
+    "title": "Introduction to NGS data analysis",
+    "section": "CRediT table",
+    "text": "CRediT table\n\n\n\nCRediT role\nInitials\n\n\n\n\nConceptualization\n\n\n\nData curation\n\n\n\nFormal Analysis\n\n\n\nFunding acquisition\n\n\n\nInvestigation\n\n\n\nMethodology\n\n\n\nProject administration\n\n\n\nResources\n\n\n\nSoftware\n\n\n\nSupervision\n\n\n\nValidation\n\n\n\nVisualization\n\n\n\nWriting - original draft\n\n\n\nWriting - review & editing"
+  },
+  {
+    "objectID": "modules/course_template.html",
+    "href": "modules/course_template.html",
+    "title": "\nCourse Template\n",
+    "section": "",
+    "text": "Course Template\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et euismod nulla. Curabitur feugiat, tortor non consequat finibus, justo purus auctor massa, nec semper lorem quam in massa.\nJennifer Bartell Jose Alejandro Romero Herrera Samuele Soraggi\n!!! abstract “Overview” 💬 Questions:\n- Why are we doing this?\n- What is the meaning of life?"
+  },
+  {
+    "objectID": "modules/course_template.html#introduction",
+    "href": "modules/course_template.html#introduction",
+    "title": "\nCourse Template\n",
+    "section": "Introduction",
+    "text": "Introduction\n\nLook at this!\n\nLorem markdownum voluntas et praeteritae aliquando Cauno thyrso inevitabile est, interdum fingit educat, aliquo ungues solito sermo. Miscent pulveris me fletus moenia sed simul aequoris removit, te incursu.\n\nIncursurus liquidis Troiae\nEn ad staminaque ullam\nPellis erat collo Hectoreis cadavera quia draconem"
+  },
+  {
+    "objectID": "modules/course_template.html#agenda",
+    "href": "modules/course_template.html#agenda",
+    "title": "\nCourse Template\n",
+    "section": "Agenda",
+    "text": "Agenda\n!!! note “In this tutorial, we will cover:” * First item * Second item"
+  },
+  {
+    "objectID": "modules/course_template.html#section-1",
+    "href": "modules/course_template.html#section-1",
+    "title": "\nCourse Template\n",
+    "section": "Section 1",
+    "text": "Section 1\nLorem markdownum voluntas et praeteritae aliquando Cauno thyrso inevitabile est, interdum fingit educat, aliquo ungues solito sermo. Miscent pulveris me fletus moenia sed simul aequoris removit, te incursu.\n??? question “How does this thing work?”\nBy looking at it long enough!"
+  },
+  {
+    "objectID": "modules/course_template.html#section-2",
+    "href": "modules/course_template.html#section-2",
+    "title": "\nCourse Template\n",
+    "section": "Section 2",
+    "text": "Section 2\nLorem markdownum voluntas et praeteritae aliquando Cauno thyrso inevitabile est, interdum fingit educat, aliquo ungues solito sermo. Miscent pulveris me fletus moenia sed simul aequoris removit, te incursu.\n??? note\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et euismod\nnulla. Curabitur feugiat, tortor non consequat finibus, justo purus auctor\nmassa, nec semper lorem quam in massa."
+  },
+  {
+    "objectID": "modules/course_template.html#section-3",
+    "href": "modules/course_template.html#section-3",
+    "title": "\nCourse Template\n",
+    "section": "Section 3",
+    "text": "Section 3\nLorem markdownum voluntas et praeteritae aliquando Cauno thyrso inevitabile est, interdum fingit educat, aliquo ungues solito sermo. Miscent pulveris me fletus moenia sed simul aequoris removit, te incursu.\n!!! info “Are you using an Apple chip?”\nContinue to do so."
+  },
+  {
+    "objectID": "modules/genomics.html",
+    "href": "modules/genomics.html",
+    "title": "Genomics",
+    "section": "",
+    "text": "Genomics\nGenomics is the study of genomes, the complete set of an organism’s DNA. Genomics research now encompasses functional and structural studies, epigenomics, and metagenomics, and genomic medicine is under active implementation and extension in the health sector.\nModules linked to genomics topics are currently under construction."
+  },
+  {
+    "objectID": "modules/clinProteomics_0122.html",
+    "href": "modules/clinProteomics_0122.html",
+    "title": "Clinical Proteomics",
+    "section": "",
+    "text": ":fontawesome-brands-github: GitHub Repository\nUpdated: January 2021\nStatus: Under expansion\nThe general strategy for the clinical proteomics module is to provide software, computing resources, datsets and storage using UCloud. Written material (instructions etc.), example notebooks and other auxiliary files will be provided in a Github repository.\n\nProteomics Sandbox app will be used for GUI programs\n\nPrimarily for identification / quantification\nFragPipe / MSFragger for database search (and perhaps open search)\nPDV for visualizing spectral matches\nSearchGUI and PeptideShaker also available\n\nJupyterLab app for data analysis after quantification\n\nInit script to activate conda environment and install custom kernel\nNotebooks provided through Github (https://github.com/hds-sandbox/proteomics-course)\n\nDatasets, (installed) software and JSON config files stored in UCloud project folders\n\nStudents currently need to be project members\n\n\nIntended use: Self-guided introduction to basic proteomics\n!!! abstract “Syllabus” 1. Identify and quantify peptides/proteins * “Database search” using MSFragger/FragPipe or MaxQuant * Visualize peptide spectrum matches using e.g. PDV, IDPicker, IPSA, … 2. Quality control analysis 3. Bioinformatics * Reintegrate clinical metadata * JupyterLab / RStudio + e.g. PolySTest / VSClust / … 4. PhosphoProteomics\n!!! info “Workshop requirements” Knowledge of Python and Jupyter Notebooks\n\n\n\nBMB online computational proteomics course\nNordBioNet summer school 2021 (workshops)\nIntroduction to bioinformatics for proteomics - Prof. Harald Barsnes, University of Bergen\nQC workshop and Quantitative Analysis workshop, long 2019 version - Prof. Veit Schwammle, University of Southern Denmark\nSimulation of proteomics data - Dr. Marie Locard-Paulet, University of Copenhagen\nProteogenomics - Dr. Marc Vaudel, University of Bergen\n\n\n\n\nCenter for Health Data Science, University of Copenhagen."
+  },
+  {
+    "objectID": "modules/clinProteomics_0122.html#other-learning-resources",
+    "href": "modules/clinProteomics_0122.html#other-learning-resources",
+    "title": "Clinical Proteomics",
+    "section": "",
+    "text": "BMB online computational proteomics course\nNordBioNet summer school 2021 (workshops)\nIntroduction to bioinformatics for proteomics - Prof. Harald Barsnes, University of Bergen\nQC workshop and Quantitative Analysis workshop, long 2019 version - Prof. Veit Schwammle, University of Southern Denmark\nSimulation of proteomics data - Dr. Marie Locard-Paulet, University of Copenhagen\nProteogenomics - Dr. Marc Vaudel, University of Bergen\n\n\n\n\nCenter for Health Data Science, University of Copenhagen."
+  },
+  {
+    "objectID": "modules/EHRs.html",
+    "href": "modules/EHRs.html",
+    "title": "EHRs",
+    "section": "",
+    "text": "Electronic Health Records\nElectronic health records (EHRs) are digital records kept in the public health sector that record the medical histories of individuals, and access is normally highly restricted to preserve patient privacy. This data is sometimes also shared (partly or in full) in secondary patient registries that support research of a specific disease or condition (such as cystic fibrosis). These datasets are extraordinarily valuable in the development of predictive models used in precision medicine.\nModules linked to EHR analysis are currently under development."
+  },
+  {
+    "objectID": "recommended/recommended.html",
+    "href": "recommended/recommended.html",
+    "title": "Recommended",
+    "section": "",
+    "text": "Many outside resources are available to support education in health data science, ranging from beginner-level introductions to R or Python (the primary languages of health data science) to other teaching resources and tutorials created at universities and life science organizations.\nWe encourage you to explore the training platform provided by ELIXIR (Europe’s distributed infrastructure for life-science data). On this platform (TeSS), you can find a registry of training materials as well as webinars, workshops, and in-person courses in bioinformatics, modelling, data management, and life science database usage among other topics."
+  },
+  {
+    "objectID": "recommended/recommended.html#recommended-resources-in-health-data-science",
+    "href": "recommended/recommended.html#recommended-resources-in-health-data-science",
+    "title": "Recommended",
+    "section": "",
+    "text": "Many outside resources are available to support education in health data science, ranging from beginner-level introductions to R or Python (the primary languages of health data science) to other teaching resources and tutorials created at universities and life science organizations.\nWe encourage you to explore the training platform provided by ELIXIR (Europe’s distributed infrastructure for life-science data). On this platform (TeSS), you can find a registry of training materials as well as webinars, workshops, and in-person courses in bioinformatics, modelling, data management, and life science database usage among other topics."
+  },
+  {
+    "objectID": "about/about.html",
+    "href": "about/about.html",
+    "title": "About the Sandbox",
+    "section": "",
+    "text": "An infrastructure project for health data science training and research in Denmark\nThe National Health Data Science Sandbox project kicked off in 2021 with 5 years of funding via the Data Science Research Infrastructure initiative from the Novo Nordisk Foundation. Health data science experts at five Danish universities are contributing to the Sandbox with coordination from the Center for Health Data Science under lead PI Professor Anders Krogh. Data scientists hosted in the research groups of each PI are building infrastructure and training modules on Computerome and UCloud, the primary academic high performance computing (HPC) platforms in Denmark. If you have any questions or would like to get in touch with one of our data scientists, please contact us here.\n\n\n\n\n\nOur computational ‘sandbox’ allows data scientists to explore datasets, tools and analysis pipelines in the same high performance computing environments where real research projects are conducted. Rather than a single, hefty environment, we’re deploying modularized topical environments tailored for independent use on each HPC platform. We aim to support three key user groups based at Danish universities:\n\ntrainees: use our training modules to learn analysis techniques with some guidance and guardrails - for your data type of interest AND for general good practices for HPC environments\n\nresearchers: prototype your tools and algorithms with an array of good quality datasets that are GDPR compliant and free to access\neducators: develop your next course with computational assignments in the HPC environment your students will use for their research\n\nActivity developing independent training modules and hosting workshops has centered on UCloud, while collaborative construction of a flexible Course Platform has been completed on Computerome for use by the Sandbox and independent educators. Publicly sourced datasets are being used in training modules on UCloud, while generation of synthetic data is an ongoing project at Computerome. Sandbox resources are under active construction, so check out our other pages for the current status on HPC Access, Datasets, and Modules. We run workshops using completed training modules on a regular basis and provide active support for Sandbox-hosted courses through a slack workspace. See our Contact page for more information.\n\n\nPartner with the Sandbox\nThe Sandbox welcomes proposals for new courses, modules, and prototyping projects from researchers and educators. We’d like to partner with lecturers engaged with us in developing needed materials collaboratively - we would love to have input from subject experts or help promote exciting new tools and analysis methods via modules! Please contact us with your ideas at nhds_sandbox@sund.ku.dk.\n\nWe thank the Novo Nordisk Foundation for funding support. If you use the Sandbox for research or reference it in text or presentations, please acknowledge the Health Data Science Sandbox project and its funder the Novo Nordisk Foundation (grant number NNF20OC0063268)."
+  },
+  {
+    "objectID": "datasets/datasets.html",
+    "href": "datasets/datasets.html",
+    "title": "Datasets",
+    "section": "",
+    "text": "Datasets\nHere we provide details of datasets used in our various modules as well as a specific guide on using electronic health record datasets."
+  },
+  {
+    "objectID": "datasets/synthdata.html",
+    "href": "datasets/synthdata.html",
+    "title": "Synthetic data",
+    "section": "",
+    "text": "It is necessary to clarify what we mean when we refer to synthetic data within the Sandbox project. While the term has been used for decades to describe all kinds of ‘non-real’ data including those derived from models and simulations, developments in deep generative modeling have dramatically expanded our understanding of what synthetic data can be. In the age of deepfakes and news articles written entirely by ChatGPT, synthetic data derived from deep learning is in a wholly different class from data simulated with a mechanistic or agent-based model.\nThe Sandbox is actually interested in any form of synthetic data - our highest priority is providing safe-to-use data to trainees and researchers that does not raise any concerns about sensitive data with respect to the EU’s General Data Protection Regulation (GDPR) and local Danish data regulations. So, we are using both old school and new school forms of data synthesis. However, the discussion on this page is heavily weighted towards our interest in new school synthesis - with our connections to generative modeling researchers and high quality data, we are naturally interested in figuring out a safe way to deploy synthetic datasets derived from deep learning and other high similarity approaches.\n\n\n\n\n\n\nThe TLDR for synthetic data in the Sandbox\n\n\n\n- The development of synthetic datasets should be viewed as a research project. The technology is generally untested with few examples of public roll-out, and its deployment should be future-proofed as much as possible against attacks and potential sensitive data disclosure.\n- Synthetic data generation and evaluation approaches should be tailored     to each dataset of interest. With current technology, it is unlikely that high quality, safe-to-share datasets will be produced at any kind of production scale without a massive effort devoted to pre-processing, data harmonization, and customized routines for different families of datasets.\n- The Sandbox is not openly sharing any synthetic datasets generated from person-specific sensitive data. We think these datasets will be useful to approved researchers that ideally gain access via an approved data portal with registration and data use agreements with relevant data authorities. We are not currently that portal.\n\n\n\n\n\nWe have explored the performance of copulas, multiple imputation, sequential synthesis, and several generative adversarial network (GAN) approaches with a cancer dataset which we were developing for a course in the MS in Personal Medicine program at University of Copenhagen. We quickly discovered that factors such as missingness, collinearity, and the ratio of patients to features cause just as many problems for synthetic data generation as they do in predictive modeling. We are currently evaluating the above techniques as well as additional deep learning approaches such as variational autoencoders (VAEs) and Bayesian graphs against a collection of benchmark health datasets to better understand the positives and negatives of each technique when faced with common challenges in real world health data.\nRecently, a few interesting libraries / pipelines have been released that enable testing of different synthetic data generation approaches alongside a range of evaluation metrics. We are actively exploring these tools as we test different generation approaches and examining their implementation of evaluation metrics. We plan to add additional components and features as we resolve challenges with different target datasets.\n\n\n\nThere are 3 key principles to consider when judging the overall quality of a synthetic dataset: fidelity to the original dataset, risk to privacy, and prediction utility. Fidelity and utility are often grouped together as similarity to the original data which exists in a trade-off with privacy - the more similar your synthetic dataset to the original, the higher your risk to patient privacy. However, the distinction between them is important as they can be achieved independently of each other depending on the project frame. Fidelity refers to reproduction of the multivariate shape and structure of the original data (including complex nonlinear relationships) while utility refers to how well the synthetic dataset matches the predictive accuracy of the original dataset. Risk to privacy includes both risk of patient reidentification and risk of sensitive information disclosure about a patient. There are many proposed evaluation metrics for measuring different aspects of these three qualities. We are actively investigating the performance of these metrics against our different datasets.\n\nWe should point out that while using quantitative metrics to assess privacy preservation is a critical step in creating a synthetic dataset, positive results do not absolve us from any concerns regarding risk to privacy in the synthetic data. Regulatory guidelines regarding the safety of synthetic data and the ability to openly share it are extremely unclear. No authorities have specified quantitative cut-offs using these metrics that enable open release, for example. For this reason, we have developed our own internal guidelines for how to handle this aspect of the project, which are based on a comprehensive examination of relevant EU and Danish legislation (i.e. the GDPR, the Artificial Intelligence Act, the Danish Health Law, and the Danish Data Protection Act). We continue work on synthesis with hope that new legislation such as the development of the European Health Data Space will provide further guidance in the future.\n\n\n\nWe are currently focused on exploring methods and metrics by developing reproducible, well documented examples and use cases of synthetic data in partnership with other researchers, legal advisors, and data authorities. We’re relying primarily on publicly available tabular health datasets in this exploration phase, but we will also work with sensitive data in the future. Our rules aim to preserve the trust of the public in how their health data is handled by data authorities and researchers.\n\n\n\n\n\n\nSandbox Rules for Synthetic Data\n\n\n\n1. Creation of synthetic data involves processing sensitive data, and this requires obtaining project approvals from data authorities when performing this work on sensitive data. Any synthetic data work with restricted-access, sensitive data by the Sandbox will only be conducted with these approvals in place in the frame of a research project.\n2. Goals for each synthetic dataset project should be defined at project initiation: how will the synthetic dataset be used, who is the intended audience, and how might it be shared? This frame should govern every consequent decision for that dataset and be shared alongside the final dataset.\n3. Quantitative metrics for fidelity, utility, and privacy preservation should be implemented for each dataset and shared alongside the final dataset.\n4. A cost-benefit analysis should be performed after the project is completed - is any risk to privacy appropriately balanced by value of the dataset in achieving its stated aims and contributing to the public good?\n5. Data authorities with ethical and strategic stakes in who accesses the synthetic dataset should be included in decisions about how it is used and who is allowed to access it. \n6. Synthetic datasets created from person-specific sensitive data rather than population characteristics can still pose privacy risks, and any users of the dataset should be approved and registered. The Sandbox will not release any such datasets publicly and will instead work with appropriate data authorities to decide how such datasets should be governed in a responsible way."
+  },
+  {
+    "objectID": "datasets/synthdata.html#defining-synthetic-data",
+    "href": "datasets/synthdata.html#defining-synthetic-data",
+    "title": "Synthetic data",
+    "section": "",
+    "text": "It is necessary to clarify what we mean when we refer to synthetic data within the Sandbox project. While the term has been used for decades to describe all kinds of ‘non-real’ data including those derived from models and simulations, developments in deep generative modeling have dramatically expanded our understanding of what synthetic data can be. In the age of deepfakes and news articles written entirely by ChatGPT, synthetic data derived from deep learning is in a wholly different class from data simulated with a mechanistic or agent-based model.\nThe Sandbox is actually interested in any form of synthetic data - our highest priority is providing safe-to-use data to trainees and researchers that does not raise any concerns about sensitive data with respect to the EU’s General Data Protection Regulation (GDPR) and local Danish data regulations. So, we are using both old school and new school forms of data synthesis. However, the discussion on this page is heavily weighted towards our interest in new school synthesis - with our connections to generative modeling researchers and high quality data, we are naturally interested in figuring out a safe way to deploy synthetic datasets derived from deep learning and other high similarity approaches.\n\n\n\n\n\n\nThe TLDR for synthetic data in the Sandbox\n\n\n\n- The development of synthetic datasets should be viewed as a research project. The technology is generally untested with few examples of public roll-out, and its deployment should be future-proofed as much as possible against attacks and potential sensitive data disclosure.\n- Synthetic data generation and evaluation approaches should be tailored     to each dataset of interest. With current technology, it is unlikely that high quality, safe-to-share datasets will be produced at any kind of production scale without a massive effort devoted to pre-processing, data harmonization, and customized routines for different families of datasets.\n- The Sandbox is not openly sharing any synthetic datasets generated from person-specific sensitive data. We think these datasets will be useful to approved researchers that ideally gain access via an approved data portal with registration and data use agreements with relevant data authorities. We are not currently that portal."
+  },
+  {
+    "objectID": "datasets/synthdata.html#generating-synthetic-data",
+    "href": "datasets/synthdata.html#generating-synthetic-data",
+    "title": "Synthetic data",
+    "section": "",
+    "text": "We have explored the performance of copulas, multiple imputation, sequential synthesis, and several generative adversarial network (GAN) approaches with a cancer dataset which we were developing for a course in the MS in Personal Medicine program at University of Copenhagen. We quickly discovered that factors such as missingness, collinearity, and the ratio of patients to features cause just as many problems for synthetic data generation as they do in predictive modeling. We are currently evaluating the above techniques as well as additional deep learning approaches such as variational autoencoders (VAEs) and Bayesian graphs against a collection of benchmark health datasets to better understand the positives and negatives of each technique when faced with common challenges in real world health data.\nRecently, a few interesting libraries / pipelines have been released that enable testing of different synthetic data generation approaches alongside a range of evaluation metrics. We are actively exploring these tools as we test different generation approaches and examining their implementation of evaluation metrics. We plan to add additional components and features as we resolve challenges with different target datasets."
+  },
+  {
+    "objectID": "datasets/synthdata.html#evaluating-synthetic-data",
+    "href": "datasets/synthdata.html#evaluating-synthetic-data",
+    "title": "Synthetic data",
+    "section": "",
+    "text": "There are 3 key principles to consider when judging the overall quality of a synthetic dataset: fidelity to the original dataset, risk to privacy, and prediction utility. Fidelity and utility are often grouped together as similarity to the original data which exists in a trade-off with privacy - the more similar your synthetic dataset to the original, the higher your risk to patient privacy. However, the distinction between them is important as they can be achieved independently of each other depending on the project frame. Fidelity refers to reproduction of the multivariate shape and structure of the original data (including complex nonlinear relationships) while utility refers to how well the synthetic dataset matches the predictive accuracy of the original dataset. Risk to privacy includes both risk of patient reidentification and risk of sensitive information disclosure about a patient. There are many proposed evaluation metrics for measuring different aspects of these three qualities. We are actively investigating the performance of these metrics against our different datasets.\n\nWe should point out that while using quantitative metrics to assess privacy preservation is a critical step in creating a synthetic dataset, positive results do not absolve us from any concerns regarding risk to privacy in the synthetic data. Regulatory guidelines regarding the safety of synthetic data and the ability to openly share it are extremely unclear. No authorities have specified quantitative cut-offs using these metrics that enable open release, for example. For this reason, we have developed our own internal guidelines for how to handle this aspect of the project, which are based on a comprehensive examination of relevant EU and Danish legislation (i.e. the GDPR, the Artificial Intelligence Act, the Danish Health Law, and the Danish Data Protection Act). We continue work on synthesis with hope that new legislation such as the development of the European Health Data Space will provide further guidance in the future."
+  },
+  {
+    "objectID": "datasets/synthdata.html#rules-for-synthetic-data-in-the-sandbox",
+    "href": "datasets/synthdata.html#rules-for-synthetic-data-in-the-sandbox",
+    "title": "Synthetic data",
+    "section": "",
+    "text": "We are currently focused on exploring methods and metrics by developing reproducible, well documented examples and use cases of synthetic data in partnership with other researchers, legal advisors, and data authorities. We’re relying primarily on publicly available tabular health datasets in this exploration phase, but we will also work with sensitive data in the future. Our rules aim to preserve the trust of the public in how their health data is handled by data authorities and researchers.\n\n\n\n\n\n\nSandbox Rules for Synthetic Data\n\n\n\n1. Creation of synthetic data involves processing sensitive data, and this requires obtaining project approvals from data authorities when performing this work on sensitive data. Any synthetic data work with restricted-access, sensitive data by the Sandbox will only be conducted with these approvals in place in the frame of a research project.\n2. Goals for each synthetic dataset project should be defined at project initiation: how will the synthetic dataset be used, who is the intended audience, and how might it be shared? This frame should govern every consequent decision for that dataset and be shared alongside the final dataset.\n3. Quantitative metrics for fidelity, utility, and privacy preservation should be implemented for each dataset and shared alongside the final dataset.\n4. A cost-benefit analysis should be performed after the project is completed - is any risk to privacy appropriately balanced by value of the dataset in achieving its stated aims and contributing to the public good?\n5. Data authorities with ethical and strategic stakes in who accesses the synthetic dataset should be included in decisions about how it is used and who is allowed to access it. \n6. Synthetic datasets created from person-specific sensitive data rather than population characteristics can still pose privacy risks, and any users of the dataset should be approved and registered. The Sandbox will not release any such datasets publicly and will instead work with appropriate data authorities to decide how such datasets should be governed in a responsible way."
+  },
+  {
+    "objectID": "access/Computerome.html",
+    "href": "access/Computerome.html",
+    "title": "Computerome",
+    "section": "",
+    "text": "Accessing the Sandbox on Computerome\nWe do not currently support independent use of Sandbox materials on Computerome. Access is supported via courses collaborating with the Sandbox and run on Computerome’s Course Platform. Check here for more info.\nThe below instructions are provided as reference for course participants.\nTo set up a user account on Computerome, you will need to provide administrators with your name, email address, and phone number for two-factor authentication. Once approved as a user, you will receive your username and server address (URL) by email, and you will receive an initial course-platform password by text.\nOn Computerome, the Sandbox environment is deployed as a virtual machine with a Linux desktop as user interface. This environment can be accessed through VMware Horizon using two different methods: (A) a desktop client (which you install on your computer) or (B) a web-based client (for those without install privileges on their computer). Please follow the appropriate instructions (A versus B) depending on your access preference.\n!!! note “Sign-In Instructions” 1. On FIRST login, enter the provided server address (URL) in a browser window to access the environment using your provided credentials. The URL will take you to a VMware Horizon access portal where you can * (A) choose to install the desktop client (left: ‘Install VMware Horizon Client’). You will then open this client for all subsequent logins instead of using the server address, and can login starting from step 2. * (B) access the environment via browser (right: ‘VMware Horizon HTML Access’). You will always use the server address in your browswer to access this entry point if this is your chosen method of access.\n2. Select the cloud icon\n  *  (A) which is linked to the server URL. This option appears when you have successfully installed and opened the VMware Horizon client.\n  *  (B) which is linked to the Sandbox course. This option appears after you have selected VMware Horizon HTML Access.\n\n3. Enter your username and your course-platform password. \n  *  On the first sign-in, this will be the course-platform password texted to you. You will then be prompted to create your own permanent password to replace this password which you will use for all future sign-ins.\n\n4. When prompted, enter the one-time password texted to you from DTU (NOT the same password as the course-platform password).\n  *  (A) If it is your first login / you logged off at last access, press any key when greeted with the blue time status screen. This will allow you to select your own user account in a dialog box.\n\n5. Sign-in using your course-platform password again after choosing the correct language for the environment in the upper right corner of the screen (this is important for the keyboard and typing your password). Danish (the da option) is default, so those with English keyboards will need to switch to English (the en option) at every login.\n\n6. Congratulations, you have entered the Sandbox environment. Relevant links for courses should be present on your desktop.\n!!! warning “Exit Instructions” To exit the environment, you have two options with different outcomes. You can log off and kill all running processes, or you can disconnect and your processes will continue running. “Power off” is disabled for users as this will shut down your virtual machine, local settings and user files may be lost, and the virtual machine will need to be manually restarted for your account.\n1. To exit and kill all running processes, select the power icon in the upper right corner, then select your name and choose \"log off\" in the pop up window.\n2. To exit and preserve running processes,\n    *  (A) hover at the top of the screen for a few seconds until your VMware Client menu is accessible, choose \"Connection\", and select \"Disconnect\".\n    *  (B) close the browser tab where you are accessing the Sandbox environment."
+  },
+  {
+    "objectID": "access/other.html",
+    "href": "access/other.html",
+    "title": "Introduction to NGS data analysis",
+    "section": "",
+    "text": "sss"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Introduction to Next Generation Sequencing data",
+    "section": "",
+    "text": "Computing and didactical support from the Danish Health Data Science Sandbox\n\n\n\nThe material for this course is organized in four separated jupyter notebooks in both bash, python and R where you will benefit of an interactive coding setup on jupyterlab. Each lesson is in the menu above.\n\n\nThe first exercise lesson is executed with the web interface usegalaxy.org. Click on 1.Galaxy Exercise in the menu for instructions)\n\n\n\n\nThe following exercise lessons will work on a computing environment with jupyterlab. Use 2.Instructions to find out how to run it, selecting the computing environment you need (danish clusters uCloud and GenomeDK, your PC, or another cluster).\n\n\n\nif you need to have a look at the exercises as a reference, then the menu 3.Compiled exercises contains all the compiled exercises on jupyterlab in a document format, from which you can also copy-paste the code."
+  },
+  {
+    "objectID": "index.html#course-material",
+    "href": "index.html#course-material",
+    "title": "Introduction to Next Generation Sequencing data",
+    "section": "",
+    "text": "The material for this course is organized in four separated jupyter notebooks in both bash, python and R where you will benefit of an interactive coding setup on jupyterlab. Each lesson is in the menu above.\n\n\nThe first exercise lesson is executed with the web interface usegalaxy.org. Click on 1.Galaxy Exercise in the menu for instructions)"
+  },
+  {
+    "objectID": "index.html#following-exercises",
+    "href": "index.html#following-exercises",
+    "title": "Introduction to Next Generation Sequencing data",
+    "section": "",
+    "text": "The following exercise lessons will work on a computing environment with jupyterlab. Use 2.Instructions to find out how to run it, selecting the computing environment you need (danish clusters uCloud and GenomeDK, your PC, or another cluster)."
+  },
+  {
+    "objectID": "index.html#compiled-exercises",
+    "href": "index.html#compiled-exercises",
+    "title": "Introduction to Next Generation Sequencing data",
+    "section": "",
+    "text": "if you need to have a look at the exercises as a reference, then the menu 3.Compiled exercises contains all the compiled exercises on jupyterlab in a document format, from which you can also copy-paste the code."
+  },
+  {
+    "objectID": "index.html#course-material-2022",
+    "href": "index.html#course-material-2022",
+    "title": "Introduction to Next Generation Sequencing data",
+    "section": "Course material 2022",
+    "text": "Course material 2022\nHere you find a table with the instructor’s slides from 2022.\n\n\n\nTopic\nSlide\nNotebook\n\n\n\n\nSequencing technologies\nlink\n–\n\n\nMapping to reference\nlink\nNotebook\n\n\nData visualization\nlink\n–\n\n\nSNPs and structural variants\nlink\nNotebook\n\n\nRNA sequencing\nlink\nNotebook\n\n\nDe-novo assembly\nlink\n–\n\n\nMicrobiomes and metagenomics\nlink\n–\n\n\nSingle cell RNA sequencing\nlink\nNotebook"
+  },
+  {
+    "objectID": "index.html#course-material-2024",
+    "href": "index.html#course-material-2024",
+    "title": "Introduction to Next Generation Sequencing data",
+    "section": "Course material 2024",
+    "text": "Course material 2024\nHere you find a table with the instructor’s slides and a link to the compiled notebooks, that you can also run on your own following the instructions in this webpage. Data alignment can also be performed on the Galaxy interactive webpage (see the galaxy exercise in this webpage)."
+  },
+  {
+    "objectID": "news/past/2022-12-10-transcriptomics-launch.html",
+    "href": "news/past/2022-12-10-transcriptomics-launch.html",
+    "title": "Transcriptomics Sandbox app launched on UCloud!",
+    "section": "",
+    "text": "We have deployed our second standalone Sandbox app on UCloud! Please see the Access page for instructions on how to find our Sandbox apps on UCloud - This one is titled ‘Transcriptomics Sandbox’ and module documentation is linked from the UCloud app page as well as here in Modules."
+  },
+  {
+    "objectID": "news/past/2023-01-08-platform-computerome.html",
+    "href": "news/past/2023-01-08-platform-computerome.html",
+    "title": "Soft launch of the new Course Platform at Computerome",
+    "section": "",
+    "text": "Sandbox data scientist Jesper Roy Christiansen has been integral to the development of a new ‘Course Platform’ at Computerome, the HPC platform at the Technical University of Denmark. Built as a collaboration between the Sandbox and Computerome, the Course Platform will host its first users, students in ‘Fra real-world data til personlig medicin’, a course of KU’s MS in Personlig Medicin. Sandbox coordinator Jennifer Bartell and Sandbox PI Martin Boegsted have also been involved in testing this new system during course setup. See the above link as well as HPC Access for more details on this platform and how you can also use this new platform to host courses (with or without Sandbox involvement!)."
+  },
+  {
+    "objectID": "news/past/2022-04-22-basicpm-wrapup.html",
+    "href": "news/past/2022-04-22-basicpm-wrapup.html",
+    "title": "Basics of Personalized Medicine - final wrap-up",
+    "section": "",
+    "text": "Our first course, Basics of Personalized Medicine, wrapped up this month with student project presentations which described their approaches to analysis of the synthetic Chronic Lymphocytic Leukemia dataset created for the course. Course reviews highlighted the helpfulness of Sandbox staff in troubleshooting R problems and the tremendous amount that students learned about predictive modeling."
+  },
+  {
+    "objectID": "news/past/2023-11-07-RDMtalk.html",
+    "href": "news/past/2023-11-07-RDMtalk.html",
+    "title": "From Data Chaos to Data Harmony",
+    "section": "",
+    "text": "Sandbox data scientist Jose Alejandro Romero Herrera gave a talk in the Data Management speaker track at the annual Danish E-Infrastructure Consortium (DeiC) conference in Kolding, Denmark. The talk was well received at the biggest DeiC conference ever (250 participants)."
+  },
+  {
+    "objectID": "news/past/2023-09-07-workshop-conference.html",
+    "href": "news/past/2023-09-07-workshop-conference.html",
+    "title": "‘Digging into the Health Data Science Sandbox’ workshop",
+    "section": "",
+    "text": "The full team of Sandbox data scientists hosted a 4 hour workshop at the Danish Bioinformatics conference where they gave a taster session of each of our 3 omics apps. We learned that multi-omics analysis were a substantial draw for the crowd at the DBC and are making plans to address this interest in future events."
+  },
+  {
+    "objectID": "news/past/2023-11-09-proteomics_biostat_SDU.html",
+    "href": "news/past/2023-11-09-proteomics_biostat_SDU.html",
+    "title": "Updates from SDU",
+    "section": "",
+    "text": "The Proteomics Sandbox Application has recently undergone a significant update, enhancing its security features to ensure safer usage for its users. In this latest iteration, Sandbox data scientist Jacob Fredegaard Hansen has expanded the app’s software suite by introducing two new tools: DIA-NN and MZmine, catering to the metabolomics field. Furthermore, the pre-existing software within the application has been refreshed and updated to the latest versions, ensuring that the Proteomics Sandbox Application remains at the cutting-edge of the field. Excitingly, this application will be actively utilized in the course “BMB831: Biostatistics in R II” at the University of Southern Denmark throughout this autumn, showcasing its relevance and applicability in academic settings."
+  },
+  {
+    "objectID": "news/past/2022-01-04-basicpm.html",
+    "href": "news/past/2022-01-04-basicpm.html",
+    "title": "Basics of Personalized Medicine - MSc course",
+    "section": "",
+    "text": "The first course supported by the Sandbox is launching this month - ‘Basics of Personalized Medicine’ - where students in the new Master in Personal Medicine program at University of Copenhagen are introduced to predictive modeling using electronic health records."
+  },
+  {
+    "objectID": "news/past/2024-02-01-DDSAD3A.html",
+    "href": "news/past/2024-02-01-DDSAD3A.html",
+    "title": "DDSA PhD meetup and D3A conference",
+    "section": "",
+    "text": "Several Sandbox staff represented the project at both the DDSA PhD Meetup with a practical presentation on research data management and with posters at D3A, the national data science meeting. It was nice to meet up in person and also make new connections with the excellent cadre of conference attendees. Thanks to the DDSA secretariat for their invitation and organizational efforts."
+  },
+  {
+    "objectID": "news/past/2023-10-25-RDM_NGS.html",
+    "href": "news/past/2023-10-25-RDM_NGS.html",
+    "title": "A course on RDS for NGS data",
+    "section": "",
+    "text": "Sandbox data scientist Jose Alejandro Romero Herrera ran the first instance of a new module on research data management practices he developed specifically for NGS data. Twelve participants were hosted in conjunction with DeiC at DTU, and were exposed to tools like bash, conda, git, and cookie cutter in their quest to organize their omics data."
+  },
+  {
+    "objectID": "news/past/2022-11-15-support-bioinf-sdu.html",
+    "href": "news/past/2022-11-15-support-bioinf-sdu.html",
+    "title": "Sandbox support within ‘Workshops in Applied Bioinformatics’ at SDU",
+    "section": "",
+    "text": "Sandbox data scientist Jacob Fredegaard Hansen created a tutorial on how to use ColabFold for a one day workshop as part of the ‘Workshops in Applied Bioinformatics’ series taught by Sandbox collaborator Veit Schwammle. The material is accessible on the Sandbox website (see Modules, Proteomics) for any UCloud user alongside the UCloud ColabFold App."
+  },
+  {
+    "objectID": "news/past/2023-01-10-spring-support.html",
+    "href": "news/past/2023-01-10-spring-support.html",
+    "title": "Sandbox support for Spring 2023 courses",
+    "section": "",
+    "text": "The Health Data Science sandbox is working with the following courses during spring 2023:\n\nSandbox support for Population Genomics\n\nExercises for an MS course on Population Genomics taught by Prof. Kasper Munch at Aarhus University are being implemented on UCloud by Sandbox data scientist Samuele Soraggi. Students will explore the training materials on UCloud during the Spring 2023 semester, after which the materials will be accessible to any UCloud user via the Genomics Sandbox App.\n\nFra real-world data til personlig medicin with Course Platform & Sandbox support The second round of the course ‘Fra real-world data til personlig medicin’ in KU’s MS in Personlig Medicin begins in January with an introduction to CLL-TIM, a predictive model for chronic lymphocytic leukemia deployed by Prof. Carsten Niemann, an introduction by Sandbox coordinator Jennifer Bartell to the new Course Platform at Computerome built with Sandbox help for hosting courses with HPC resources, and an introduction to building predictive models using TidyModels in R by Prof. Rasmus Broendum. The course will run through April with 10 continuing education students building their own predictive models using a new and improved synthetic CLL dataset developed by Sandbox data scientist Sander Boisen Valentin. Jennifer and Rasmus are also manning the Sandbox Slack workspace to field student questions about the dataset and their model building.\nSandbox support for ‘Single-cell, Single-Molecule: The Next Level in Cell Biology’ An NNF-funded course, ‘Single-cell, Single-Molecule: The Next Level in Cell Biology’ combining experimental and computational approaches to RNA sequencing is starting at Aarhus University. In addition to course-responsible professor Stig Andersen and co-teachers Victoria Birkedal and Thomas Boesen, Sandbox PI Mikkel Schierup will be contributing along with Sandbox data scientist Samuele Soraggi. Samuele is adapting the Transcriptomics App material on UCloud to supply tutorials and exercises for this hefty course as well as serving as a teaching assistant. The course materials will be available to all users of the Transcriptomics Sandbox App on UCloud in the future."
+  },
+  {
+    "objectID": "news/upcoming/2024-10-30-hpcLaunch.html",
+    "href": "news/upcoming/2024-10-30-hpcLaunch.html",
+    "title": "HPC launch",
+    "section": "",
+    "text": "Sign-up."
+  },
+  {
+    "objectID": "news/upcoming/2024-11-15-hpcPipes.html",
+    "href": "news/upcoming/2024-11-15-hpcPipes.html",
+    "title": "HPC Pipes",
+    "section": "",
+    "text": "Sign-up."
+  },
+  {
+    "objectID": "workshop/workshopAAU_2023.html",
+    "href": "workshop/workshopAAU_2023.html",
+    "title": "\nSandbox Workshop\n",
+    "section": "",
+    "text": "Sandbox Workshop\n!!! info “Upcoming Workshop at AAU”  Intro to the Health Data Science Sandbox at Aalborg University"
+  },
+  {
+    "objectID": "workshop/workshopAAU_2023.html#the-sandbox-concept",
+    "href": "workshop/workshopAAU_2023.html#the-sandbox-concept",
+    "title": "\nSandbox Workshop\n",
+    "section": "The Sandbox concept",
+    "text": "The Sandbox concept\nThe Health Data Science Sandbox aims to be a training resource for bioinformaticians, data scientists, and those generally curious about how to investigate large biomedical datasets. We are an active and developing project seeking interested users (both trainees and educators). All of our open-source materials are available on our Github page and much more information is available on the rest of the website you are currently visiting! We work with both UCloud and Computerome (major Danish academic supercomputers) - see our HPC Access page for more info on each set up."
+  },
+  {
+    "objectID": "workshop/workshopAAU_2023.html#access-sandbox-resources",
+    "href": "workshop/workshopAAU_2023.html#access-sandbox-resources",
+    "title": "\nSandbox Workshop\n",
+    "section": "Access Sandbox resources",
+    "text": "Access Sandbox resources\nWe currently provide training materials and resources as topical apps on UCloud, the supercomputer located at the University of Southern Denmark. To use these resources, you’ll need the following:\n\nLog onto UCloud at the address http://cloud.sdu.dk using your university credentials.\nthe ability to navigate in linux / RStudio / Jupyter. You don’t need to be an expert, but it is beyond our ambitions (and course material) to teach you how to code and how to run analyses simultaneously. We recommend a basic R or Python course before diving in.\n\nNote:\n\nTo use Sandbox materials outside of the workshop, you can request a project by clicking on apply for resources in your uCloud dashboard.\nIf you are a BSc or MSc student, you need a supervisor to apply on your behalf, or you can try to apply yourself mentioning the supervisor approval in the application.\nRemember, however, that you have 1000Kr of computing credit, and around 50GB of free storage to work on uCLoud."
+  },
+  {
+    "objectID": "workshop/workshopAAU_2023.html#try-out-our-transcriptomics-module",
+    "href": "workshop/workshopAAU_2023.html#try-out-our-transcriptomics-module",
+    "title": "\nSandbox Workshop\n",
+    "section": "Try out our transcriptomics module",
+    "text": "Try out our transcriptomics module\nSo our Sandbox data scientists have finished their intro at the workshop? Great, now the brave ones in the audience can try out one of our apps in a live session. Today we are demoing:\n ### Transcriptomics If you’re interested in bulk or single cell RNA sequencing analysis and visualization, join Sandbox Data Scientist Samuele Soraggi from Aarhus University in testing out our Transcriptomics Sandbox app.\nFollow these instructions to try our app:\n\nClick on the button below to join the project for today: &lt;!DOCTYPE html&gt;\n\n\n\n\n\n&lt;p&gt;Green Button&lt;/p&gt;\n\n\n\n\n\nGo to Link\n\n\nYou should see a message on your browser where you have to accept the invitation to the project. This will add you to a project on uCloud, where we have data and extra computing credit for the course.\nBe sure you have joined the project. Check if you have the project OMICS workshop from the project menu (red circle). Afterwards, click on the App menu (green circle) \n\nFind the app Transcriptomics Sandbox (red circle), which is under the title Featured.\n\n\n\n\nClick on it. You will get into the settings window. Choose any Job Name (Nr 1 in the figure below), how many hours you want to use for the job (Nr 2; choose at least 3 hours, you can increase this later), and how many CPUs (Nr 3, choose at least 4 CPUs). Choose the course RNAseq in RStudio from the drop-down menu (Nr 4). Finally, click on the blue button Add Folder.\n\n\n\nNow, click on the browsing bar that appears (red circle).\n\n\n\nIn the appearing window, you should see already a folder called Intro_to_scRNAseq_R. Click on Use at its right (red circle)\n\n\n\nAfterwards, you should have something like this in the settings page:\n\n\n\nNow, click on Submit to start the app (the button is on the right side of the settings page)\nYou will now enter a waiting queue. When the session starts, the timer begins to count down (red circle), and you should be able to open the interface through the button (green circle). Note the buttons to add time to your session (blue circle) and the button to stop the session when you are done (pink circle)\n\n\n\nOpen the interface by clicking on the button (green circle of figure above). Sometimes you are warned of a missing connection: simply refresh the page. You will enter Rstudio, well-known interface to code in R.\nRun the following command to download the tutorial: download.file(\"https://raw.githubusercontent.com/hds-sandbox/ELIXIR-workshop/main/Notebooks/scRNAseq_Tutorial_R.Rmd\", \"tutorial_scrna.Rmd\")\nOpen the file tutorial_scrnaR.Rmd that should now appear in the file browser of Rstudio. Click now on visual (on the tool bar) if you need to see the tutorial in a more readable format.\nThe executable code is inside chunks (called cells) to be executed in order from the first to the last using the little green arrow appearing on the right side of each code cell.\nRead carefully through the tutorial and execute the code cells. You will see the outputs appearing as you proceed."
+  },
+  {
+    "objectID": "workshop/workshopAAU_2023.html#discussion-and-feedback",
+    "href": "workshop/workshopAAU_2023.html#discussion-and-feedback",
+    "title": "\nSandbox Workshop\n",
+    "section": "Discussion and feedback",
+    "text": "Discussion and feedback\nWe hope you enjoyed the live demo. If you have broader questions, suggestions, or concerns, now is the time to raise them! If you are totally toast for the day, remember that you can check out longer versions of our tutorials as well as other topics and tools in each of the Sandbox modules or join us for a multi-day in person course.\nAs data scientists, we also would be really happy for some quantifiable info and feedback - we want to build things that the Danish health data science community is excited to use. Please answer these 5 questions for us before you head out for the day (link activated on day of the workshop).\n\nNice meeting you and we hope to see you again!"
+  }
+]

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Introduction to NGS data analysis</title>
+<title>Introduction to NGS data analysis - UCloud</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,24 +23,27 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -79,10 +82,10 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./images/NGSlogo.png" alt="" class="navbar-logo">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/NGSlogo.png" alt="" class="navbar-logo">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Introduction to NGS data analysis</span>
     </a>
   </div>
@@ -93,7 +96,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
 </ul>
@@ -122,146 +125,220 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#accessing-the-sandbox-on-ucloud" id="toc-accessing-the-sandbox-on-ucloud" class="nav-link active" data-scroll-target="#accessing-the-sandbox-on-ucloud">Accessing the Sandbox on UCloud</a>
+  <ul class="collapse">
+  <li><a href="#example-how-to-open-a-sandbox-app" id="toc-example-how-to-open-a-sandbox-app" class="nav-link" data-scroll-target="#example-how-to-open-a-sandbox-app">Example: how to open a Sandbox app</a>
+  <ul class="collapse">
+  <li><a href="#step-1" id="toc-step-1" class="nav-link" data-scroll-target="#step-1"><strong>Step 1</strong></a></li>
+  <li><a href="#step-2" id="toc-step-2" class="nav-link" data-scroll-target="#step-2"><strong>Step 2</strong></a></li>
+  <li><a href="#step-3" id="toc-step-3" class="nav-link" data-scroll-target="#step-3"><strong>Step 3</strong></a></li>
+  <li><a href="#step-4" id="toc-step-4" class="nav-link" data-scroll-target="#step-4"><strong>Step 4</strong></a></li>
+  <li><a href="#step-5" id="toc-step-5" class="nav-link" data-scroll-target="#step-5"><strong>Step 5</strong></a></li>
+  <li><a href="#step-6" id="toc-step-6" class="nav-link" data-scroll-target="#step-6"><strong>Step 6</strong></a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
-
-
-
-<section id="introduction-to-next-generation-sequencing-data" class="level1 centered">
-<h1 class="centered">Introduction to Next Generation Sequencing data</h1>
-<div style="text-align: center;">
-<p><strong>Computing and didactical support from the <a href="https://hds-sandbox.github.io/">Danish Health Data Science Sandbox</a></strong></p>
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">UCloud</h1>
 </div>
-<section id="course-material" class="level2">
-<h2 class="anchored" data-anchor-id="course-material">Course material</h2>
-<p>The material for this course is organized in four separated jupyter notebooks in both <code>bash</code>, <code>python</code> and <code>R</code> where you will benefit of an interactive coding setup on <code>jupyterlab</code>. Each lesson is in the menu above.</p>
-<section id="first-exercise" class="level3">
-<h3 class="anchored" data-anchor-id="first-exercise">First exercise</h3>
-<p>The first exercise lesson is executed with the web interface <a href="https://usegalaxy.org/">usegalaxy.org</a>. Click on <code>1.Galaxy Exercise</code> in the menu for instructions)</p>
-</section>
-</section>
-<section id="following-exercises" class="level2">
-<h2 class="anchored" data-anchor-id="following-exercises">Following exercises</h2>
-<p>The following exercise lessons will work on a computing environment with <code>jupyterlab</code>. Use <code>2.Instructions</code> to find out how to run it, selecting the computing environment you need (danish clusters <code>uCloud</code> and <code>GenomeDK</code>, your PC, or another cluster).</p>
-</section>
-<section id="compiled-exercises" class="level2">
-<h2 class="anchored" data-anchor-id="compiled-exercises">Compiled exercises</h2>
-<p>if you need to have a look at the exercises as a reference, then the menu <code>3.Compiled exercises</code> contains all the compiled exercises on <code>jupyterlab</code> in a document format, from which you can also copy-paste the code.</p>
-</section>
-</section>
-<section id="course-overview" class="level1">
-<h1>Course overview</h1>
-<div class="callout callout-style-default callout-note callout-titled" title="">
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="accessing-the-sandbox-on-ucloud" class="level1">
+<h1>Accessing the Sandbox on UCloud</h1>
+<p>User accounts on UCloud are enabled by university login credentials using WAYF (Where Are You From). Access the WAYF login portal <a href="https://cloud.sdu.dk/">here</a>, and then find your affiliated Danish university using the search bar. After login, we suggest setting up Two Factor Authentication by clicking on the icon in the top-right corner of the screen. Once you are an approved user of UCloud, you can access the Sandbox environment via different ‘Sandbox’ apps linked to topical modules that you deploy using your own storage and computing resources - just go to Apps once you have signed into UCloud and search ‘Sandbox’ to find what we have deployed. Each app page has its own Documentation link that will direct you to Sandbox-based usage guidelines which may be customized to the app’s particular tools and scope. Apps will have different ‘courses’ that you can initially choose which make a personal copy of training materials in your workspace for you to edit.</p>
+<p>Each Danish university has its usage relationship with UCloud as governed by their local front office of <a href="https://www.deic.dk/en">DeiC</a> - check with your university IT support / DeiC representatives about requesting computational resources. For example, the University of Copenhagen has previously allotted an initial chunk of free UCloud compute hours to staff (from PhD students to professors as well as non-academic staff). If you have further questions about getting compute resources, please <a href="https://hds-sandbox.github.io/contact">contact</a> Sandbox staff.</p>
+<p>Extensive documentation on the general use of UCloud (how to use apps and run jobs, etc.) is available in the UCloud <a href="https://docs.cloud.sdu.dk/">user guide</a>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>After the course, you will have knowledge of bioinformatics methods for analyzing genomes using NGS data, including knowledge of the existing types of genome data, how the different types of data can be displayed and analyzed, the current methods for genome assembly and analysis, their accuracy and how they can be used. The course will enable you to devise and run a project that makes use of NGS data.</p>
-<ul>
-<li><strong>Prerequisites:</strong> This is an introductory course that needs a basic understanding of the biology behind sequencing, and not necessarily programming experience (though this would help!).</li>
-</ul>
-<p>-<strong>Syllabus:</strong> - Describe key challenges in the analysis of NGS data</p>
-<pre><code>- Explain the theoretical foundation for methods that use NGS for assembly and analysis of genomes
-
-- Discuss the bioinformatic methods for genome analysis and hypothesize what drives the outcome of the methods
-
-- Review original literature within the subjects and relate the discussed topics to analysis scenarios
-
-- Apply bioinformatics tools within the selected application areas and reflect on the results, formulating your own conclusion in the proposed tasks</code></pre>
-<ul>
-<li><p><strong>Time:</strong> 20 hours (for reading through the code, executing it, answering questions). The material fits 4-5 days lessons.</p></li>
-<li><p><strong>Supporting Materials:</strong></p>
-<ul>
-<li>jupyter notebooks for interactive coding</li>
-<li>lecture slides from the instructor</li>
-</ul></li>
-</ul>
-<p>You can find the links to the material in the table at the bottom of this page.</p>
-<ul>
-<li><p><strong>Course authors</strong></p>
-<ul>
-<li><p><a href="https://pure.au.dk/portal/da/persons/mikkel-heide-schierup(aa7cd7f5-b8cf-4781-b6a6-be522a7b335c).html" class="md-button">Mikkel H Schierup</a></p></li>
-<li><p><a href="https://pure.au.dk/portal/da/persons/stig-uggerhoej-andersen(dbcd376b-110b-489a-8f6d-85dd2268277d).html" class="md-button">Stig U Andersen</a></p></li>
-<li><p><a href="https://www.linkedin.com/in/samuelesoraggi/" class="md-button">Samuele Soraggi</a></p></li>
-<li><p><a href="https://www.linkedin.com/in/peter-s%C3%B8rud-porsborg/" class="md-button">Peter S Porsborg</a></p></li>
-<li><p><a href="https://www.linkedin.com/in/adri%C3%A1n-g%C3%B3mez-repoll%C3%A9s-66b496105/?originalSubdomain=es" class="md-button">Adrián G Repollés</a></p></li>
-</ul></li>
-<li><p><strong>License:</strong> <a href="https://creativecommons.org/licenses/by/4.0/">Course Content is licensed under Creative Commons Attribution 4.0 International License</a></p></li>
-<li><p><strong>Citation:</strong> If you use any of this material for your research, please cite this course with the DOI below, and acknowledge the Health Data Science Sandbox project of the Novo Nordisk Foundation (grant number NNF20OC0063268). It is of great help to support the project. <a href="https://zenodo.org/badge/latestdoi/468293635"><img src="https://zenodo.org/badge/468293635.svg" class="img-fluid" alt="DOI"></a></p></li>
-<li><p><strong>Contact:</strong> Samuele Soraggi (samuele at birc.au.dk) for technical issues in using the material.</p></li>
-</ul>
+<p>Click on the images to view them in full size.</p>
 </div>
 </div>
-<section id="course-material-2022" class="level2">
-<h2 class="anchored" data-anchor-id="course-material-2022">Course material 2022</h2>
-<p>Here you find a table with the instructor’s slides from 2022.</p>
-<table class="table">
-<thead>
-<tr class="header">
-<th>Topic</th>
-<th>Slide</th>
-<th>Notebook</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Sequencing technologies</td>
-<td><a href="https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/01_sequencing_technologies.pdf">link</a></td>
-<td>–</td>
-</tr>
-<tr class="even">
-<td>Mapping to reference</td>
-<td><a href="https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/02_mapping_to_reference.pdf">link</a></td>
-<td><a href="https://hds-sandbox.github.io/NGS_summer_course_Aarhus/nb/align.html">Notebook</a></td>
-</tr>
-<tr class="odd">
-<td>Data visualization</td>
-<td><a href="https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/03_data_visualization.pdf">link</a></td>
-<td>–</td>
-</tr>
-<tr class="even">
-<td>SNPs and structural variants</td>
-<td><a href="https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/04_snp_and_structural_variants.pdf">link</a></td>
-<td><a href="https://hds-sandbox.github.io/NGS_summer_course_Aarhus/nb/vcf.html">Notebook</a></td>
-</tr>
-<tr class="odd">
-<td>RNA sequencing</td>
-<td><a href="https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/05_rna_sequencing.pdf">link</a></td>
-<td><a href="https://hds-sandbox.github.io/NGS_summer_course_Aarhus/nb/bulk.html">Notebook</a></td>
-</tr>
-<tr class="even">
-<td>De-novo assembly</td>
-<td><a href="https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/06_de_novo_assembly.pdf">link</a></td>
-<td>–</td>
-</tr>
-<tr class="odd">
-<td>Microbiomes and metagenomics</td>
-<td><a href="https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/07_microbiomes_and_metagenomics.pdf">link</a></td>
-<td>–</td>
-</tr>
-<tr class="even">
-<td>Single cell RNA sequencing</td>
-<td><a href="https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/08_single_cell_day.pdf">link</a></td>
-<td><a href="https://hds-sandbox.github.io/NGS_summer_course_Aarhus/nb/scrna.html">Notebook</a></td>
-</tr>
-</tbody>
-</table>
+<section id="example-how-to-open-a-sandbox-app" class="level2">
+<h2 class="anchored" data-anchor-id="example-how-to-open-a-sandbox-app">Example: how to open a Sandbox app</h2>
+<section id="step-1" class="level3">
+<h3 class="anchored" data-anchor-id="step-1"><strong>Step 1</strong></h3>
+<p>Log onto UCloud at the address <a href="http://cloud.sdu.dk">http://cloud.sdu.dk</a> using university credentials.</p>
 </section>
-<section id="course-material-2024" class="level2">
-<h2 class="anchored" data-anchor-id="course-material-2024">Course material 2024</h2>
-<p>Here you find a table with the instructor’s slides and a link to the compiled notebooks, that you can also run on your own following the <code>instructions</code> in this webpage. Data alignment can also be performed on the <code>Galaxy</code> interactive webpage (see the <code>galaxy exercise</code> in this webpage).</p>
+<section id="step-2" class="level3">
+<h3 class="anchored" data-anchor-id="step-2"><strong>Step 2</strong></h3>
+<p>When you are logged in, choose the project from the dashboard (highlighted in red) from which you would like to utilize compute resources. Every user has their personal workspace (<em>My workspace</em>). You can also provision your own project (check with your local DeiC office if you’re new to UCloud) or you can be invited to someone else’s project. If you’ve previously selected a project, it will be launched by default. If it’s your first time, you’ll be in your workspace. If you’ve joined one of our courses or workshops, your instructor will let you know which to choose.</p>
+<p>For this example, we select Sandbox_workshop.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../images/workspace.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1" title="Dashboard: your workspace"><img src="../images/workspace.png" class="black-box img-fluid figure-img" alt="Screenshot of your dashboard"></a></p>
+<figcaption>Dashboard: your workspace</figcaption>
+</figure>
+</div>
+<p>On the left side, you can see the structure of the project (content changes when you select a different project):</p>
+<ul>
+<li><strong>Files</strong>: all folders/files you have access to. You can navigate through folders, download, upload, or share files with collaborators. You might have varying rights across folders, mostly depending on whether they are yours or have been shared with you</li>
+<li><strong>Shares/Projects</strong>: you have been invited to</li>
+<li><strong>Resources</strong>: allocated to your workspace or a project (shared)</li>
+<li><strong>Apps</strong>: gain access to the apps catalog on ucloud. We refer to <a href="https://docs.cloud.sdu.dk/Apps/type.html">apps</a> as the software applications that can be deployed on the cloud. It’s recommended to explore the featured ones. Use the search bar to find the <em>sandbox apps</em></li>
+<li><strong>Runs</strong>: from where you submit your jobs and past runs information</li>
+</ul>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Don’t forget to <strong>accept the invitation</strong> to access new projects. Remember to <strong>switch projects</strong> to access other files and resources. Test switching among projects and observe how the dashboard changes.</p>
+</div>
+</div>
+<p>At the bottom left corner, you will find your user ID, which you may need to provide once the course starts or for future collaborations, such as being added to other people’s projects. You can also find it on <a href="https://docs.cloud.sdu.dk/">UCloud docs</a>.</p>
+<p>In the dashboard, you will also find news, your favorite apps, recent runs, resources, and other notifications between other applications: - <strong>Resource allocations</strong>: indicate your currently allocated resources (e.g., KU employees have access to 1000kr in computing). - <strong>Grant applications</strong>: apply for more resources (computing or storage if you run out of them)</p>
+</section>
+<section id="step-3" class="level3">
+<h3 class="anchored" data-anchor-id="step-3"><strong>Step 3</strong></h3>
+<p>Then click on Apps in the left panel to investigate what tools and environments you can use (green circle). The easiest way to find Sandbox resources is to search via the toolbar (red circle). In this example, we’ll select the Genomics Sandbox (which will bring you to the submission screen).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../images/apps.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2" title="Dashboard: all apps"><img src="../images/apps.png" class="black-box img-fluid figure-img" alt="Screenshot of apps dashboard"></a></p>
+<figcaption>Dashboard: all apps</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Mark them as favorites so they appear on your dashboard.</p>
+</div>
+</div>
+</section>
+<section id="step-4" class="level3">
+<h3 class="anchored" data-anchor-id="step-4"><strong>Step 4</strong></h3>
+<p>Click on the app button to get into the settings window. First, we recommend reading the documentation of the app (highlighted in green). Then, you can configure the app as shown below, or be provided with a configuration file made available in a workshop’s project folders (<em>import parameters</em>) which will take care of everything for you.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../images/configure_NGS.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3" title="Dashboard jobs: configuration step"><img src="../images/configure_NGS.png" class="black-box img-fluid figure-img" alt="Screenshot of how to configure your job"></a></p>
+<figcaption>Dashboard jobs: configuration step</figcaption>
+</figure>
+</div>
+<p>In this example, we configure our session by:</p>
+<ol type="1">
+<li>entering a job name (descriptive of the task)</li>
+<li>selecting the time (in hours) we want to use a node for (it can be modified afterward)</li>
+<li>selecting a 4 CPU standard node with 24 GB memory</li>
+<li>choosing the course “Introduction to NGS Data Analysis”</li>
+<li>optional: add folders to access while in this job</li>
+<li>hitting submit (there may be a wait)</li>
+</ol>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The first 3 steps set up our computing resources for the period we want to work and can be customized as needed. However, <strong>only step 2 can be modified after submitting the job</strong>. For some of the Sandbox apps, you might want to select folders (Home and the Notebooks/Data from the module to avoid downloading it every time you start a new job). If you are in doubt, read the documentation specific to the app you are interested in.</p>
+<p>Select the version of the app (if in doubt, use the latest one). This allows you to run specific versions of software.</p>
+</div>
+</div>
+<p>There are different types of apps, and therefore, interfaces. Some, like RStudio or Jupyter Notebooks, have their own graphical user interface, whereas others are command-line interfaces. Lastly, you can also deploy a virtual desktop and virtual machine, which allow you to spin up a virtual computer.</p>
+</section>
+<section id="step-5" class="level3">
+<h3 class="anchored" data-anchor-id="step-5"><strong>Step 5</strong></h3>
+<p>Wait to go through the queue. When the session starts, the timer begins to count down. In a couple of minutes, you should be able to open the interface through the button (green circle) in a new window (refresh the window if needed).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../images/running_NGS.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" data-glightbox="description: .lightbox-desc-4" title="Dashboard jobs: running the app"><img src="../images/running_NGS.png" class="black-box img-fluid figure-img" alt="Screenshot of dashboard running app"></a></p>
+<figcaption>Dashboard jobs: running the app</figcaption>
+</figure>
+</div>
+<p>This page will remain open while you work (or you can return to it via ‘Runs’ in the left panel). You can end your session early by pressing and holding ‘Stop application’ (pink circle), you can see how much time you have left (red circle) and you can add hours to your session as you go (buttons in blue square).</p>
+</section>
+<section id="step-6" class="level3">
+<h3 class="anchored" data-anchor-id="step-6"><strong>Step 6</strong></h3>
+<p>If you are testing the genomic app, your interface should look like in the image below. Different apps might use other development environments. In this case, you will be working from <a href="https://jupyter.org/">JupyterLab</a>. You can open Jupyter Notebooks (yellow square), R studio (blue square) or a terminal (black square) among others. In this case, #1 and #2 have all the software and packages that you will need pre-installed (this is not the case with Python 3 to the left).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../images/interface_jupyterlab.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" data-glightbox="description: .lightbox-desc-5" title="JupyterLab interface: running the app"><img src="../images/interface_jupyterlab.png" class="black-box img-fluid figure-img" alt="Screenshot of JupyterLab interface"></a></p>
+<figcaption>JupyterLab interface: running the app</figcaption>
+</figure>
+</div>
+<p>You can navigate through the different folders and start running the Python notebooks (pink arrow).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../images/openning_notebook.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" data-glightbox="description: .lightbox-desc-6" title="JupyterLab interface: openning notebook"><img src="../images/openning_notebook.png" class="black-box img-fluid figure-img" alt="Screenshot of Jupyter Notebook"></a></p>
+<figcaption>JupyterLab interface: openning notebook</figcaption>
+</figure>
+</div>
+<p>If you are an advanced user, you can also create your own Python files and select the kernel <em>NGS (python)</em> to use the pre-installed software. Learn how to manage (upload and download new data) and share files that you have created/developed with collaborators <a href="https://docs.cloud.sdu.dk/tutorials/tutorial1.html">here</a>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Create your own directories to save the output of your jobs. You will be able to access them later in your project folders under the resources you are using</p>
+<p>If you haven’t created any directories, look for the generated files under a folder with the same name as the job name you used.</p>
+</div>
+</div>
+<p>You are ready to start using Ucloud and the sandbox tools!</p>
 
 
+<div class="hidden" aria-hidden="true">
+<span class="glightbox-desc lightbox-desc-1">Dashboard: your workspace</span>
+<span class="glightbox-desc lightbox-desc-2">Dashboard: all apps</span>
+<span class="glightbox-desc lightbox-desc-3">Dashboard jobs: configuration step</span>
+<span class="glightbox-desc lightbox-desc-4">Dashboard jobs: running the app</span>
+<span class="glightbox-desc lightbox-desc-5">JupyterLab interface: running the app</span>
+<span class="glightbox-desc lightbox-desc-6">JupyterLab interface: openning notebook</span>
+</div>
+</section>
 </section>
 </section>
 
@@ -820,6 +897,31 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","openEffect":"zoom","closeEffect":"zoom","selector":".lightbox","loop":false});
+window.onload = () => {
+  lightboxQuarto.on('slide_before_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    const href = trigger.getAttribute('href');
+    if (href !== null) {
+      const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+      if (imgEl !== null) {
+        const srcAttr = imgEl.getAttribute("src");
+        if (srcAttr && srcAttr.startsWith("data:")) {
+          slideConfig.href = srcAttr;
+        }
+      }
+    } 
+  });
+
+  lightboxQuarto.on('slide_after_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    if (window.Quarto?.typesetMath) {
+      window.Quarto.typesetMath(slideNode);
+    }
+  });
+
+};
+          </script>
 
 
 
