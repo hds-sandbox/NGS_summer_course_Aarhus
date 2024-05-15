@@ -5,30 +5,31 @@ format:
         page-layout: full
 bibliography: resources/references.bib
 ---
-
-# Welcome to the Health Data Science Sandbox {.centered}
-
-::: {style="text-align: center;"}
-### A collaborative project with team members spanning five Danish universities
-:::
-
- 
-
 # Introduction to Next Generation Sequencing data {.centered}
 
 ::: {style="text-align: center;"}
 **Computing and didactical support from the [Danish Health Data Science Sandbox](https://hds-sandbox.github.io/)**
 :::
 
-The material for this course is organized in four separated jupyter notebooks in both `bash`, `python` and `R` where you will benefit of an interactive coding setup on `jupyterlab`.
+## Course material
 
-The first one is executed with the web interface [usegalaxy.org](https://usegalaxy.org/). Click on `1.Galaxy Exercise` in the menu for instructions)
+The material for this course is organized in four separated jupyter notebooks in both `bash`, `python` and `R` where you will benefit of an interactive coding setup on `jupyterlab`. Each lesson is in the menu above.
 
-Afterwards, we will work on a computing environment to use `jupyterlab`. Use `2.Instructions` for instructions.
+### First exercise
 
-The menu `3.Course exercises` contains all the compiled exercises as a reference.
+The first exercise lesson is executed with the web interface [usegalaxy.org](https://usegalaxy.org/). Click on `1.Galaxy Exercise` in the menu for instructions)
 
-::: {.callout-note icon="False" title="overview"}
+## Following exercises
+
+The following exercise lessons will work on a computing environment with `jupyterlab`. Use `2.Instructions` to find out how to run it, selecting the computing environment you need (danish clusters `uCloud` and `GenomeDK`, your PC, or another cluster).
+
+## Compiled exercises
+
+if you need to have a look at the exercises as a reference, then the menu `3.Compiled exercises` contains all the compiled exercises on `jupyterlab` in a document format, from which you can also copy-paste the code.
+
+# Course overview
+
+::: {.callout-note icon="False" title=""}
 
 After the course, you will have knowledge of bioinformatics methods for analyzing genomes using NGS data, including knowledge of the existing types of genome data, how the different types of data can be displayed and analyzed, the current methods for genome assembly and analysis, their accuracy and how they can be used. The course will enable you to devise and run a project that makes use of NGS data.
 
@@ -91,63 +92,6 @@ Here you find a table with the instructor's slides from 2022.
 | Microbiomes and metagenomics | [link](https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/07_microbiomes_and_metagenomics.pdf) | --                                                                               |
 | Single cell RNA sequencing   | [link](https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/08_single_cell_day.pdf)              | [Notebook](https://hds-sandbox.github.io/NGS_summer_course_Aarhus/nb/scrna.html) |
 
-## Course material 2023 (on its way after the course's end)
+## Course material 2024
 
 Here you find a table with the instructor's slides and a link to the compiled notebooks, that you can also run on your own following the `instructions` in this webpage. Data alignment can also be performed on the `Galaxy` interactive webpage (see the `galaxy exercise` in this webpage).
-
-The Health Data Science Sandbox is a national project coordinated by the [Center for Health Data Science](https://heads.ku.dk/) at the University of Copenhagen. We're working with a network of health data science experts to build training resources on academic supercomputers for students and researchers in Denmark. Our Sandbox contains [training modules](modules/index.qmd) that pair topical datasets with recommended analysis tools, pipelines, and learning materials/tutorials in a portable, containerized format.
-
-::: {layout-nrow="1" layout-ncol="5"}
-::: column
-[![HPC Lab](../images/HPC.png){.hover-target width="100%"}](https://hds-sandbox.github.io/modules/#sandbox-hpc) [**HPC Lab**]{style="display: block; margin-top:15px; text-align: center; font-size: 1.2em;"}
-:::
-
-::: column
-[![](../images/genomics2.png){.hover-target width="100%"}](https://hds-sandbox.github.io/modules/#genomics) [**Genomics**]{style="display: block; margin-top:15px; text-align: center; font-size: 1.2em;"}
-:::
-
-::: column
-[![](../images/transcriptomics.png){.hover-target width="100%"}](https://hds-sandbox.github.io/modules/#transcriptomics) [**Transcriptomics**]{style="display: block; margin-top:15px; text-align: center; font-size: 1.2em;"}
-:::
-
-::: column
-[![](../images/proteomics.png){.hover-target width="100%"}](https://hds-sandbox.github.io/modules/#proteomics) [**Proteomics**]{style="display: block; margin-top:15px; text-align: center; font-size: 1.2em;"}
-:::
-
-::: column
-[![](../images/EHRs.png){.hover-target width="100%"}](https://hds-sandbox.github.io/modules/##EHC) [**Health records**]{style="display: block; margin-top:15px; text-align: center; font-size: 1.2em;"}
-:::
-:::
-
- 
-
-::: {style="text-align: center;"}
-### To get involved as a trainee, researcher, or educator in Denmark:
-
-**TRAINEES**: [join](news.qmd) our next scheduled workshop or a supported university course
-
-**TRAINEES/RESEARCHERS**: explore [training modules](modules/index.qmd) independently on UCloud
-
-**RESEARCHERS**: adapt [training modules](modules/index.qmd) or [code repositories](https://github.com/hds-sandbox) to your research
-
-**EDUCATORS**: [host](access/index.qmd) a training event or course in the Sandbox with our support
-:::
-
- 
-
-::: {.callout-note title="A note on Sandbox data policy"}
-The Sandbox aims to be a resource for learning new analysis approaches and tools for health data science on useful, interesting, and safe-to-share datasets. All person-specific datasets in the Sandbox are non-sensitive and GDPR-safe because they are 1) sourced from public databases, 2) fully anonymous/non-sensitive from a GDPR perspective, and/or 3) synthetic. To learn more, check out [Datasets](https://hds-sandbox.github.io/datasets/datapolicy.html) where we explain our data policy in detail and our approach to synthetic data generation.
-:::
-
-**Thanks to the Novo Nordisk Foundation for funding the National Health Data Science Project! Please give credit if you use our open-source materials in any form (NNF grant number NNF20OC0063268).**
-
-```{=html}
-<style>
-/* Targeting images with the class "hover-target" when hovered */
-img.hover-target:hover {
-    cursor: pointer; /* Changes the cursor to a pointer when hovered */
-    transform: scale(1.1); /* Enlarges the image when hovered */
-    transition: transform 0.2s; /* Smooth transition effect */
-}
-</style>
-```

@@ -2,28 +2,28 @@ project:
   type: website
 
 website:
-  title: 'Health Data Science Sandbox'
+  title: 'Introduction to NGS data analysis'
   navbar:
-    logo: /img/logo.png
+    logo: /images/NGSlogo.png
     left:
       - href: index.qmd
         text: Home
-      - href: news.qmd
-        text: News
-      - href: access/index.qmd
-        text: HPC access
-      - href: modules/index.qmd
-        text: Modules
+#      - href: news.qmd
+#        text: News
+#      - href: access/index.qmd
+#        text: HPC access
+#      - href: modules/index.qmd
+#        text: Modules
 #      - href: workshop/workshop_april2024.qmd
 #        text: Workshop
-      - text: Datasets
-        menu:
-          - href: datasets/datapolicy.qmd
-          - href: datasets/synthdata.qmd
-      - href: about/about.qmd
-        text: About
-      - href: contact/contact.qmd
-        text: Contact
+#      - text: Datasets
+#        menu:
+#          - href: datasets/datapolicy.qmd
+#          - href: datasets/synthdata.qmd
+#      - href: about/about.qmd
+#        text: About
+#      - href: contact/contact.qmd
+#        text: Contact
 
     right: 
       - icon: github
