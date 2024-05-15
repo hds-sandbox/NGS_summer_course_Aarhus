@@ -5,6 +5,28 @@ format:
         page-layout: full
 bibliography: resources/references.bib
 ---
+
+<style>
+  body {
+    position: relative;
+  }
+
+  .background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 150%;
+    height: 100%;
+    background-image: url("https://international.au.dk/fileadmin/ingen_mappe_valgt/Next-Generation_Sequencing.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.2; /* Adjust the opacity for transparency */
+  }
+</style>
+<div class="background-overlay"></div>
+
+
+
 # Introduction to Next Generation Sequencing data {.centered}
 
 ::: {style="text-align: center;"}
@@ -29,13 +51,14 @@ if you need to have a look at the exercises as a reference, then the menu `3.Com
 
 # Course overview
 
-::: {.callout-note icon="False" title=""}
+:::{.callout-note icon="False" title="overview"}
 
 After the course, you will have knowledge of bioinformatics methods for analyzing genomes using NGS data, including knowledge of the existing types of genome data, how the different types of data can be displayed and analyzed, the current methods for genome assembly and analysis, their accuracy and how they can be used. The course will enable you to devise and run a project that makes use of NGS data.
 
 - **Prerequisites:** This is an introductory course that needs a basic understanding of the biology behind sequencing, and not necessarily programming experience (though this would help!).
 
--**Syllabus:**
+- **Syllabus:**
+
     - Describe key challenges in the analysis of NGS data
 
     - Explain the theoretical foundation for methods that use NGS for assembly and analysis of genomes
