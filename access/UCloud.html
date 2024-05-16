@@ -146,6 +146,7 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#accessing-the-ngs-summer-school-on-ucloud" id="toc-accessing-the-ngs-summer-school-on-ucloud" class="nav-link active" data-scroll-target="#accessing-the-ngs-summer-school-on-ucloud">Accessing the NGS summer school on UCloud</a></li>
+  <li><a href="#access-again-previously-used-notebooks-and-data" id="toc-access-again-previously-used-notebooks-and-data" class="nav-link" data-scroll-target="#access-again-previously-used-notebooks-and-data">Access again previously used notebooks and data</a></li>
   </ul>
 </nav>
     </div>
@@ -225,15 +226,74 @@ Exercise: drives and file explorer
 </div>
 <div class="callout-body-container callout-body">
 <p>Click on the first button of the left menu (Files). The <strong>Files</strong> window will open. Here you can create <strong>drives</strong>, which are virtual storage units resembling the drives of a computer, where you can store, delete and move files around.</p>
-<p>Create a drive using the button on top of the window (<code>Create drive</code>), choose the resources available from the dropdown menu (in the workspace <code>My workspace</code> you probably have <code>u1-cephfs</code>) and assign a name.</p>
-<p>Now you have created your drive! If you click into this, you can see new top buttons, for example to upload a file, create a folder and sync with another computer (which needs a software - click on the button to read more). When you have a drive, you can <strong>mount</strong> it into a software you want to use (mount means to make it available for the software to read/write from and to).</p>
+<p>Choose the workspace <strong>My workspace</strong> and create a drive using the button on top of the window (<code>Create drive</code>), choose the resources available from the dropdown menu (in the workspace <code>My workspace</code> you probably have <code>u1-cephfs</code>) and assign a name.</p>
+<p>Now you have created your drive inside your personal workspace! You can create other drives, for example to keep projects separate. If you click into the drive, you can see new top buttons, for example to upload a file, create a folder and sync with another computer (which needs a software - click on the Sync button to read more). When you have a drive, you can <strong>mount</strong> it into a software you want to use (mount means to make it available for the software to read/write from and to).</p>
+<p>Remember to go back to the workspace you were working with before this exercise.</p>
 </div>
 </div>
-<p><strong>4.</strong> The left-side menu can be used to access the stored data, applications, running programs and settings. Use the <strong>Applications</strong> symbol (red circle) and click on the <strong>Health Science</strong> store (green circle).</p>
+<p><strong>4.</strong> The left-side can also be used to access applications, running programs and settings. Use the <strong>Applications</strong> symbol (red circle) and click on the <strong>Health Science</strong> store (green circle).</p>
 <p><img src="../images/appsMenu_edit.png" class="img-fluid"></p>
-<p><strong>5.</strong> Your screen will show some apps falling in the Health Science subcategory. Click on the <strong>Genomics Sandbox</strong> application to open its settings.</p>
+<p><strong>5.</strong> Your screen will show some softwaress falling in the Health Science subcategory. Click on the <strong>Genomics Sandbox</strong> application to open its settings.</p>
 <p><img src="../images/genomicsSandbox.png" class="img-fluid"></p>
-<p><strong>6.</strong> Choose any Job Name (Nr 1 in the figure below), how many hours you want to use for the job (Nr 2, choose at least 2 hours, you can increase this later), and how many CPUs (Nr 3, choose at least 4 CPUs for the first three exercises, but use at least 8 CPUs to run the single cell analysis). Select the <code>Introduction to NGS Data Analysis</code> as course (Nr 4). Then click on <code>Submit</code> (Nr 5).</p>
+<p><strong>6.</strong> Choose</p>
+<ul>
+<li>any Job Name (Nr 1 in the figure below, optional but useful) to identify the session,</li>
+<li>how many hours you want to use for the job (Nr 2, choose at least 2 hours, you can increase this later)</li>
+<li>how many CPUs (Nr 3, choose at least 4 CPUs for the first three exercises, but use at least 8 CPUs to run the single cell analysis).</li>
+<li>the course <code>Introduction to NGS Data Analysis</code> (Nr 4).</li>
+</ul>
+<p>Then click on <code>Submit</code> (Nr 5).</p>
+<p><img src="../images/appSetup_edit.png" class="img-fluid"></p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Reuse parameters">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Reuse parameters
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you want to run again a session in the same way as previously done, click on the button <strong>import parameters</strong>. This shows a list of previous sessions, from which all parameters choices can be imported.</p>
+</div>
+</div>
+<p><strong>7.</strong> Once you have submitted, you end up in a queue, where you waiting resource assignment. The waiting time can vary, depending on how many people are using the computing cluster at the moment. When you get through the queue, you see a screen similar to the one below, where you have</p>
+<ul>
+<li>remaining time (red circle) which can be increased on-the-fly through the additional buttons (blue circle)</li>
+<li>a stop button (purple circle) which you can hold to stop your session if you have finished ahead of remaining time. When you stop a session, you avoid using more resources than necessary, which <strong>will not be accounted for as used in your account credit!</strong></li>
+<li>a button to open the interactive interface (green button)</li>
+</ul>
+<p><img src="../images/runningApp_edit.png" class="img-fluid"></p>
+<p><strong>8.</strong> Click on <strong>Open interface</strong>. You will start a new tab of your browser, in which the interface of Jupyterlab is opened.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="find again your sessions">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+find again your sessions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Do not worry if you accidentally close the tab from which you can add time to your session. You can always find all your active and stopped sessions in the left toolbar of ucloud, under <code>Jobs</code>. Here you can click on your current session and see again the tab you closed!</p>
+</div>
+</div>
+<p><strong>9.</strong> The Jupyterlab interface looks as below. It has a launcher from which you can start notebooks (documents including code and outputs) and terminals from scratch. On the left-side of the screen you have a file browser. You want to use the notebooks for this course, which you can find under the folder <strong>Notebooks</strong>.</p>
+<p><img src="../images/jupyterStart.png" class="img-fluid"></p>
+<p><strong>10.</strong> Now you can choose the notebooks. They are ordered by course topic and contain both explanations and code which you can run to see what happens. Double-click on the first notebook: you can see there are instructions to make sure the notebook works, and at some point you start see some <strong>code cells</strong> between the text, as in figure below.</p>
+<p><img src="../images/nbInstructions.png" class="img-fluid"></p>
+<p><strong>11.</strong> Cells always need to run from the first to the last in the order they have been written. To run a cell, select it and click the arrow-like symbol in the toolbar:</p>
+<p><img src="../images/jupyterToolbar.png" class="img-fluid"></p>
+<p>Alternatively, press Shift+Enter on your keyboard, which is much more practical. Every time a code cell is running, a star simbol will show on its side. When it is done, a number will show, telling you the step number of the code you have been running. If a command shows an output, it will be visualized directly on the notebook. Use the toolbar to save the notebook, and edit it in any way you need adding text notes or code (you can add new cells via the toolbar).</p>
+</section>
+<section id="access-again-previously-used-notebooks-and-data" class="level1">
+<h1>Access again previously used notebooks and data</h1>
+<p>If you need to reuse the notebooks and the data used in a previous session, this can be done easily. Everything you produced during the notebook execution, and the notebooks themselves, are saved in your personal drive of the workspace. This has a name of the type <strong>NameSurname#Number</strong>. You need to add the folders <strong>Data</strong> and <strong>Notebooks</strong> from you previous session. Follow these steps:</p>
+<p>&nbsp;</p>
+<p><strong>1.</strong> Configure again the Genomics app as you did before, eventually using the button <strong>import parameters</strong> to choose the same configuration.</p>
+<p><strong>2.</strong> Do not submit yet. Click twice on <strong>Add Folders</strong> - Two browsing bars will show up.</p>
+<p><img src="../images/addFolderEmpty.png" class="img-fluid"></p>
+<p><strong>3.</strong></p>
 
 
 </section>
