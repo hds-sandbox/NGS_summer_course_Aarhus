@@ -36,5 +36,5 @@ format:
       light: [materia, css/materialight.scss]
       dark: darkly
     toc: true
-#    include-in-header:
-#      - file: "resources/bioschema.html"
+    include-in-header:
+      - file: "resources/bioschema.html"
