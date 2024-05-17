@@ -18,7 +18,7 @@ website:
 #        text: Workshop
       - text: Access
         menu:
-          - href: access/ucloud.qmd
+          - href: access/UCloud.qmd
 #          - href: datasets/synthdata.qmd
 #      - href: about/about.qmd
 #        text: About
