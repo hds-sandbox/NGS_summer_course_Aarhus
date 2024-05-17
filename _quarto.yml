@@ -29,12 +29,6 @@ website:
       - icon: github
         href: https://github.com/hds-sandbox
         aria-label: GitHub
-      - icon: linkedin
-        href: https://www.linkedin.com/company/ucph-heads
-        aria-label: LinkedIn
-      - icon: twitter
-        href: https://twitter.com/ucph_heads
-        aria-label: Twitter   
 
 format:
   html:
