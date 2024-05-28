@@ -1,0 +1,34 @@
+channels:
+    - bioconda
+    - r
+    - conda-forge
+dependencies:
+    - pandas<2
+    - matplotlib<3.7
+    - scanpy
+    - ipykernel
+    - jupyterlab
+    - pydeseq2
+    - gsl
+    - python-igraph
+    - leidenalg
+    - scvelo
+    - python-annoy
+    - multicore-tsne
+    - pytables
+    - plotly
+    - nbformat
+    - star==2.7.10a
+    - bcftools
+    - scikit-allel
+    - bioconda::fastqc
+    - multiqc
+    - qualimap
+    - minimap2
+    - samtools
+    - vcftools
+    - gffread
+    - pip
+    - pip:
+      - batchglm==0.7.4
+      - bbknn==1.5.1
