@@ -11,7 +11,7 @@ bibliography: resources/references.bib
   body {
     background-image: url("images/NGSwallpaperOpaque.png");
     background-size: cover;
-    background-repeat: no-repeat;
+    background-repeat: repeat;
   }
 </style>
 
