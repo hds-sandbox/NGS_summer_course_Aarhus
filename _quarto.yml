@@ -3,6 +3,12 @@ project:
 
 website:
   title: 'Introduction to NGS data analysis'
+  google-analytics: 
+    tracking-id: "G-WG01Z2LJ1J"
+    anonymize-ip: true
+  open-graph:
+    locale: en_US
+    site-name: Introduction to NGS data analysis
   navbar:
     logo: /images/NGSlogo.png
     left:
@@ -20,6 +26,18 @@ website:
         menu:
           - href: access/ucloud.qmd
 #          - href: datasets/synthdata.qmd
+      - text: Tutorials
+        menu:
+          - href: nb/align.ipynb
+            text: Alignment
+          - href: nb/vcf.ipynb
+            text: Variant analysis
+          - href: nb/bulk.ipynb
+            text: bulkRNA analysis
+          - href: nb/scrna.html
+            text: scRNA analysis
+#          - href: datasets/synthdata.qmd
+
 #      - href: about/about.qmd
 #        text: About
 #      - href: contact/contact.qmd
