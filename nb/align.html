@@ -1,0 +1,1693 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.555">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Lavinia I Fechete, Stig U Andersen, Mikkel H Schierup, Samuele Soraggi">
+
+<title>Introduction to NGS data analysis - Alignment of HiFi and RNA sequencing data</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-EXW13D5861"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-EXW13D5861', { 'anonymize_ip': true});
+</script>
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org/",
+    "@type": "LearningResource",
+    "@id": "https://hds-sandbox.github.io/NGS_summer_course_Aarhus/",
+    "dct:conformsTo": {
+      "http://purl.org/dc/terms/conformsTo": {
+        "@id": "https://bioschemas.org/profiles/TrainingMaterial/1.0-RELEASE",
+        "@type": "CreativeWork"
+      }
+    },
+    "name": "Introduction to NGS data analysis",
+    "description": "A one-week summer school which provides an overview of current NGS technologies and directions in which these are currently progressing. Methods for assembling genomes from NGS data using either a reference genome or de novo assembly will be presented together with some emphasis on assessing NGS data quality (Quality control, accuracy of base calling). The course includes notebooks for the analysis of short- and long-read sequencing data, bulkRNA data and single-cell RNA sequencing data.",
+    "keywords": [
+      "single cell RNA",
+      "NGS data",
+      "genomics",
+      "transcriptomics",
+      "bulk RNA",
+      "bioinformatics"
+    ],
+    "about": [
+      {
+        "@type": "DefinedTerm",
+        "@id": "http://edamontology.org/topic_0091",
+        "inDefinedTermSet": "http://edamontology.org",
+        "termCode": "topic_0091",
+        "name": "bioinformatics",
+        "url": "https://bioportal.bioontology.org/ontologies/EDAM/?p=classes&conceptid=http%3A%2F%2Fedamontology.org%2Ftopic_0091"
+      },
+      {
+        "@type": "DefinedTerm",
+        "@id": "http://edamontology.org/data_3670",
+        "inDefinedTermSet": "http://edamontology.org",
+        "termCode": "data_3670",
+        "name": "Online course",
+        "url": "https://bioportal.bioontology.org/ontologies/EDAM/?p=classes&conceptid=http%3A%2F%2Fedamontology.org%2Fdata_3670"
+      },
+      {
+        "@type": "DefinedTerm",
+        "@id": "http://edamontology.org/topic_0622",
+        "inDefinedTermSet": "http://edamontology.org",
+        "termCode": "topic_0622",
+        "name": "Genomics",
+        "url": "https://www.ebi.ac.uk/ols4/ontologies/edam/classes/http%253A%252F%252Fedamontology.org%252Ftopic_0622"
+      },
+      {
+        "@type": "DefinedTerm",
+        "@id": "http://edamontology.org/topic_3308",
+        "inDefinedTermSet": "http://edamontology.org",
+        "termCode": "topic_3308",
+        "name": "Transcriptomics",
+        "url": "https://www.ebi.ac.uk/ols4/ontologies/edam/classes/http%253A%252F%252Fedamontology.org%252Ftopic_3308"
+      }
+    ],
+    "abstract": "NGS technologies are fundamental in genomics and transcriptomics studies. In this course we set the foundations for the analysis of NGS data with various interactive exercises for genome alignment, genomics and transcriptome analysis. open source code, Slides and access information can be found at the webpage https://hds-sandbox.github.io/NGS_summer_course_Aarhus/.",
+    "audience": [
+      {
+        "@type": "Audience",
+        "audienceType": "Students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "PhD students"
+      },
+      {
+        "@type": "Audience",
+        "audienceType": "Postdoctoral researchers"
+      }
+    ],
+    "competencyRequired": [
+      "Basic biology programming",
+      "Basic python/R/bash programming (an advantage but not mandatory)",
+      "Machine learning basics for bioinformatics (PCA, statistical testing)"
+    ],
+    "inLanguage": ["en-US"],
+    "learningResourceType": ["tutorials"],
+    "license": "https://spdx.org/licenses/CC-BY-4.0.html",
+    "url": "https://hds-sandbox.github.io/NGS_summer_course_Aarhus/",
+    "citation": [
+        {
+            "@type": "CreativeWork",
+            "@id": "https://doi.org/10.5281/zenodo.8074603"
+        } ],
+     "funding":[
+     	  {
+            "@type": "Grant",
+            "@id": "NNF grant number NNF20OC0063268"        	
+        }
+     ]
+  }
+</script>
+
+
+<meta property="og:title" content="Introduction to NGS data analysis - Alignment of HiFi and RNA sequencing data">
+<meta property="og:description" content="">
+<meta property="og:site_name" content="Introduction to NGS data analysis">
+<meta property="og:locale" content="en_US">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/NGSlogo.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Introduction to NGS data analysis</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../slides.html"> 
+<span class="menu-text">Slides</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-access" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Access</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-access">    
+        <li>
+    <a class="dropdown-item" href="../access/UCloud.html">
+ <span class="dropdown-text">UCloud</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-tutorials" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Tutorials</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-tutorials">    
+        <li>
+    <a class="dropdown-item" href="../nb/align.html">
+ <span class="dropdown-text">Alignment</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../nb/vcf.html">
+ <span class="dropdown-text">Variant analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../nb/bulk.html">
+ <span class="dropdown-text">bulkRNA analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../nb/scrna.html">
+ <span class="dropdown-text">scRNA analysis</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/hds-sandbox"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#biological-background" id="toc-biological-background" class="nav-link active" data-scroll-target="#biological-background">Biological background</a></li>
+  <li><a href="#quality-control-and-mapping" id="toc-quality-control-and-mapping" class="nav-link" data-scroll-target="#quality-control-and-mapping">Quality control and mapping</a>
+  <ul class="collapse">
+  <li><a href="#quality-control" id="toc-quality-control" class="nav-link" data-scroll-target="#quality-control">Quality Control</a></li>
+  <li><a href="#hifi-data-mapping" id="toc-hifi-data-mapping" class="nav-link" data-scroll-target="#hifi-data-mapping">Hifi data mapping</a></li>
+  </ul></li>
+  <li><a href="#rna-seq-mapping" id="toc-rna-seq-mapping" class="nav-link" data-scroll-target="#rna-seq-mapping">RNA-seq mapping</a></li>
+  <li><a href="#wrapping-up" id="toc-wrapping-up" class="nav-link" data-scroll-target="#wrapping-up">Wrapping up 🎉 🎉 🎉</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Alignment of HiFi and RNA sequencing data</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Lavinia I Fechete, Stig U Andersen, Mikkel H Schierup, Samuele Soraggi </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>This tutorial will cover the steps for performing the alignment of raw RNA- and HiFi-sequencing data. You will need to use <a href="https://software.broadinstitute.org/software/igv/download">the software IGV</a> on your computer to visualize some of the output files, which can be easily downloaded once they are produced. At the end of this tutorial you will be able to:</p>
+<div style="background-color:rgba(0, 128, 0, 0.3); text-align:left; vertical-align: left; padding:40px 0;">
+<ul>
+<li>perform and discuss quality control on raw data in <code>fastq</code> format using <code>FastQC</code> and <code>MultiQC</code></li>
+<li>align HiFi and RNA sequencing data with dedicated tools such as <code>MiniMap2</code> and <code>STAR</code></li>
+<li>analyze the quality the alignment with <code>qualimap</code></li>
+</ul>
+</div>
+<p><br> <br></p>
+<p>The output of this notebook will be used for the Variant calling analysis and the bulk RNA-sequencing analysis. If you do not want to run this notebook, you can alternatively use <a href="https://usegalaxy.org/">the free interactive tool Galaxy</a> to perform the alignment steps. We have uploaded the data on Galaxy, and the manual to perform the exercise is found <a href="https://hds-sandbox.github.io/NGS_summer_course_Aarhus/">at the course webpage</a>.</p>
+<p>The present tutorial, like the rest of the course material, is available at our <a href="https://github.com/hds-sandbox/NGS_summer_course_Aarhus">open-source github repository</a>.</p>
+<details>
+<summary>
+<b>A few introductory points to run this notebook (click to show):</b>
+</summary>
+<ul>
+<li>To use this notebook, use the <code>NGS (python)</code> kernel that contains the packages. Choose it by selecting <code>Kernel -&gt; Change Kernel</code> in the menu on top of the window.</li>
+</ul>
+<figure class="figure">
+<img src="images/kernelchoice.png" width="500" alt="Kernel Choice" class="center figure-img">
+</figure>
+<ul>
+<li>In this notebook you will use only bash commands as you would do in the command line (this is why you read <code>%%bash</code> at the beginning of each piece of code). Those commands can be replicated in the command line, but we thought of integrating them in a notebook to make the tutorial understandable. The bash commands can also be marked with an <code>!</code> sign at the beginning of the line</li>
+<li>On some computers, you might see the result of the commands once they are done running. This means you will wait some time while the computer is crunching, and only afterwards you will see the result of the command you have executed</li>
+<li>You can run the code in each cell by clicking on the run cell button, or by pressing <kbd> Shift </kbd> + <kbd> Enter </kbd>. When the code is done running, a small green check sign will appear on the left side</li>
+<li>You need to run the cells in sequential order, please do not run a cell until the one above finished running and do not skip any cells</li>
+<li>Each cell contains a short description of the code and the output you should get. Please try not to focus on understanding the code for each command in too much detail, but rather try to focus on the output</li>
+<li>You can create new code cells by pressing <kbd> + </kbd> in the Menu bar above.</li>
+</ul>
+</details>
+<p><br> <br></p>
+<section id="biological-background" class="level1">
+<h1>Biological background</h1>
+<p>White clover (Trifolium repens) is an allotetraploid. It is a relatively young, outcrossing species, which originated during the most recent glaciation around 20,000 years ago by hybridisation of two diploid species, T. occidentale and T. pallescens (see figure below).</p>
+<figure class="figure">
+<img src="images/white_clover.png" width="700" alt="Kernel Choice" class="center figure-img">
+</figure>
+<p>This means that it contains genomes originating from two different species within the same nucleus. Normally, white clover is an outbreeding species, but a self-compatible line was used for sequencing the white clover genome <a href="https://academic.oup.com/plcell/article/31/7/1466/5985684">(Griffiths et al, 2019)</a>. This line will be designated as <code>S10</code> in the data, indicating that this is the 10th self-fertilized generation. In addition, we have data from a wild clover accession (ecotype) called Tienshan (<code>Ti</code>), which is collected from the Chinese mountains and is adapted to alpine conditions.</p>
+<p>We will perform alignment of the data to the white clover’s reference genome containing both T. occidentale and T. pallescens (called <code>contig 1</code> and <code>contig 2</code> in the data). We will also perform alignment to each subgenome, and see which are the differences with the quality control tools.</p>
+</section>
+<section id="quality-control-and-mapping" class="level1">
+<h1>Quality control and mapping</h1>
+<section id="quality-control" class="level2">
+<h2 class="anchored" data-anchor-id="quality-control">Quality Control</h2>
+<p>We run <code>FastQC</code> on the PacBio Hifi reads and on two of the Illumina RNA-seq libraries. <code>FastQC</code> does quality control of the raw sequence data, providing an overview of the data which can help identify if there are any problems that should be addressed before further analysis. You can find the report for each file into the folder <code>results/fastqc_output/</code>. The output is in HTML format and can be opened in any browser or in <code>jupyterlab</code>. It is however not easy to compare the various libraries by opening separate reports. To aggregate all the results, we apply the <code>MultiQC</code> software to the reports’ folder. The output of MultiQC is in the directory <code>results/multiqc_output/fastqc_data</code>.</p>
+<div id="8e870118-3af0-4e12-80bd-381786b58833" class="cell" data-tags="[]" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#run fastqc</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>mkdir <span class="op">-</span>p results<span class="op">/</span>fastqc_output</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>fastqc <span class="op">-</span>q <span class="op">-</span>o results<span class="op">/</span>fastqc_output ..<span class="op">/</span>Data<span class="op">/</span>Clover_Data<span class="op">/*</span>.fastq  <span class="op">&gt;</span> <span class="op">/</span>dev<span class="op">/</span>null <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Note:</strong> <code>fastqc</code> prints a lot of output conisting of a simple confirmation of execution without error, even when using the option <code>-q</code>, which means <code>quiet</code>. Therefore we added <code>&gt; /dev/null 2&gt;&amp;1</code> to the command to mute the printing of that output.</p>
+<div id="bb569b9f-9700-4edf-a785-ee4b5c632432" class="cell" data-tags="[]" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#run multiqc</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>multiqc <span class="op">--</span>outdir results<span class="op">/</span>multiqc_output<span class="op">/</span>fastqc_data results<span class="op">/</span>fastqc_output</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+  /// d=903972;https://multiqc.info\MultiQC;;\ 🔍 | v1.14
+
+|           multiqc | Search path : /work/SamueleSoraggi/Notebooks/results/fastqc_output
+|         searching | ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 50/50  .html
+|            fastqc | Found 25 reports
+|           multiqc | Compressing plot data
+|           multiqc | Report      : results/multiqc_output/fastqc_data/multiqc_report.html
+|           multiqc | Data        : results/multiqc_output/fastqc_data/multiqc_data
+|           multiqc | MultiQC complete</code></pre>
+</div>
+</div>
+<div class="alert-success">
+<font size="+2"> <b> Questions </b> </font>
+</div>
+<p>Visualize the Webpage generated by MultiQC.</p>
+<p>Hint: You can find a <code>Help</code> button that offers additional information about the plots for each panel. Focus on the following panels: “Per base sequence quality”, “Per sequence quality scores”…. (“Per base sequence content” always gives a <code>FAIL</code> for RNA-seq data).</p>
+<ul>
+<li>What do you notice with respect to the sequence quality scores?</li>
+<li>Are there any other quality issues worth noting?</li>
+</ul>
+</section>
+<section id="hifi-data-mapping" class="level2">
+<h2 class="anchored" data-anchor-id="hifi-data-mapping">Hifi data mapping</h2>
+<p>We map the PacBio Hifi reads (<code>Hifi_reads_white_clover.fastq</code>) to the white clover reference sequence (Contig1&amp;2) using <code>minimap2</code>. We run two mapping rounds, using two different preset options (<code>-x</code> in the command) for the technology: * PacBio/Oxford Nanopore read to reference mapping: <code>map-pb</code> * Long assembly to reference mapping. Divergence is below 20%” settings <code>asm20</code>. Next, we create reports of the mapping results by running <code>QualiMap</code> on the two obtained SAM files.</p>
+<p>We first need to index the reference fasta files using <code>samtools faidx</code>. This produces files in <code>.fai</code> format containing informations about length of the reference sequence, offset for the quality scores, name of the reference sequence. <a href="http://www.htslib.org/doc/faidx.html">Click here</a> for a detailed overview.</p>
+<div id="f2f77036-3263-4147-9726-c28608a4ba9b" class="cell" data-tags="[]" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#copy the reference data in the folder reference_data, so that you can write the indexing files</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>mkdir <span class="op">-</span>p reference_data</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>cp ..<span class="op">/</span>Data<span class="op">/</span>Clover_Data<span class="op">/</span>DNA_Contig1_2.fasta ..<span class="op">/</span>Data<span class="op">/</span>Clover_Data<span class="op">/</span>DNA_Contig1.fasta ..<span class="op">/</span>Data<span class="op">/</span>Clover_Data<span class="op">/</span>DNA_Contig2.fasta reference_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="7164eaeb-b66c-4ebc-b834-b2788f3430ac" class="cell" data-tags="[]" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>samtools faidx reference_data<span class="op">/</span>DNA_Contig1_2.fasta</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>samtools faidx reference_data<span class="op">/</span>DNA_Contig1.fasta</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>samtools faidx reference_data<span class="op">/</span>DNA_Contig2.fasta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>we create an output folder for the HIFI alignment, and run <code>minimap2</code> with the settings explained before.</p>
+<div id="78f8d72a-ea2a-4540-916b-a3dee7b9df1e" class="cell" data-tags="[]" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>mkdir <span class="op">-</span>p results<span class="op">/</span>HIFI_alignment<span class="op">/</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>minimap2 <span class="op">-</span>a <span class="op">-</span>x <span class="bu">map</span><span class="op">-</span>pb <span class="op">-</span>o results<span class="op">/</span>HIFI_alignment<span class="op">/</span>PacBio_clover_alignment_1_2_mappb.sam <span class="op">\</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                            reference_data<span class="op">/</span>DNA_Contig1_2.fasta <span class="op">\</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                            ..<span class="op">/</span>Data<span class="op">/</span>Clover_Data<span class="op">/</span>Hifi_reads_white_clover.fastq </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>minimap2 <span class="op">-</span>a <span class="op">-</span>x asm20 <span class="op">-</span>o results<span class="op">/</span>HIFI_alignment<span class="op">/</span>PacBio_clover_alignment_1_2_asm20.sam <span class="op">\</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>                            reference_data<span class="op">/</span>DNA_Contig1_2.fasta <span class="op">\</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>                            ..<span class="op">/</span>Data<span class="op">/</span>Clover_Data<span class="op">/</span>Hifi_reads_white_clover.fastq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>[M::mm_idx_gen::0.075*1.04] collected minimizers
+[M::mm_idx_gen::0.099*1.52] sorted minimizers
+[M::main::0.099*1.52] loaded/built the index for 2 target sequence(s)
+[M::mm_mapopt_update::0.114*1.45] mid_occ = 11
+[M::mm_idx_stat] kmer size: 19; skip: 10; is_hpc: 1; #seq: 2
+[M::mm_idx_stat::0.118*1.43] distinct minimizers: 203943 (79.05% are singletons); average occurrences: 1.273; average spacing: 8.047; total length: 2089554
+[M::worker_pipeline::11.859*2.89] mapped 4395 sequences
+[M::main] Version: 2.24-r1122
+[M::main] CMD: minimap2 -a -x map-pb -o results/HIFI_alignment/PacBio_clover_alignment_1_2_mappb.sam reference_data/DNA_Contig1_2.fasta ../Data/Clover_Data/Hifi_reads_white_clover.fastq
+[M::main] Real time: 11.873 sec; CPU: 34.246 sec; Peak RSS: 1.186 GB
+[M::mm_idx_gen::0.084*1.04] collected minimizers
+[M::mm_idx_gen::0.121*1.62] sorted minimizers
+[M::main::0.121*1.62] loaded/built the index for 2 target sequence(s)
+[M::mm_mapopt_update::0.138*1.54] mid_occ = 50
+[M::mm_idx_stat] kmer size: 19; skip: 10; is_hpc: 0; #seq: 2
+[M::mm_idx_stat::0.143*1.52] distinct minimizers: 298340 (78.21% are singletons); average occurrences: 1.277; average spacing: 5.484; total length: 2089554
+[M::worker_pipeline::18.366*2.88] mapped 4395 sequences
+[M::main] Version: 2.24-r1122
+[M::main] CMD: minimap2 -a -x asm20 -o results/HIFI_alignment/PacBio_clover_alignment_1_2_asm20.sam reference_data/DNA_Contig1_2.fasta ../Data/Clover_Data/Hifi_reads_white_clover.fastq
+[M::main] Real time: 18.394 sec; CPU: 52.932 sec; Peak RSS: 1.692 GB</code></pre>
+</div>
+</div>
+<p><code>samtools sort</code> is used to sort the alignment with left-to-right coordinates. The output is in <code>.bam</code> format, with <code>.sam</code> files in input (Note that you could have gotten <code>.bam</code> files from <code>minimap2</code> with a specific option).</p>
+<div id="04fed3e0-2e63-42d3-8a93-4d0dcf99433b" class="cell" data-tags="[]" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>samtools sort results<span class="op">/</span>HIFI_alignment<span class="op">/</span>PacBio_clover_alignment_1_2_mappb.sam <span class="op">\</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                <span class="op">-</span>o results<span class="op">/</span>HIFI_alignment<span class="op">/</span>PacBio_clover_alignment_1_2_mappb.sort.bam</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>samtools sort results<span class="op">/</span>HIFI_alignment<span class="op">/</span>PacBio_clover_alignment_1_2_asm20.sam <span class="op">\</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>                <span class="op">-</span>o results<span class="op">/</span>HIFI_alignment<span class="op">/</span>PacBio_clover_alignment_1_2_asm20.sort.bam</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>samtools index</code> creates the index for the <code>bam</code> file, stored in <code>.bai</code> format. The index file lets programs access any position into the aligned data without reading the whole file, which would take too much time.</p>
+<div id="283ca1e5-b973-40c0-9170-552e50a6c73c" class="cell" data-tags="[]" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>samtools index results<span class="op">/</span>HIFI_alignment<span class="op">/</span>PacBio_clover_alignment_1_2_mappb.sort.bam</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>samtools index results<span class="op">/</span>HIFI_alignment<span class="op">/</span>PacBio_clover_alignment_1_2_asm20.sort.bam</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Run quality control on both files</p>
+<div id="a715b1d4-91e6-479e-a6db-f63f0494eaeb" class="cell" data-tags="[]" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>qualimap bamqc <span class="op">-</span>bam results<span class="op">/</span>HIFI_alignment<span class="op">/</span>PacBio_clover_alignment_1_2_mappb.sort.bam <span class="op">\</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                 <span class="op">-</span>outdir results<span class="op">/</span>qualimap_output<span class="op">/</span>PacBio_clover_alignment_1_2_mappb</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>qualimap bamqc <span class="op">-</span>bam results<span class="op">/</span>HIFI_alignment<span class="op">/</span>PacBio_clover_alignment_1_2_asm20.sort.bam <span class="op">\</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>                 <span class="op">-</span>outdir results<span class="op">/</span>qualimap_output<span class="op">/</span>PacBio_clover_alignment_1_2_asm20</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Java memory size is set to 1200M
+Launching application...
+
+QualiMap v.2.2.2-dev
+Built on 2019-11-11 14:05
+
+Selected tool: bamqc
+Available memory (Mb): 33
+Max memory (Mb): 1258
+Starting bam qc....
+Loading sam header...
+Loading locator...
+Loading reference...
+Number of windows: 400, effective number of windows: 401
+Chunk of reads size: 1000
+Number of threads: 8
+Processed 50 out of 401 windows...
+Processed 100 out of 401 windows...
+Processed 150 out of 401 windows...
+Processed 200 out of 401 windows...
+Processed 250 out of 401 windows...
+Processed 300 out of 401 windows...
+Processed 350 out of 401 windows...
+Processed 400 out of 401 windows...
+Total processed windows:401
+Number of reads: 4395
+Number of valid reads: 4696
+Number of correct strand reads:0
+
+Inside of regions...
+Num mapped reads: 4395
+Num mapped first of pair: 0
+Num mapped second of pair: 0
+Num singletons: 0
+Time taken to analyze reads: 12
+Computing descriptors...
+numberOfMappedBases: 70274383
+referenceSize: 2089554
+numberOfSequencedBases: 70039397
+numberOfAs: 23621784
+Computing per chromosome statistics...
+Computing histograms...
+Overall analysis time: 12
+end of bam qc
+Computing report...
+Writing HTML report...
+HTML report created successfully
+
+Finished
+Java memory size is set to 1200M
+Launching application...
+
+QualiMap v.2.2.2-dev
+Built on 2019-11-11 14:05
+
+Selected tool: bamqc
+Available memory (Mb): 33
+Max memory (Mb): 1258
+Starting bam qc....
+Loading sam header...
+Loading locator...
+Loading reference...
+Number of windows: 400, effective number of windows: 401
+Chunk of reads size: 1000
+Number of threads: 8
+Processed 50 out of 401 windows...
+Processed 100 out of 401 windows...
+Processed 150 out of 401 windows...
+Processed 200 out of 401 windows...
+Processed 250 out of 401 windows...
+Processed 300 out of 401 windows...
+Processed 350 out of 401 windows...
+Processed 400 out of 401 windows...
+Total processed windows:401
+Number of reads: 4395
+Number of valid reads: 4747
+Number of correct strand reads:0
+
+Inside of regions...
+Num mapped reads: 4395
+Num mapped first of pair: 0
+Num mapped second of pair: 0
+Num singletons: 0
+Time taken to analyze reads: 12
+Computing descriptors...
+numberOfMappedBases: 69947563
+referenceSize: 2089554
+numberOfSequencedBases: 69812688
+numberOfAs: 23541478
+Computing per chromosome statistics...
+Computing histograms...
+Overall analysis time: 12
+end of bam qc
+Computing report...
+Writing HTML report...
+HTML report created successfully
+
+Finished</code></pre>
+</div>
+</div>
+<p>For easier comparison, we can again collapse the two reports into a single one using <code>MultiQC</code>, in the same way we did for putting together the other reports from <code>fastQC</code>.</p>
+<div id="12b23703-4a35-4fef-989e-5d9f9eba02e4" class="cell" data-tags="[]" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">#run multiqc</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>multiqc <span class="op">--</span>outdir results<span class="op">/</span>qualimap_output results<span class="op">/</span>qualimap_output</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+  /// d=941002;https://multiqc.info\MultiQC;;\ 🔍 | v1.14
+
+|           multiqc | Search path : /work/SamueleSoraggi/Notebooks/results/qualimap_output
+|         searching | ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 93/93  nt.t…
+|          qualimap | Found 2 BamQC reports
+|           multiqc | Compressing plot data
+|           multiqc | Report      : results/qualimap_output/multiqc_report.html
+|           multiqc | Data        : results/qualimap_output/multiqc_data
+|           multiqc | MultiQC complete</code></pre>
+</div>
+</div>
+<p>Now you can visualize the report generated, which is in <code>results/qualimap_output/multiqc_report.html</code>.</p>
+<p>Next, we map the white clover PacBio Hifi reads to contig1 and contig2 separately, using the setting you selected at the previous step (let’s say <code>map-pb</code> was chosen, but you are free to change this setting in the commands). As the two contigs represent the two white clover subgenomes, this mapping will allow you to see the two subgenome haplotypes and call subgenome SNPs.</p>
+<div id="aa14c53f-56ea-4216-929d-1678eea2eaf5" class="cell" data-tags="[]" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>minimap2 <span class="op">-</span>a <span class="op">-</span>x <span class="bu">map</span><span class="op">-</span>pb <span class="op">-</span>o results<span class="op">/</span>HIFI_alignment<span class="op">/</span>PacBio_clover_alignment_1.sam <span class="op">\</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>                            reference_data<span class="op">/</span>DNA_Contig1.fasta <span class="op">\</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>                            ..<span class="op">/</span>Data<span class="op">/</span>Clover_Data<span class="op">/</span>Hifi_reads_white_clover.fastq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>[M::mm_idx_gen::0.050*0.96] collected minimizers
+[M::mm_idx_gen::0.071*1.55] sorted minimizers
+[M::main::0.071*1.55] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.079*1.50] mid_occ = 10
+[M::mm_idx_stat] kmer size: 19; skip: 10; is_hpc: 1; #seq: 1
+[M::mm_idx_stat::0.082*1.48] distinct minimizers: 112547 (91.45% are singletons); average occurrences: 1.141; average spacing: 8.031; total length: 1031631
+[M::worker_pipeline::27.024*2.90] mapped 4395 sequences
+[M::main] Version: 2.24-r1122
+[M::main] CMD: minimap2 -a -x map-pb -o results/HIFI_alignment/PacBio_clover_alignment_1.sam reference_data/DNA_Contig1.fasta ../Data/Clover_Data/Hifi_reads_white_clover.fastq
+[M::main] Real time: 27.035 sec; CPU: 78.431 sec; Peak RSS: 2.258 GB</code></pre>
+</div>
+</div>
+<div id="bf1882ee-41e5-4413-9c48-b35a5821bc34" class="cell" data-tags="[]" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>minimap2 <span class="op">-</span>a <span class="op">-</span>x <span class="bu">map</span><span class="op">-</span>pb <span class="op">-</span>o results<span class="op">/</span>HIFI_alignment<span class="op">/</span>PacBio_clover_alignment_2.sam <span class="op">\</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                            reference_data<span class="op">/</span>DNA_Contig2.fasta <span class="op">\</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>                            ..<span class="op">/</span>Data<span class="op">/</span>Clover_Data<span class="op">/</span>Hifi_reads_white_clover.fastq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>[M::mm_idx_gen::0.048*1.04] collected minimizers
+[M::mm_idx_gen::0.069*1.61] sorted minimizers
+[M::main::0.069*1.61] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.076*1.55] mid_occ = 10
+[M::mm_idx_stat] kmer size: 19; skip: 10; is_hpc: 1; #seq: 1
+[M::mm_idx_stat::0.080*1.53] distinct minimizers: 120722 (93.18% are singletons); average occurrences: 1.087; average spacing: 8.062; total length: 1057923
+[M::worker_pipeline::27.150*2.94] mapped 4395 sequences
+[M::main] Version: 2.24-r1122
+[M::main] CMD: minimap2 -a -x map-pb -o results/HIFI_alignment/PacBio_clover_alignment_2.sam reference_data/DNA_Contig2.fasta ../Data/Clover_Data/Hifi_reads_white_clover.fastq
+[M::main] Real time: 27.162 sec; CPU: 79.819 sec; Peak RSS: 2.058 GB</code></pre>
+</div>
+</div>
+<p>Sort the bam files and create their index using <code>samtools</code></p>
+<div id="123965ae-5548-41a5-b115-82d8a4cff9ef" class="cell" data-tags="[]" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>samtools sort results<span class="op">/</span>HIFI_alignment<span class="op">/</span>PacBio_clover_alignment_1.sam <span class="op">-</span>o results<span class="op">/</span>HIFI_alignment<span class="op">/</span>PacBio_clover_alignment_1.sort.bam</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>samtools sort results<span class="op">/</span>HIFI_alignment<span class="op">/</span>PacBio_clover_alignment_2.sam <span class="op">-</span>o results<span class="op">/</span>HIFI_alignment<span class="op">/</span>PacBio_clover_alignment_2.sort.bam</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="644c4f48-c07e-4a3e-8a5f-ab563ff47638" class="cell" data-tags="[]" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>samtools index results<span class="op">/</span>HIFI_alignment<span class="op">/</span>PacBio_clover_alignment_1.sort.bam</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>samtools index results<span class="op">/</span>HIFI_alignment<span class="op">/</span>PacBio_clover_alignment_2.sort.bam</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Perform quality control</p>
+<div id="5fc4abe2-f4b9-474e-9cbb-c83afa67a79a" class="cell" data-tags="[]" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>mkdir <span class="op">-</span>p results<span class="op">/</span>qualimap_output</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>qualimap bamqc <span class="op">-</span>bam results<span class="op">/</span>HIFI_alignment<span class="op">/</span>PacBio_clover_alignment_1.sort.bam <span class="op">-</span>outdir results<span class="op">/</span>qualimap_output<span class="op">/</span>PacBio_clover_alignment_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Java memory size is set to 1200M
+Launching application...
+
+QualiMap v.2.2.2-dev
+Built on 2019-11-11 14:05
+
+Selected tool: bamqc
+Available memory (Mb): 33
+Max memory (Mb): 1258
+Starting bam qc....
+Loading sam header...
+Loading locator...
+Loading reference...
+Number of windows: 400, effective number of windows: 400
+Chunk of reads size: 1000
+Number of threads: 8
+Processed 50 out of 400 windows...
+Processed 100 out of 400 windows...
+Processed 150 out of 400 windows...
+Processed 200 out of 400 windows...
+Processed 250 out of 400 windows...
+Processed 300 out of 400 windows...
+Processed 350 out of 400 windows...
+Processed 400 out of 400 windows...
+Total processed windows:400
+Number of reads: 4395
+Number of valid reads: 9070
+Number of correct strand reads:0
+
+Inside of regions...
+Num mapped reads: 4356
+Num mapped first of pair: 0
+Num mapped second of pair: 0
+Num singletons: 0
+Time taken to analyze reads: 10
+Computing descriptors...
+numberOfMappedBases: 59058058
+referenceSize: 1031631
+numberOfSequencedBases: 54917933
+numberOfAs: 18508479
+Computing per chromosome statistics...
+Computing histograms...
+Overall analysis time: 11
+end of bam qc
+Computing report...
+Writing HTML report...
+HTML report created successfully
+
+Finished</code></pre>
+</div>
+</div>
+<div id="37e138ff-099e-4706-9db6-3bf93d0cac07" class="cell" data-tags="[]" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>qualimap bamqc <span class="op">-</span>bam results<span class="op">/</span>HIFI_alignment<span class="op">/</span>PacBio_clover_alignment_2.sort.bam <span class="op">-</span>outdir results<span class="op">/</span>qualimap_output<span class="op">/</span>PacBio_clover_alignment_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Java memory size is set to 1200M
+Launching application...
+
+QualiMap v.2.2.2-dev
+Built on 2019-11-11 14:05
+
+Selected tool: bamqc
+Available memory (Mb): 33
+Max memory (Mb): 1258
+Starting bam qc....
+Loading sam header...
+Loading locator...
+Loading reference...
+Number of windows: 400, effective number of windows: 400
+Chunk of reads size: 1000
+Number of threads: 8
+Processed 50 out of 400 windows...
+Processed 100 out of 400 windows...
+Processed 150 out of 400 windows...
+Processed 200 out of 400 windows...
+Processed 250 out of 400 windows...
+Processed 300 out of 400 windows...
+Processed 350 out of 400 windows...
+Processed 400 out of 400 windows...
+Total processed windows:400
+Number of reads: 4395
+Number of valid reads: 9462
+Number of correct strand reads:0
+
+Inside of regions...
+Num mapped reads: 4394
+Num mapped first of pair: 0
+Num mapped second of pair: 0
+Num singletons: 0
+Time taken to analyze reads: 13
+Computing descriptors...
+numberOfMappedBases: 59388453
+referenceSize: 1057923
+numberOfSequencedBases: 55867300
+numberOfAs: 18822184
+Computing per chromosome statistics...
+Computing histograms...
+Overall analysis time: 13
+end of bam qc
+Computing report...
+Writing HTML report...
+HTML report created successfully
+
+Finished</code></pre>
+</div>
+</div>
+<div id="1f6fcb18-6e88-4f5f-b0aa-5fd3461f4ad6" class="cell" data-tags="[]" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co">#run multiqc</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>multiqc <span class="op">--</span>outdir results<span class="op">/</span>qualimap_output results<span class="op">/</span>qualimap_output</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+  /// d=999624;https://multiqc.info\MultiQC;;\ 🔍 | v1.14
+
+|           multiqc | Search path : /work/SamueleSoraggi/Notebooks/results/qualimap_output
+|         searching | ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 187/187  .t…
+|          qualimap | Found 4 BamQC reports
+|           multiqc | Compressing plot data
+|           multiqc | Previous MultiQC output found! Adjusting filenames..
+|           multiqc | Use -f or --force to overwrite existing reports instead
+|           multiqc | Report      : results/qualimap_output/multiqc_report_1.html
+|           multiqc | Data        : results/qualimap_output/multiqc_data_1
+|           multiqc | MultiQC complete</code></pre>
+</div>
+</div>
+<div class="alert-success">
+<font size="+2"> <b> Task: IGV visualization and Questions </b> </font>
+</div>
+<p>Now you can inspect the alignment files in <code>IGV</code>.</p>
+<ul>
+<li><p>First, you will need to download the reference fasta sequence in <code>../Data/Clover_Data/DNA_Contig1_2.fasta</code> and import it into IGV. You can do the same for the files <code>DNA_Contig1.fasta</code> and <code>DNA_Contig2.fasta</code> that you might need later. In IGV, this is done with the menu <code>Genomes --&gt; Load Genome from file</code> menu and by selecting the relevant fasta file. Then, choose the reference you need from the drop-down menu (see figure below). <img src="./images/IGVref.png" class="img-fluid"> You will not yet see much, but you can choose one of the two subgenomes (contig 1 or 2) and double click on a chromosome position to inspect the reference sequence. The next step will visualize the mapped files on IGV.</p></li>
+<li><p>Each mapped genome can be seen in IGV against the reference file of choice. To load an aligned file, first download it together with the index file in <code>.bai</code> format. For example, you need to download both <code>results/HIFI_alignment/PacBio_clover_alignment_1.sort.bam</code> and <code>results/HIFI_alignment/PacBio_clover_alignment_1.sort.bam.bai</code> to see this alignment (you need to open only the <code>.bam</code> file with IGV). If you open more files, their alignments will be distributed in the IGV interface, and you can change the size of each visualization yourself (below shown with only one opened alignment). <img src="./images/IGVbam.png" class="img-fluid"></p></li>
+</ul>
+<p>Now compare in IGV the two bam files <code>PacBio_clover_alignment_1.sort.bam</code> and <code>PacBio_clover_alignment_2.sort.bam</code>.</p>
+<ul>
+<li>What do you observe when comparing the two BAM files?</li>
+<li>Have a look at the polymorphic regions in IGV. Are they true polymorphisms?</li>
+</ul>
+<p>Add to the visualization the third alignment <code>PacBio_clover_alignment_1_2_mappb.sort.bam</code> in IGV.</p>
+<ul>
+<li>Why do you see fluctuations in coverage and large regions without any apparent subgenome SNPs?</li>
+<li>What are the major differences between the stats for the reads mapped to Contigs1&amp;2 versus contig1 and contig2? What is your interpretation of the differences?</li>
+</ul>
+</section>
+</section>
+<section id="rna-seq-mapping" class="level1">
+<h1>RNA-seq mapping</h1>
+<p>In the <code>../Data</code> folder you will find 24 RNA-seq libraries, 12 <code>S10</code> libraries and 12 <code>Tienshan</code> libraries. Each library is paired-end, which is denoted by <code>R1</code> and <code>R2</code> at the end of two files having the same name, such as <code>S10_1_1.R1.fastq</code> and <code>S10_1_1.R2.fastq</code>. We will align each library separately and then merge the alignments to create two final samples for <code>S10</code> and <code>Tienshan</code>.</p>
+<p>First, we need to create a genome file for the reference fasta file of contigs <code>1</code> and <code>2</code>. This is done with <code>STAR</code>, using the option <code>--runMode genomeGenerate</code>. We also need to convert the gene annotation from <code>gff</code> to <code>gtf</code> format with <code>gffread</code> to allow counting gene transcripts. <code>STAR</code> is a very complex tool with many options, so it is always useful to <a href="https://physiology.med.cornell.edu/faculty/skrabanek/lab/angsd/lecture_notes/STARmanual.pdf">have a reference manual</a>.</p>
+<div id="f92315a0-5f7d-4884-8140-75101dd430c8" class="cell" data-tags="[]" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>gffread <span class="op">-</span>T <span class="op">-</span>o reference_data<span class="op">/</span>white_clover_genes.gtf ..<span class="op">/</span>Data<span class="op">/</span>Clover_Data<span class="op">/</span>white_clover_genes.gff</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="468e6500-fcfd-4901-93fd-987d41b8073b" class="cell" data-tags="[]" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>STAR <span class="op">--</span>runThreadN <span class="dv">8</span> <span class="op">\</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="op">--</span>runMode genomeGenerate <span class="op">\</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="op">--</span>genomeDir results<span class="op">/</span>STAR_output<span class="op">/</span>indexing_contigs_1_2 <span class="op">\</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="op">--</span>genomeFastaFiles reference_data<span class="op">/</span>DNA_Contig1_2.fasta <span class="op">\</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="op">--</span>sjdbGTFfile reference_data<span class="op">/</span>white_clover_genes.gtf </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    STAR --runThreadN 8 --runMode genomeGenerate --genomeDir results/STAR_output/indexing_contigs_1_2 --genomeFastaFiles reference_data/DNA_Contig1_2.fasta --sjdbGTFfile reference_data/white_clover_genes.gtf
+    STAR version: 2.7.10a   compiled: 2022-01-14T18:50:00-05:00 :/home/dobin/data/STAR/STARcode/STAR.master/source
+Jun 19 10:23:03 ..... started STAR run
+Jun 19 10:23:03 ... starting to generate Genome files
+Jun 19 10:23:03 ..... processing annotations GTF
+Jun 19 10:23:03 ... starting to sort Suffix Array. This may take a long time...
+Jun 19 10:23:03 ... sorting Suffix Array chunks and saving them to disk...
+Jun 19 10:23:04 ... loading chunks from disk, packing SA...
+Jun 19 10:23:04 ... finished generating suffix array
+Jun 19 10:23:04 ... generating Suffix Array index
+Jun 19 10:23:08 ... completed Suffix Array index
+Jun 19 10:23:08 ..... inserting junctions into the genome indices
+Jun 19 10:23:16 ... writing Genome to disk ...
+Jun 19 10:23:16 ... writing Suffix Array to disk ...
+Jun 19 10:23:17 ... writing SAindex to disk
+Jun 19 10:23:18 ..... finished successfully</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>!!!!! WARNING: --genomeSAindexNbases 14 is too large for the genome size=2089554, which may cause seg-fault at the mapping step. Re-run genome generation with recommended --genomeSAindexNbases 9</code></pre>
+</div>
+</div>
+<p>We got a warning saying</p>
+<pre><code>!!!!! WARNING: --genomeSAindexNbases 14 is too large for the genome size=2089554, which may cause seg-fault at the mapping step. Re-run genome generation with recommended --genomeSAindexNbases 9</code></pre>
+<p>meaning we need shorter strings of bases (9 bases instead of 14) to be indexed, as our reference genome is very short, and too long strings would cause many alignment errors. So we rerun the command with the suggested option.</p>
+<div id="655aa9f2-aa9b-4515-b6cd-72464bcc9dfc" class="cell" data-tags="[]" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>STAR <span class="op">--</span>runThreadN <span class="dv">8</span> <span class="op">\</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="op">--</span>runMode genomeGenerate <span class="op">\</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="op">--</span>genomeDir results<span class="op">/</span>STAR_output<span class="op">/</span>indexing_contigs_1_2 <span class="op">\</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="op">--</span>genomeFastaFiles reference_data<span class="op">/</span>DNA_Contig1_2.fasta <span class="op">\</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="op">--</span>sjdbGTFfile reference_data<span class="op">/</span>white_clover_genes.gtf <span class="op">\</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="op">--</span>genomeSAindexNbases <span class="dv">9</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    STAR --runThreadN 8 --runMode genomeGenerate --genomeDir results/STAR_output/indexing_contigs_1_2 --genomeFastaFiles reference_data/DNA_Contig1_2.fasta --sjdbGTFfile reference_data/white_clover_genes.gtf --genomeSAindexNbases 9
+    STAR version: 2.7.10a   compiled: 2022-01-14T18:50:00-05:00 :/home/dobin/data/STAR/STARcode/STAR.master/source
+Jun 19 10:23:18 ..... started STAR run
+Jun 19 10:23:18 ... starting to generate Genome files
+Jun 19 10:23:18 ..... processing annotations GTF
+Jun 19 10:23:20 ... starting to sort Suffix Array. This may take a long time...
+Jun 19 10:23:20 ... sorting Suffix Array chunks and saving them to disk...
+Jun 19 10:23:21 ... loading chunks from disk, packing SA...
+Jun 19 10:23:21 ... finished generating suffix array
+Jun 19 10:23:21 ... generating Suffix Array index
+Jun 19 10:23:21 ... completed Suffix Array index
+Jun 19 10:23:22 ..... inserting junctions into the genome indices
+Jun 19 10:23:23 ... writing Genome to disk ...
+Jun 19 10:23:23 ... writing Suffix Array to disk ...
+Jun 19 10:23:23 ... writing SAindex to disk
+Jun 19 10:23:24 ..... finished successfully</code></pre>
+</div>
+</div>
+<p>We use again <code>STAR</code> to align every single library for <code>S10</code>. We extract the library name of each file and run STAR through each pair of files. Note that plant introns are very rarely more than <code>5000 bp</code> and that you are mapping to two homoeologous contigs that show high similarity, especially in genic regions. We set the maximum size to 5000 using <code>--alignIntronMax 5000</code>.</p>
+<div id="e5f384d0-125b-4a1d-91ac-ee90a5797fae" class="cell" data-tags="[]" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> `ls ..<span class="op">/</span>Data<span class="op">/</span>Clover_Data<span class="op">/</span>S10<span class="op">*</span>.R1.fastq`</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>do</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>PREFIXNAME<span class="op">=</span>`basename $i .R1.fastq`</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>echo <span class="st">"###############################################"</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>echo <span class="st">"##### ALIGNING PAIRED-END READS "</span>$PREFIXNAME</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>echo <span class="st">"###############################################"</span></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>STAR <span class="op">--</span>genomeDir results<span class="op">/</span>STAR_output<span class="op">/</span>indexing_contigs_1_2<span class="op">/</span> <span class="op">\</span></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a><span class="op">--</span>runThreadN <span class="dv">8</span> <span class="op">\</span></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a><span class="op">--</span>runMode alignReads <span class="op">\</span></span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a><span class="op">--</span>readFilesIn ..<span class="op">/</span>Data<span class="op">/</span>Clover_Data<span class="op">/</span>$PREFIXNAME.R1.fastq ..<span class="op">/</span>Data<span class="op">/</span>Clover_Data<span class="op">/</span>$PREFIXNAME.R2.fastq <span class="op">\</span></span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a><span class="op">--</span>outFileNamePrefix results<span class="op">/</span>STAR_output<span class="op">/</span>S10_align_contigs_1_2<span class="op">/</span>$PREFIXNAME <span class="op">\</span></span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a><span class="op">--</span>outSAMtype BAM SortedByCoordinate <span class="op">\</span></span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a><span class="op">--</span>outSAMattributes Standard <span class="op">\</span></span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a><span class="op">--</span>quantMode GeneCounts <span class="op">\</span></span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a><span class="op">--</span>alignIntronMax <span class="dv">5000</span></span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a>done</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>###############################################
+##### ALIGNING PAIRED-END READS S10_1_1
+###############################################
+    STAR --genomeDir results/STAR_output/indexing_contigs_1_2/ --runThreadN 8 --runMode alignReads --readFilesIn ../Data/Clover_Data/S10_1_1.R1.fastq ../Data/Clover_Data/S10_1_1.R2.fastq --outFileNamePrefix results/STAR_output/S10_align_contigs_1_2/S10_1_1 --outSAMtype BAM SortedByCoordinate --outSAMattributes Standard --quantMode GeneCounts --alignIntronMax 5000
+    STAR version: 2.7.10a   compiled: 2022-01-14T18:50:00-05:00 :/home/dobin/data/STAR/STARcode/STAR.master/source
+Jun 19 10:23:24 ..... started STAR run
+Jun 19 10:23:24 ..... loading genome
+Jun 19 10:23:24 ..... started mapping
+Jun 19 10:23:35 ..... finished mapping
+Jun 19 10:23:35 ..... started sorting BAM
+Jun 19 10:23:37 ..... finished successfully
+###############################################
+##### ALIGNING PAIRED-END READS S10_1_2
+###############################################
+    STAR --genomeDir results/STAR_output/indexing_contigs_1_2/ --runThreadN 8 --runMode alignReads --readFilesIn ../Data/Clover_Data/S10_1_2.R1.fastq ../Data/Clover_Data/S10_1_2.R2.fastq --outFileNamePrefix results/STAR_output/S10_align_contigs_1_2/S10_1_2 --outSAMtype BAM SortedByCoordinate --outSAMattributes Standard --quantMode GeneCounts --alignIntronMax 5000
+    STAR version: 2.7.10a   compiled: 2022-01-14T18:50:00-05:00 :/home/dobin/data/STAR/STARcode/STAR.master/source
+Jun 19 10:23:38 ..... started STAR run
+Jun 19 10:23:38 ..... loading genome
+Jun 19 10:23:38 ..... started mapping
+Jun 19 10:23:48 ..... finished mapping
+Jun 19 10:23:48 ..... started sorting BAM
+Jun 19 10:23:51 ..... finished successfully
+###############################################
+##### ALIGNING PAIRED-END READS S10_1_3
+###############################################
+    STAR --genomeDir results/STAR_output/indexing_contigs_1_2/ --runThreadN 8 --runMode alignReads --readFilesIn ../Data/Clover_Data/S10_1_3.R1.fastq ../Data/Clover_Data/S10_1_3.R2.fastq --outFileNamePrefix results/STAR_output/S10_align_contigs_1_2/S10_1_3 --outSAMtype BAM SortedByCoordinate --outSAMattributes Standard --quantMode GeneCounts --alignIntronMax 5000
+    STAR version: 2.7.10a   compiled: 2022-01-14T18:50:00-05:00 :/home/dobin/data/STAR/STARcode/STAR.master/source
+Jun 19 10:23:52 ..... started STAR run
+Jun 19 10:23:52 ..... loading genome
+Jun 19 10:23:52 ..... started mapping
+Jun 19 10:24:03 ..... finished mapping
+Jun 19 10:24:03 ..... started sorting BAM
+Jun 19 10:24:06 ..... finished successfully
+###############################################
+##### ALIGNING PAIRED-END READS S10_2_1
+###############################################
+    STAR --genomeDir results/STAR_output/indexing_contigs_1_2/ --runThreadN 8 --runMode alignReads --readFilesIn ../Data/Clover_Data/S10_2_1.R1.fastq ../Data/Clover_Data/S10_2_1.R2.fastq --outFileNamePrefix results/STAR_output/S10_align_contigs_1_2/S10_2_1 --outSAMtype BAM SortedByCoordinate --outSAMattributes Standard --quantMode GeneCounts --alignIntronMax 5000
+    STAR version: 2.7.10a   compiled: 2022-01-14T18:50:00-05:00 :/home/dobin/data/STAR/STARcode/STAR.master/source
+Jun 19 10:24:06 ..... started STAR run
+Jun 19 10:24:06 ..... loading genome
+Jun 19 10:24:06 ..... started mapping
+Jun 19 10:24:16 ..... finished mapping
+Jun 19 10:24:16 ..... started sorting BAM
+Jun 19 10:24:18 ..... finished successfully
+###############################################
+##### ALIGNING PAIRED-END READS S10_2_2
+###############################################
+    STAR --genomeDir results/STAR_output/indexing_contigs_1_2/ --runThreadN 8 --runMode alignReads --readFilesIn ../Data/Clover_Data/S10_2_2.R1.fastq ../Data/Clover_Data/S10_2_2.R2.fastq --outFileNamePrefix results/STAR_output/S10_align_contigs_1_2/S10_2_2 --outSAMtype BAM SortedByCoordinate --outSAMattributes Standard --quantMode GeneCounts --alignIntronMax 5000
+    STAR version: 2.7.10a   compiled: 2022-01-14T18:50:00-05:00 :/home/dobin/data/STAR/STARcode/STAR.master/source
+Jun 19 10:24:20 ..... started STAR run
+Jun 19 10:24:20 ..... loading genome
+Jun 19 10:24:20 ..... started mapping
+Jun 19 10:24:31 ..... finished mapping
+Jun 19 10:24:31 ..... started sorting BAM
+Jun 19 10:24:33 ..... finished successfully
+###############################################
+##### ALIGNING PAIRED-END READS S10_2_3
+###############################################
+    STAR --genomeDir results/STAR_output/indexing_contigs_1_2/ --runThreadN 8 --runMode alignReads --readFilesIn ../Data/Clover_Data/S10_2_3.R1.fastq ../Data/Clover_Data/S10_2_3.R2.fastq --outFileNamePrefix results/STAR_output/S10_align_contigs_1_2/S10_2_3 --outSAMtype BAM SortedByCoordinate --outSAMattributes Standard --quantMode GeneCounts --alignIntronMax 5000
+    STAR version: 2.7.10a   compiled: 2022-01-14T18:50:00-05:00 :/home/dobin/data/STAR/STARcode/STAR.master/source
+Jun 19 10:24:33 ..... started STAR run
+Jun 19 10:24:33 ..... loading genome
+Jun 19 10:24:33 ..... started mapping
+Jun 19 10:24:45 ..... finished mapping
+Jun 19 10:24:45 ..... started sorting BAM
+Jun 19 10:24:48 ..... finished successfully</code></pre>
+</div>
+</div>
+<p>Do the same alignment for <code>Tienshan</code> libraries</p>
+<div id="74b1d9c2-a7f2-490b-88a3-a7ba2a23f383" class="cell" data-tags="[]" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> `ls ..<span class="op">/</span>Data<span class="op">/</span>Clover_Data<span class="op">/</span>TI<span class="op">*</span>.R1.fastq`</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>do</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>PREFIXNAME<span class="op">=</span>`basename $i .R1.fastq`</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>echo <span class="st">"###############################################"</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>echo <span class="st">"##### ALIGNING PAIRED-END READS "</span>$PREFIXNAME</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>echo <span class="st">"###############################################"</span></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>STAR <span class="op">--</span>genomeDir results<span class="op">/</span>STAR_output<span class="op">/</span>indexing_contigs_1_2<span class="op">/</span> <span class="op">\</span></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="op">--</span>runThreadN <span class="dv">8</span> <span class="op">\</span></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a><span class="op">--</span>readFilesIn ..<span class="op">/</span>Data<span class="op">/</span>Clover_Data<span class="op">/</span>$PREFIXNAME.R1.fastq ..<span class="op">/</span>Data<span class="op">/</span>Clover_Data<span class="op">/</span>$PREFIXNAME.R2.fastq <span class="op">\</span></span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a><span class="op">--</span>outFileNamePrefix results<span class="op">/</span>STAR_output<span class="op">/</span>TI_align_contigs_1_2<span class="op">/</span>$PREFIXNAME <span class="op">\</span></span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a><span class="op">--</span>outSAMtype BAM SortedByCoordinate <span class="op">\</span></span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a><span class="op">--</span>outSAMattributes Standard <span class="op">\</span></span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a><span class="op">--</span>quantMode GeneCounts <span class="op">\</span></span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a><span class="op">--</span>alignIntronMax <span class="dv">5000</span> </span>
+<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-18"><a href="#cb35-18" aria-hidden="true" tabindex="-1"></a>done</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>###############################################
+##### ALIGNING PAIRED-END READS TI_1_1
+###############################################
+    STAR --genomeDir results/STAR_output/indexing_contigs_1_2/ --runThreadN 8 --readFilesIn ../Data/Clover_Data/TI_1_1.R1.fastq ../Data/Clover_Data/TI_1_1.R2.fastq --outFileNamePrefix results/STAR_output/TI_align_contigs_1_2/TI_1_1 --outSAMtype BAM SortedByCoordinate --outSAMattributes Standard --quantMode GeneCounts --alignIntronMax 5000
+    STAR version: 2.7.10a   compiled: 2022-01-14T18:50:00-05:00 :/home/dobin/data/STAR/STARcode/STAR.master/source
+Jun 19 10:24:50 ..... started STAR run
+Jun 19 10:24:50 ..... loading genome
+Jun 19 10:24:50 ..... started mapping
+Jun 19 10:25:03 ..... finished mapping
+Jun 19 10:25:04 ..... started sorting BAM
+Jun 19 10:25:18 ..... finished successfully
+###############################################
+##### ALIGNING PAIRED-END READS TI_1_2
+###############################################
+    STAR --genomeDir results/STAR_output/indexing_contigs_1_2/ --runThreadN 8 --readFilesIn ../Data/Clover_Data/TI_1_2.R1.fastq ../Data/Clover_Data/TI_1_2.R2.fastq --outFileNamePrefix results/STAR_output/TI_align_contigs_1_2/TI_1_2 --outSAMtype BAM SortedByCoordinate --outSAMattributes Standard --quantMode GeneCounts --alignIntronMax 5000
+    STAR version: 2.7.10a   compiled: 2022-01-14T18:50:00-05:00 :/home/dobin/data/STAR/STARcode/STAR.master/source
+Jun 19 10:25:18 ..... started STAR run
+Jun 19 10:25:18 ..... loading genome
+Jun 19 10:25:18 ..... started mapping
+Jun 19 10:25:30 ..... finished mapping
+Jun 19 10:25:30 ..... started sorting BAM
+Jun 19 10:25:33 ..... finished successfully
+###############################################
+##### ALIGNING PAIRED-END READS TI_1_3
+###############################################
+    STAR --genomeDir results/STAR_output/indexing_contigs_1_2/ --runThreadN 8 --readFilesIn ../Data/Clover_Data/TI_1_3.R1.fastq ../Data/Clover_Data/TI_1_3.R2.fastq --outFileNamePrefix results/STAR_output/TI_align_contigs_1_2/TI_1_3 --outSAMtype BAM SortedByCoordinate --outSAMattributes Standard --quantMode GeneCounts --alignIntronMax 5000
+    STAR version: 2.7.10a   compiled: 2022-01-14T18:50:00-05:00 :/home/dobin/data/STAR/STARcode/STAR.master/source
+Jun 19 10:25:36 ..... started STAR run
+Jun 19 10:25:36 ..... loading genome
+Jun 19 10:25:36 ..... started mapping
+Jun 19 10:25:50 ..... finished mapping
+Jun 19 10:25:50 ..... started sorting BAM
+Jun 19 10:25:51 ..... finished successfully
+###############################################
+##### ALIGNING PAIRED-END READS TI_2_1
+###############################################
+    STAR --genomeDir results/STAR_output/indexing_contigs_1_2/ --runThreadN 8 --readFilesIn ../Data/Clover_Data/TI_2_1.R1.fastq ../Data/Clover_Data/TI_2_1.R2.fastq --outFileNamePrefix results/STAR_output/TI_align_contigs_1_2/TI_2_1 --outSAMtype BAM SortedByCoordinate --outSAMattributes Standard --quantMode GeneCounts --alignIntronMax 5000
+    STAR version: 2.7.10a   compiled: 2022-01-14T18:50:00-05:00 :/home/dobin/data/STAR/STARcode/STAR.master/source
+Jun 19 10:25:51 ..... started STAR run
+Jun 19 10:25:51 ..... loading genome
+Jun 19 10:25:52 ..... started mapping
+Jun 19 10:26:06 ..... finished mapping
+Jun 19 10:26:06 ..... started sorting BAM
+Jun 19 10:26:09 ..... finished successfully
+###############################################
+##### ALIGNING PAIRED-END READS TI_2_2
+###############################################
+    STAR --genomeDir results/STAR_output/indexing_contigs_1_2/ --runThreadN 8 --readFilesIn ../Data/Clover_Data/TI_2_2.R1.fastq ../Data/Clover_Data/TI_2_2.R2.fastq --outFileNamePrefix results/STAR_output/TI_align_contigs_1_2/TI_2_2 --outSAMtype BAM SortedByCoordinate --outSAMattributes Standard --quantMode GeneCounts --alignIntronMax 5000
+    STAR version: 2.7.10a   compiled: 2022-01-14T18:50:00-05:00 :/home/dobin/data/STAR/STARcode/STAR.master/source
+Jun 19 10:26:09 ..... started STAR run
+Jun 19 10:26:09 ..... loading genome
+Jun 19 10:26:09 ..... started mapping
+Jun 19 10:26:23 ..... finished mapping
+Jun 19 10:26:23 ..... started sorting BAM
+Jun 19 10:26:31 ..... finished successfully
+###############################################
+##### ALIGNING PAIRED-END READS TI_2_3
+###############################################
+    STAR --genomeDir results/STAR_output/indexing_contigs_1_2/ --runThreadN 8 --readFilesIn ../Data/Clover_Data/TI_2_3.R1.fastq ../Data/Clover_Data/TI_2_3.R2.fastq --outFileNamePrefix results/STAR_output/TI_align_contigs_1_2/TI_2_3 --outSAMtype BAM SortedByCoordinate --outSAMattributes Standard --quantMode GeneCounts --alignIntronMax 5000
+    STAR version: 2.7.10a   compiled: 2022-01-14T18:50:00-05:00 :/home/dobin/data/STAR/STARcode/STAR.master/source
+Jun 19 10:26:31 ..... started STAR run
+Jun 19 10:26:31 ..... loading genome
+Jun 19 10:26:31 ..... started mapping
+Jun 19 10:26:46 ..... finished mapping
+Jun 19 10:26:46 ..... started sorting BAM
+Jun 19 10:26:49 ..... finished successfully</code></pre>
+</div>
+</div>
+<p>Run quality control on each aligned library with <code>MultiQC</code>. In this way there will be a whole report to compare <code>S10</code> files and <code>Tienshan</code> files.</p>
+<div id="4d0ede5e-f8c4-4d79-8f13-246102b92b53" class="cell" data-tags="[]" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>multiqc <span class="op">--</span>outdir results<span class="op">/</span>multiqc_output<span class="op">/</span>TI_STAR_align_1_2 <span class="op">\</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>            results<span class="op">/</span>STAR_output<span class="op">/</span>TI_align_contigs_1_2<span class="op">/</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+  /// d=121575;https://multiqc.info\MultiQC;;\ 🔍 | v1.14
+
+|           multiqc | Search path : /work/SamueleSoraggi/Notebooks/results/STAR_output/TI_align_contigs_1_2
+|         searching | ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 36/36  og.o…
+|              star | Found 6 reports and 6 gene count files
+|           multiqc | Compressing plot data
+|           multiqc | Report      : results/multiqc_output/TI_STAR_align_1_2/multiqc_report.html
+|           multiqc | Data        : results/multiqc_output/TI_STAR_align_1_2/multiqc_data
+|           multiqc | MultiQC complete</code></pre>
+</div>
+</div>
+<div id="3e9b79a9-1973-45ee-b127-febdbce6e691" class="cell" data-tags="[]" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>multiqc <span class="op">--</span>outdir results<span class="op">/</span>multiqc_output<span class="op">/</span>S10_STAR_align_1_2 <span class="op">\</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>            results<span class="op">/</span>STAR_output<span class="op">/</span>S10_align_contigs_1_2<span class="op">/</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+  /// d=596946;https://multiqc.info\MultiQC;;\ 🔍 | v1.14
+
+|           multiqc | Search path : /work/SamueleSoraggi/Notebooks/results/STAR_output/S10_align_contigs_1_2
+|         searching | ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 36/36  ut.t…
+|              star | Found 6 reports and 6 gene count files
+|           multiqc | Compressing plot data
+|           multiqc | Report      : results/multiqc_output/S10_STAR_align_1_2/multiqc_report.html
+|           multiqc | Data        : results/multiqc_output/S10_STAR_align_1_2/multiqc_data
+|           multiqc | MultiQC complete</code></pre>
+</div>
+</div>
+<p>We merge the outputs of each group of aligned libraries. Here is how the files look like for the <code>Tienshan</code>.</p>
+<div id="fe8a7519-0700-47cd-98b1-39c2ae72488b" class="cell" data-tags="[]" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>ls <span class="op">-</span>lh  results<span class="op">/</span>STAR_output<span class="op">/</span>TI_align_contigs_1_2<span class="op">/</span>TI_<span class="op">*</span>.sortedByCoord.out.bam </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>-rw-r--r--. 1 ucloud users 6.6M Jun 19 10:25 results/STAR_output/TI_align_contigs_1_2/TI_1_1Aligned.sortedByCoord.out.bam
+-rw-r--r--. 1 ucloud users 6.0M Jun 19 10:25 results/STAR_output/TI_align_contigs_1_2/TI_1_2Aligned.sortedByCoord.out.bam
+-rw-r--r--. 1 ucloud users 7.1M Jun 19 10:25 results/STAR_output/TI_align_contigs_1_2/TI_1_3Aligned.sortedByCoord.out.bam
+-rw-r--r--. 1 ucloud users 9.6M Jun 19 10:26 results/STAR_output/TI_align_contigs_1_2/TI_2_1Aligned.sortedByCoord.out.bam
+-rw-r--r--. 1 ucloud users 7.2M Jun 19 10:26 results/STAR_output/TI_align_contigs_1_2/TI_2_2Aligned.sortedByCoord.out.bam
+-rw-r--r--. 1 ucloud users 8.2M Jun 19 10:26 results/STAR_output/TI_align_contigs_1_2/TI_2_3Aligned.sortedByCoord.out.bam</code></pre>
+</div>
+</div>
+<p>Apply <code>samtools merge</code></p>
+<div id="07296157-f886-494a-97cc-6b65329c0a82" class="cell" data-tags="[]" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>mkdir <span class="op">-</span>p results<span class="op">/</span>STAR_output<span class="op">/</span>TI_align_contigs_1_2_merge<span class="op">/</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>samtools merge <span class="op">-</span>f results<span class="op">/</span>STAR_output<span class="op">/</span>TI_align_contigs_1_2_merge<span class="op">/</span>TI.<span class="bu">sorted</span>.bam results<span class="op">/</span>STAR_output<span class="op">/</span>TI_align_contigs_1_2<span class="op">/</span>TI_<span class="op">*</span>.sortedByCoord.out.bam </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="55384ddb-d3c7-4fac-bfea-f9cc430c3475" class="cell" data-tags="[]" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>mkdir <span class="op">-</span>p results<span class="op">/</span>STAR_output<span class="op">/</span>S10_align_contigs_1_2_merge<span class="op">/</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>samtools merge <span class="op">-</span>f results<span class="op">/</span>STAR_output<span class="op">/</span>S10_align_contigs_1_2_merge<span class="op">/</span>S10.<span class="bu">sorted</span>.bam results<span class="op">/</span>STAR_output<span class="op">/</span>S10_align_contigs_1_2<span class="op">/</span>S10_<span class="op">*</span>.sortedByCoord.out.bam </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Index both merging outputs. A file in format <code>bam.bai</code> will appear in their respective folders.</p>
+<div id="f987b7a4-fd16-43be-b475-6855322049b9" class="cell" data-tags="[]" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>samtools index results<span class="op">/</span>STAR_output<span class="op">/</span>S10_align_contigs_1_2_merge<span class="op">/</span>S10.<span class="bu">sorted</span>.bam</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="d8966008-bcd8-4fdd-87db-683b8a9b5c95" class="cell" data-tags="[]" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>samtools index results<span class="op">/</span>STAR_output<span class="op">/</span>TI_align_contigs_1_2_merge<span class="op">/</span>TI.<span class="bu">sorted</span>.bam</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="wrapping-up" class="level1">
+<h1>Wrapping up 🎉 🎉 🎉</h1>
+<p>In this exercise, you learnt to align various types of data after performing quality control for raw data. We looked at some of the options for the aligners and at how to use some of the basic samtools manipulation programs. The outputs from the RNA alignments will be used for the VCF file analysis in the next notebook, and the RNA alignments will be use for the bulk RNA data analysis.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/hds-sandbox\.github\.io\/NGS_summer_course_Aarhus\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
