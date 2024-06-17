@@ -1,0 +1,17 @@
+{
+    "argv": [
+     "/opt/conda/envs/NGS_aarhus_py/bin/python",
+     "-m",
+     "ipykernel_launcher",
+     "-f",
+     "{connection_file}"
+    ],
+    "display_name": "NGS (python)",
+    "language": "python",
+    "metadata": {
+     "debugger": true
+    },
+    "env": {
+        "PATH": "/opt/conda/envs/NGS_aarhus_py/lib/:/opt/conda/envs/NGS_aarhus_py/bin/:/opt/conda/envs/NGS_aarhus_py/libexec/:$PATH"
+    }
+}
