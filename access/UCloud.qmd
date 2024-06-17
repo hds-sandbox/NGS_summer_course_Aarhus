@@ -31,7 +31,7 @@ If you are participating in the NGS Summer Course 2024 in Aarhus, click **AFTER 
 &nbsp; 
 
 <p align="center">
-  <a href="https://cloud.sdu.dk/app/projects/invite/48779752-3cd2-41f7-b497-fc465d24990b" style="background-color: #4266A1; color: #FFFFFF; padding: 30px 20px; text-decoration: none; border-radius: 5px;">
+  <a href="https://cloud.sdu.dk/app/projects/invite/f11a81aa-9064-4df3-9601-2607c2812f2a" style="background-color: #4266A1; color: #FFFFFF; padding: 30px 20px; text-decoration: none; border-radius: 5px;">
     Invite link
     for the course
   </a>
