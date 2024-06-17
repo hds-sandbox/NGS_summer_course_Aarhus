@@ -26,6 +26,8 @@ website:
         menu:
           - href: access/UCloud.qmd
 #          - href: datasets/synthdata.qmd
+      - href: galaxy/galaxy.qmd
+        text: Galaxy
       - text: Tutorials
         menu:
           - href: nb/align.ipynb
