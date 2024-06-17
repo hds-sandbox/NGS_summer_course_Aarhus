@@ -7,27 +7,35 @@ dependencies:
     - matplotlib<3.7
     - scanpy
     - ipykernel
-    #- jupyterlab
-    #- pydeseq2
-    #- gsl
-    #- python-igraph
-    #- leidenalg
-    #- scvelo
-    #- python-annoy
-    #- multicore-tsne
-    #- pytables
-    #- plotly
-    #- nbformat
-    #- star==2.7.10a
-    #- bcftools
-    #- scikit-allel
-    #- bioconda::fastqc
-    #- multiqc
-    #- qualimap
-    #- minimap2
-    #- samtools
-    #- vcftools
-    #- gffread
+    - pydeseq2
+    - gsl
+    - python-igraph
+    - leidenalg
+    - scvelo
+    - python-annoy
+    - multicore-tsne
+    - pytables
+    - plotly
+    - nbformat
+    - star==2.7.10a
+    - bcftools
+    - scikit-allel
+    - bioconda::fastqc
+    - multiqc
+    - qualimap
+    - minimap2
+    - samtools
+    - vcftools
+    - gffread
+    - bioconductor-edger==3.36
+    - r-base==4.1.2
+    - r-dplyr
+    - r-vcfr
+    - r-formattable
+    - r-venndiagram
+    - r-irkernel
+    - r-pheatmap
+    - bioconductor-mixomics
     - pip
     - pip:
       - batchglm==0.7.4

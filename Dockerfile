@@ -9,11 +9,6 @@ LABEL software="GenomicsCourses" \
       license="MIT" \
       description="Introduction to NGS data analysis using GenomeDK"
 
-
-#USER 0
-
-#RUN sudo mkdir -p /usr/Material 
-
 # Arguments for the new UID and GID
 ARG USER_UID=6835
 ARG USER_GID=6835
@@ -44,13 +39,21 @@ RUN sudo apt-get update \
  && pip install --no-input --no-cache-dir pip install jupyter-dash \
  && conda clean -y -a
 
- # Expose the default JupyterLab port
+ # Expose JupyterLab port
 EXPOSE 8888
-COPY ./scripts/courseMaterial.sh /home/jovian/
-COPY ./kernels/kernel_py_docker.json /home/jovian/
-COPY ./kernels/kernel_R_docker.json /home/jovian/
 
-#ENTRYPOINT ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--no-browser"]
+###### DOCKER ONLY ######
+# Copy scripts for the course. Those are visible only using docker but not singularity
+# For singularity the download is needed with homepage instructions.
+COPY ./kernels/kernel_py_docker.json /tmp/
+COPY ./kernels/kernel_R_docker.json /tmp/
 
+RUN /opt/conda/envs/NGS_aarhus_py/bin/python -m ipykernel install --user --name="NGS_python" --display-name "NGS (python)" \
+ && /opt/conda/envs/NGS_aarhus_py/bin/R -e "IRkernel::installspec(user=TRUE, name = 'NGS_R', displayname = 'NGS (R)')" \
+ && cp /tmp/kernel_py_docker.json /home/jovyan/.local/share/jupyter/kernels/ngs_python/kernel.json \
+ && cp /tmp/kernel_R_docker.json  /home/jovyan/.local/share/jupyter/kernels/ngs_r/kernel.json 
+###### ----------- ######
+
+ENTRYPOINT ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--no-browser"]
 
 USER jovyan
