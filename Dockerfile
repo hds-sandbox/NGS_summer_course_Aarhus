@@ -7,7 +7,7 @@ LABEL software="GenomicsCourses" \
       author="Samuele Soraggi" \
       version="v2024.07" \
       license="MIT" \
-      description="Introduction to NGS data analysis using GenomeDK"
+      description="Introduction to NGS data analysis using GenomeDK or a Linux cluster"
 
 # Arguments for the new UID and GID
 ARG USER_UID=6835
