@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2022-01-01">
 
-<title>Introduction to NGS data analysis</title>
+<title>Introduction to NGS data analysis - Accessing the NGS summer school on a computing cluster</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,24 +23,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -172,7 +171,7 @@ gtag('config', 'G-EXW13D5861', { 'anonymize_ip': true});
 </script>
 
 
-<meta property="og:title" content="Introduction to NGS data analysis">
+<meta property="og:title" content="Introduction to NGS data analysis - Accessing the NGS summer school on a computing cluster">
 <meta property="og:site_name" content="Introduction to NGS data analysis">
 <meta property="og:locale" content="en_US">
 </head>
@@ -184,10 +183,10 @@ gtag('config', 'G-EXW13D5861', { 'anonymize_ip': true});
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./images/NGSlogo.png" alt="" class="navbar-logo">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/NGSlogo.png" alt="" class="navbar-logo">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Introduction to NGS data analysis</span>
     </a>
   </div>
@@ -198,11 +197,11 @@ gtag('config', 'G-EXW13D5861', { 'anonymize_ip': true});
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./slides.html" aria-current="page"> 
+    <a class="nav-link" href="../slides.html"> 
 <span class="menu-text">Slides</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -211,17 +210,17 @@ gtag('config', 'G-EXW13D5861', { 'anonymize_ip': true});
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-access">    
         <li>
-    <a class="dropdown-item" href="./access/UCloud.html">
+    <a class="dropdown-item" href="../access/UCloud.html">
  <span class="dropdown-text">UCloud</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./access/genomedk.html">
+    <a class="dropdown-item" href="../access/genomedk.html">
  <span class="dropdown-text">GenomeDK</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./galaxy/galaxy.html"> 
+    <a class="nav-link" href="../galaxy/galaxy.html"> 
 <span class="menu-text">Galaxy</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -230,19 +229,19 @@ gtag('config', 'G-EXW13D5861', { 'anonymize_ip': true});
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-tutorials">    
         <li>
-    <a class="dropdown-item" href="./nb/align.html">
+    <a class="dropdown-item" href="../nb/align.html">
  <span class="dropdown-text">Alignment</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./nb/vcf.html">
+    <a class="dropdown-item" href="../nb/vcf.html">
  <span class="dropdown-text">Variant analysis</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./nb/bulk.html">
+    <a class="dropdown-item" href="../nb/bulk.html">
  <span class="dropdown-text">bulkRNA analysis</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./nb/scrna.html">
+    <a class="dropdown-item" href="../nb/scrna.html">
  <span class="dropdown-text">scRNA analysis</span></a>
   </li>  
     </ul>
@@ -263,35 +262,26 @@ gtag('config', 'G-EXW13D5861', { 'anonymize_ip': true});
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    </div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
+<h1 class="title">Accessing the NGS summer school on a computing cluster</h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page">
+<div class="quarto-title-meta">
 
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">January 1, 2022</p>
-    </div>
-  </div>
   
-    <div>
-    <div class="quarto-title-meta-heading">Modified</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date-modified">June 19, 2024</p>
-    </div>
-  </div>
     
   </div>
   
@@ -300,70 +290,8 @@ gtag('config', 'G-EXW13D5861', { 'anonymize_ip': true});
 </header>
 
 
-<section id="course-slides" class="level1 centered">
-<h1 class="centered">Course slides</h1>
-<section id="course-material-2022" class="level2">
-<h2 class="anchored" data-anchor-id="course-material-2022">Course material 2022</h2>
-<p>Here you find a table with the instructor’s slides from 2022.</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Topic</th>
-<th>Slide</th>
-<th>Notebook</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Sequencing technologies</td>
-<td><a href="https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/01_sequencing_technologies.pdf">link</a></td>
-<td>–</td>
-</tr>
-<tr class="even">
-<td>Mapping to reference</td>
-<td><a href="https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/02_mapping_to_reference.pdf">link</a></td>
-<td><a href="https://hds-sandbox.github.io/NGS_summer_course_Aarhus/nb/align.html">Notebook</a></td>
-</tr>
-<tr class="odd">
-<td>Data visualization</td>
-<td><a href="https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/03_data_visualization.pdf">link</a></td>
-<td>–</td>
-</tr>
-<tr class="even">
-<td>SNPs and structural variants</td>
-<td><a href="https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/04_snp_and_structural_variants.pdf">link</a></td>
-<td><a href="https://hds-sandbox.github.io/NGS_summer_course_Aarhus/nb/vcf.html">Notebook</a></td>
-</tr>
-<tr class="odd">
-<td>RNA sequencing</td>
-<td><a href="https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/05_rna_sequencing.pdf">link</a></td>
-<td><a href="https://hds-sandbox.github.io/NGS_summer_course_Aarhus/nb/bulk.html">Notebook</a></td>
-</tr>
-<tr class="even">
-<td>De-novo assembly</td>
-<td><a href="https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/06_de_novo_assembly.pdf">link</a></td>
-<td>–</td>
-</tr>
-<tr class="odd">
-<td>Microbiomes and metagenomics</td>
-<td><a href="https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/07_microbiomes_and_metagenomics.pdf">link</a></td>
-<td>–</td>
-</tr>
-<tr class="even">
-<td>Single cell RNA sequencing</td>
-<td><a href="https://github.com/hds-sandbox/NGS_summer_course_Aarhus/blob/42d3a6cad8e64b47dac01bc2995927fa4c39333d/Slides/08_single_cell_day.pdf">link</a></td>
-<td><a href="https://hds-sandbox.github.io/NGS_summer_course_Aarhus/nb/scrna.html">Notebook</a></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="course-material-2024" class="level2">
-<h2 class="anchored" data-anchor-id="course-material-2024">Course material 2024</h2>
-<p>Here you find a table with the instructor’s slides and a link to the compiled notebooks, that you can also run on your own following the <code>instructions</code> in this webpage. Data alignment can also be performed on the <code>Galaxy</code> interactive webpage (see the <code>galaxy exercise</code> in this webpage).</p>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
