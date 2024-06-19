@@ -21,9 +21,11 @@ ssh USERNAME@login.genome.au.dk
 
 :::{.callout-warning title="Technical prerequisites"}
 
-- if you do not yet have an account on GenomeDK, please get one. [Click on this link to get to the account request.](https://console.genome.au.dk/user-requests/create/)
+- if you do not yet have an account on GenomeDK, please get one [Click on this link to get to the account request.](https://console.genome.au.dk/user-requests/create/) and follow the instructions for the 2-factor authentication.
 
 - you need to have (or be part of) an active project on GenomeDK. This ensures you can get some computing resources to run the course material. [Follow these instructions to request a project.](https://genome.au.dk/docs/projects-and-accounting/#requesting-a-project).
+
+- In Windows and the Powershell command line, commands might need `.exe` at the end, such as `ssh.exe` instead of `ssh`. Newer versions of Windows do not require that, though.
 
 :::
 
