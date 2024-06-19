@@ -25,6 +25,9 @@ website:
       - text: Access
         menu:
           - href: access/UCloud.qmd
+            text: UCloud
+          - href: access/genomedk.qmd
+            text: GenomeDK
 #          - href: datasets/synthdata.qmd
       - href: galaxy/galaxy.qmd
         text: Galaxy

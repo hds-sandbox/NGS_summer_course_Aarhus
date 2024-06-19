@@ -1,0 +1,11 @@
+---
+layout: webpage
+title: Accessing the NGS summer school on a computing cluster
+parent: Access
+has_children: false
+nav_order: 2
+hide:
+  - footer
+  - toc
+---
+

@@ -1,6 +1,6 @@
 ---
 layout: webpage
-title: UCloud
+title: Accessing the NGS summer school on UCloud
 parent: Access
 has_children: false
 nav_order: 2
@@ -8,8 +8,6 @@ hide:
   - footer
   - toc
 ---
-
-# Accessing the NGS summer school on UCloud
 
 **1.** User accounts on UCloud are enabled by university login credentials using WAYF (Where Are You From). Access the WAYF login portal with the button below [here](https://cloud.sdu.dk/), and then find your affiliated university or institution using the search bar. 
 
