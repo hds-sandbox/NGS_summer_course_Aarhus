@@ -20,6 +20,36 @@ else
     echo "========================================================"
 fi
 
+DIR="./Notebooks"
+
+if [ ! -d $Notebooks ]; then
+    echo "========================================================"
+    echo "Copying Notebooks from github"
+    echo "========================================================"
+    git clone --depth 1 -b main https://github.com/hds-sandbox/NGS_summer_course_Aarhus.git  /tmp/courseData
+    mv /tmp/courseData/Notebooks/ .
+    rm -rf /tmp/courseData
+else
+    echo "========================================================"
+    echo "Notebooks folder already exists, no need to download it"
+    echo "========================================================"
+fi
+
+DIR="./Scripts"
+
+if [ ! -d $Scripts ]; then
+    echo "========================================================"
+    echo "Copying Scripts from github"
+    echo "========================================================"
+    git clone --depth 1 -b main https://github.com/hds-sandbox/NGS_summer_course_Aarhus.git  /tmp/courseData
+    mv /tmp/courseData/Scripts/ .
+    rm -rf /tmp/courseData
+else
+    echo "========================================================"
+    echo "Scripts folder already exists, no need to download it"
+    echo "========================================================"
+fi
+
 echo "Activating kernels..."
 /opt/conda/envs/NGS_aarhus_py/bin/python -m ipykernel install --user --name="NGS_python" --display-name "NGS (python)"
 /opt/conda/envs/NGS_aarhus_py/bin/R -e "IRkernel::installspec(user=TRUE, name = 'NGS_R', displayname = 'NGS (R)')"
