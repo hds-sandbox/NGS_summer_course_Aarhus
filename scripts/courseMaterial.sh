@@ -22,7 +22,7 @@ fi
 
 DIR="./Notebooks"
 
-if [ ! -d $Notebooks ]; then
+if [ ! -d $DIR ]; then
     echo "========================================================"
     echo "Copying Notebooks from github"
     echo "========================================================"
@@ -37,7 +37,7 @@ fi
 
 DIR="./Scripts"
 
-if [ ! -d $Scripts ]; then
+if [ ! -d $DIR ]; then
     echo "========================================================"
     echo "Copying Scripts from github"
     echo "========================================================"
