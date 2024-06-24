@@ -37,7 +37,21 @@ cd MYPROJECT/ngsSummerSchool
 
 ```
 
-**3.** Use `singularity` to download the container of the course. This will take some time, and at the end a file called `course.sif` is created into the folder.
+:::{.callout-warning title="NGS summer school 2024"}
+
+Get instead into the folder for the course:
+
+```{.bash}
+
+cd NGS_summer_school/USERNAME
+
+```
+
+where you substitute `USERNAME` with your own user id.
+
+:::
+
+**3.** Use `singularity` to download the container of the course. This will take some time and show a lot of text, and at the end a file called `course.sif` is created into the folder.
 
 ```{.bash}
 
@@ -45,21 +59,7 @@ singularity pull course.sif docker://hdssandbox/ngssummerschool:2024.07
 
 ```
 
-**4.** Now we need to run a configuration script, which will setup jupyterlab so that the packages are detected correctly. This is downloaded from the internet and runs immediately, downloading also the necessary data. If a folder called `Data` exists, it will not download the data again (also meaning that you can use our container with your own data folder for your own analysis in future)
-
-```{.bash}
-
-wget -qO-  https://raw.githubusercontent.com/hds-sandbox/NGS_summer_course_Aarhus/docker/scripts/courseMaterial.sh | bash
-
-```
-
-:::{.callout-warning}
-
-You need to create the file `course.dif` only once. Next time, you only need the configuration script.
-
-:::
-
-**5.** Now it's time to get a few resources to run all the material. We suggest one CPU and 32GB of RAM for the first three modules, and 2 CPUs and 64GB of RAM for the single-cell analysis. For the first configuration suggested, you get resources using 
+**4.** Now it's time to get a few resources to run all the material. We suggest one CPU and 32GB of RAM for the first three modules, and 2 CPUs and 64GB of RAM for the single-cell analysis. For the first configuration suggested, you get resources using 
 
 ```{.bash}
 
@@ -75,12 +75,12 @@ Note you need your project name, and you can also choose for how long you want t
 
 :::
 
-**6.** Once resources are assigned, note down the node name. This is on the left side of the command line: for example, in the figure below, the node is `s21n33`
+**5.** Once resources are assigned, note down the node name. This is on the left side of the command line: for example, in the figure below, the node is `s21n33`
 
 ![](../images/genomedkNode.png){fig-align="center" width="400px"}
 
 
-**7.**  execute the container with 
+**6.**  execute the container with 
 
 ```{.bash}
 singularity exec course.sif /bin/bash
@@ -88,8 +88,21 @@ singularity exec course.sif /bin/bash
 
 Note that the command line shows now `Apptainer>` on its left. We are *inside* the container and the tools we need are now available into it.
 
+**7.** Now we need to run a configuration script, which will setup jupyterlab so that the packages are detected correctly. This is downloaded from the internet and runs immediately, downloading also the necessary data. If a folder called `Data` exists, it will not download the data again (also meaning that you can use our container with your own data folder for your own analysis in future)
 
-**7.** We are ready to go. Activate the environment and start jupyterLab with the following:
+```{.bash}
+
+wget -qO-  https://raw.githubusercontent.com/hds-sandbox/NGS_summer_course_Aarhus/docker/scripts/courseMaterial.sh | bash
+
+```
+
+:::{.callout-warning}
+
+You need to create the file `course.dif` only once. Next time, you only need the configuration script.
+
+:::
+
+**8.** We are ready to go. Activate the environment and start jupyterLab with the following:
 
 ```{.bash}
 conda activate /opt/conda/envs/NGS_aarhus_py
@@ -100,16 +113,16 @@ you will see a lot of messages, which is normal. You need also to create a tunne
 
 ```{.bash}
 
-ssh -L6835:NODENAME:6835 samuele@login.genome.au.dk
+ssh -L6835:NODENAME:6835 USERNAME@login.genome.au.dk
 
 ```
 
-where you substitute `NODENAME` with the correct depiction.
+where you substitute `NODENAME` with the correct depiction,and USERNAME with your own user id.
 
-**8.** Open your browser and go to the address [http://127.0.0.1:6835/lab](http://127.0.0.1:6835/lab). Jupyterlab opens
+**9.** Open your browser and go to the address [http://127.0.0.1:6835/lab](http://127.0.0.1:6835/lab). Jupyterlab opens
 
 
-**9.** Now you are ready to use JupyterLab for coding. Use the file browser (on the left-side) to find the folder `Notebooks`. Select one of the four tutorials of the course. You will see that the notebook opens on the right-side pane. Read the text of the tutorial and execute each code cell starting from the first. You will see results showing up directly on the notebook!
+**10.** Now you are ready to use JupyterLab for coding. Use the file browser (on the left-side) to find the folder `Notebooks`. Select one of the four tutorials of the course. You will see that the notebook opens on the right-side pane. Read the text of the tutorial and execute each code cell starting from the first. You will see results showing up directly on the notebook!
 
 ![](../images/startNotebook.gif)
 
@@ -119,7 +132,7 @@ Right click on a notebook or a saved results file, and use the download option t
 
 :::
 
-**10.** At the end of your session, it is a good idea to empty the cache of `singularity`. This will fill up your home folder very quickly (size limit is 100GB). Simply run these two commands:
+**11.** At the end of your session, it is a good idea to empty the cache of `singularity`. This will fill up your home folder very quickly (size limit is 100GB). Simply run these two commands:
 
 ```{.bash}
 
@@ -131,12 +144,6 @@ rm -rf ~/.singularity/cache/*
 ### Recovering the material from your previous session
 
 Everything is saved in the folder you are working in. Next time, follow the whole procedure again - the download script will only link the packages to jupyterlab and avoid downloading new data, notebooks and scripts, because the folders will be detected as existing!
-
-
-
- 
-
-
 
 
 
