@@ -359,26 +359,26 @@ Technical prerequisites
 <p><strong>2.</strong> Get into a folder inside your project, for example</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> MYPROJECT/ngsSummerSchool</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>3.</strong> Use <code>singularity</code> to download the container of the course. This will take some time, and at the end a file called <code>course.sif</code> is created into the folder.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">singularity</span> pull course.sif docker://hdssandbox/ngssummerschool:2024.07</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>4.</strong> Now we need to run a configuration script, which will setup jupyterlab so that the packages are detected correctly. This is downloaded from the internet and runs immediately, downloading also the necessary data. If a folder called <code>Data</code> exists, it will not download the data again (also meaning that you can use our container with your own data folder for your own analysis in future)</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-qO-</span>  https://raw.githubusercontent.com/hds-sandbox/NGS_summer_course_Aarhus/docker/scripts/courseMaterial.sh <span class="kw">|</span> <span class="fu">bash</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout callout-style-default callout-warning callout-titled" title="NGS summer school 2024">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Warning
+NGS summer school 2024
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>You need to create the file <code>course.dif</code> only once. Next time, you only need the configuration script.</p>
+<p>Get instead into the folder for the course:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> NGS_summer_school/USERNAME</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>where you substitute <code>USERNAME</code> with your own user id.</p>
 </div>
 </div>
-<p><strong>5.</strong> Now it’s time to get a few resources to run all the material. We suggest one CPU and 32GB of RAM for the first three modules, and 2 CPUs and 64GB of RAM for the single-cell analysis. For the first configuration suggested, you get resources using</p>
+<p><strong>3.</strong> Use <code>singularity</code> to download the container of the course. This will take some time and show a lot of text, and at the end a file called <code>course.sif</code> is created into the folder.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">singularity</span> pull course.sif docker://hdssandbox/ngssummerschool:2024.07</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>4.</strong> Now it’s time to get a few resources to run all the material. We suggest one CPU and 32GB of RAM for the first three modules, and 2 CPUs and 64GB of RAM for the single-cell analysis. For the first configuration suggested, you get resources using</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">srun</span> <span class="at">--mem</span><span class="op">=</span>32g <span class="at">--cores</span><span class="op">=</span>1 <span class="at">--time</span><span class="op">=</span>8:0:0  <span class="at">--account</span><span class="op">=</span>MYPROJECT <span class="at">--pty</span> /bin/bash</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>and very similarly for the second configuration, when you want instead to work on the single cell analysis.</p>
@@ -395,24 +395,40 @@ Warning
 <p>Note you need your project name, and you can also choose for how long you want the resources to be available to you. <strong>Asking for resources means waiting for some time in a queue before they are assigned.</strong></p>
 </div>
 </div>
-<p><strong>6.</strong> Once resources are assigned, note down the node name. This is on the left side of the command line: for example, in the figure below, the node is <code>s21n33</code></p>
+<p><strong>5.</strong> Once resources are assigned, note down the node name. This is on the left side of the command line: for example, in the figure below, the node is <code>s21n33</code></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../images/genomedkNode.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
 </figure>
 </div>
-<p><strong>7.</strong> execute the container with</p>
+<p><strong>6.</strong> execute the container with</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">singularity</span> exec course.sif /bin/bash</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Note that the command line shows now <code>Apptainer&gt;</code> on its left. We are <em>inside</em> the container and the tools we need are now available into it.</p>
-<p><strong>7.</strong> We are ready to go. Activate the environment and start jupyterLab with the following:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /opt/conda/envs/NGS_aarhus_py</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter-lab</span> <span class="at">--no-browser</span> <span class="at">--port</span><span class="op">=</span><span class="va">$UID</span> <span class="at">--ip</span><span class="op">=</span>0.0.0.0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>7.</strong> Now we need to run a configuration script, which will setup jupyterlab so that the packages are detected correctly. This is downloaded from the internet and runs immediately, downloading also the necessary data. If a folder called <code>Data</code> exists, it will not download the data again (also meaning that you can use our container with your own data folder for your own analysis in future)</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-qO-</span>  https://raw.githubusercontent.com/hds-sandbox/NGS_summer_course_Aarhus/docker/scripts/courseMaterial.sh <span class="kw">|</span> <span class="fu">bash</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You need to create the file <code>course.dif</code> only once. Next time, you only need the configuration script.</p>
+</div>
+</div>
+<p><strong>8.</strong> We are ready to go. Activate the environment and start jupyterLab with the following:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /opt/conda/envs/NGS_aarhus_py</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter-lab</span> <span class="at">--no-browser</span> <span class="at">--port</span><span class="op">=</span><span class="va">$UID</span> <span class="at">--ip</span><span class="op">=</span>0.0.0.0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>you will see a lot of messages, which is normal. You need also to create a tunnel between your computer and genomeDK to be able to see jupyterlab in your browser. Now you need to use the node name you wrote down before! <strong>Open a new terminal window</strong> and write</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> <span class="at">-L6835:NODENAME:6835</span> samuele@login.genome.au.dk</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>where you substitute <code>NODENAME</code> with the correct depiction.</p>
-<p><strong>8.</strong> Open your browser and go to the address <a href="http://127.0.0.1:6835/lab">http://127.0.0.1:6835/lab</a>. Jupyterlab opens</p>
-<p><strong>9.</strong> Now you are ready to use JupyterLab for coding. Use the file browser (on the left-side) to find the folder <code>Notebooks</code>. Select one of the four tutorials of the course. You will see that the notebook opens on the right-side pane. Read the text of the tutorial and execute each code cell starting from the first. You will see results showing up directly on the notebook!</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> <span class="at">-L6835:NODENAME:6835</span> USERNAME@login.genome.au.dk</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>where you substitute <code>NODENAME</code> with the correct depiction,and USERNAME with your own user id.</p>
+<p><strong>9.</strong> Open your browser and go to the address <a href="http://127.0.0.1:6835/lab">http://127.0.0.1:6835/lab</a>. Jupyterlab opens</p>
+<p><strong>10.</strong> Now you are ready to use JupyterLab for coding. Use the file browser (on the left-side) to find the folder <code>Notebooks</code>. Select one of the four tutorials of the course. You will see that the notebook opens on the right-side pane. Read the text of the tutorial and execute each code cell starting from the first. You will see results showing up directly on the notebook!</p>
 <p><img src="../images/startNotebook.gif" class="img-fluid"></p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -427,10 +443,10 @@ Tip
 <p>Right click on a notebook or a saved results file, and use the download option to save it locally on your computer.</p>
 </div>
 </div>
-<p><strong>10.</strong> At the end of your session, it is a good idea to empty the cache of <code>singularity</code>. This will fill up your home folder very quickly (size limit is 100GB). Simply run these two commands:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> /home/samuele/.apptainer/cache/<span class="pp">*</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> ~/.singularity/cache/<span class="pp">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>11.</strong> At the end of your session, it is a good idea to empty the cache of <code>singularity</code>. This will fill up your home folder very quickly (size limit is 100GB). Simply run these two commands:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> /home/samuele/.apptainer/cache/<span class="pp">*</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> ~/.singularity/cache/<span class="pp">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="recovering-the-material-from-your-previous-session" class="level3">
 <h3 class="anchored" data-anchor-id="recovering-the-material-from-your-previous-session">Recovering the material from your previous session</h3>
 <p>Everything is saved in the folder you are working in. Next time, follow the whole procedure again - the download script will only link the packages to jupyterlab and avoid downloading new data, notebooks and scripts, because the folders will be detected as existing!</p>
