@@ -5,7 +5,7 @@ channels:
 dependencies:
     - pandas<2
     - matplotlib<3.7
-    - scanpy
+    - scanpy>=1.8.2
     - ipykernel
     - pydeseq2
     - gsl
@@ -36,7 +36,12 @@ dependencies:
     - r-irkernel
     - r-pheatmap
     - bioconductor-mixomics
+    - gtk4
+    - pyperclip
     - pip
     - pip:
       - batchglm==0.7.4
-      - bbknn==1.5.1
+      - git+https://github.com/Teichlab/bbknn.git@95ce34b8905cbde307704a77436c354938ba0367
+      - robustbase
+      - scrublet
+      - doubletdetection

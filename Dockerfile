@@ -21,7 +21,7 @@ RUN groupmod -g $USER_GID users && \
 COPY ./environment.yml /tmp/
 
 RUN sudo apt-get update \
- && sudo apt-get install --no-install-recommends -y build-essential libjpeg9 libcurl4-openssl-dev libxml2-dev libssl-dev libicu-dev \
+ && sudo apt-get install --no-install-recommends -y xsel build-essential libjpeg9 libcurl4-openssl-dev libxml2-dev libssl-dev libicu-dev \
  && sudo apt-get clean \
  && eval "$(conda shell.bash hook)" \
  && conda config --set channel_priority flexible \
@@ -37,6 +37,7 @@ RUN sudo apt-get update \
  && pip install --no-input --no-cache-dir plotly \
  && pip install --no-input --no-cache-dir ipywidgets \
  && pip install --no-input --no-cache-dir pip install jupyter-dash \
+ && pip install --no-input --no-cache-dir pip install pyqt4 \
  && conda clean -y -a
 
  # Expose JupyterLab port
