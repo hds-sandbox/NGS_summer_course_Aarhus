@@ -16,23 +16,16 @@ website:
         text: Home
       - href: slides.qmd
         text: Slides
-#      - href: access/index.qmd
-#        text: HPC access
-#      - href: modules/index.qmd
-#        text: Modules
-#      - href: workshop/workshop_april2024.qmd
-#        text: Workshop
       - text: Access
         menu:
           - href: access/UCloud.qmd
             text: UCloud
           - href: access/genomedk.qmd
             text: GenomeDK
-#          - href: datasets/synthdata.qmd
-      - href: galaxy/galaxy.qmd
-        text: Galaxy
       - text: Tutorials
         menu:
+          - href: galaxy/galaxy.qmd
+            text: Alignment with Galaxy
           - href: nb/01_raw_data_alignment.ipynb
             text: Alignment
           - href: nb/02_VCF_variant_calling_analysis.ipynb
@@ -41,13 +34,6 @@ website:
             text: bulkRNA analysis
           - href: nb/04_scRNAseq_analysis.ipynb
             text: scRNA analysis
-#          - href: datasets/synthdata.qmd
-
-#      - href: about/about.qmd
-#        text: About
-#      - href: contact/contact.qmd
-#        text: Contact
-
     right: 
       - icon: github
         href: https://github.com/hds-sandbox
