@@ -44,3 +44,4 @@ vignettes/*.pdf
 _site
 site_libs
 *_files
+.ipynb_checkpoints
