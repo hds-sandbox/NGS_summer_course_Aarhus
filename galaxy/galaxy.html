@@ -220,15 +220,15 @@ gtag('config', 'G-EXW13D5861', { 'anonymize_ip': true});
   </li>  
     </ul>
   </li>
-  <li class="nav-item">
-    <a class="nav-link active" href="../galaxy/galaxy.html" aria-current="page"> 
-<span class="menu-text">Galaxy</span></a>
-  </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-tutorials" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Tutorials</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-tutorials">    
+        <li>
+    <a class="dropdown-item" href="../galaxy/galaxy.html">
+ <span class="dropdown-text">Alignment with Galaxy</span></a>
+  </li>  
         <li>
     <a class="dropdown-item" href="../nb/01_raw_data_alignment.html">
  <span class="dropdown-text">Alignment</span></a>
@@ -304,9 +304,21 @@ gtag('config', 'G-EXW13D5861', { 'anonymize_ip': true});
 <ol type="1">
 <li>Install IGV on your computer from <a href="https://software.broadinstitute.org/software/igv/download">here</a>. This is a genome browser you will use to look at some files.</li>
 <li>Create an account at <a href="https://usegalaxy.org">usegalaxy.org</a> and log into galaxy.</li>
-<li>Find the course data by going to <a href="https://usegalaxy.org/u/samuele.soraggi/h/copy-of-ngs-2023-course">this web address</a> and by clicking on <code>Import this history</code> (top left corner of the page).</li>
+<li>Find the course data by going to <a href="https://usegalaxy.org/u/samuele.soraggi/h/copy-of-ngs-2023-course">this web address</a> and by clicking on <strong>Import this history</strong> (top left corner of the page).</li>
 </ol>
-<p><strong>Note:</strong> If usegalaxy.org has availability problems, you can use the other server <a href="https://usegalaxy.eu/">https://usegalaxy.eu/</a> and get the data at <a href="https://usegalaxy.eu/u/samuele.soraggi/h/ngs2023">this link</a>. You might need to create an account there as well.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If usegalaxy.org has availability problems, you can use the other server <a href="https://usegalaxy.eu/">https://usegalaxy.eu/</a> and get the data at <a href="https://usegalaxy.eu/u/samuele.soraggi/h/ngs2023">this link</a>. You might need to create an account there as well.</p>
+</div>
+</div>
 <section id="data" class="level4">
 <h4 class="anchored" data-anchor-id="data">Data</h4>
 <p>You will be working with two types of sequencing data. The first is <em>PacBio Hifi reads</em>, which are long and accurate. You can find them under Hifi_reads_white_clover.fastq. The second type is <em>Illumina RNA-seq reads</em>, which are short and accurate and should be aligned using <a href="https://youtu.be/XbBS9o-4100">a spliced aligner, such as STAR</a>.</p>
@@ -316,7 +328,7 @@ gtag('config', 'G-EXW13D5861', { 'anonymize_ip': true});
 </section>
 <section id="workflow-illustration" class="level4">
 <h4 class="anchored" data-anchor-id="workflow-illustration">Workflow illustration</h4>
-<p>Through <code>Galaxy</code>, we build a workflow applying tools to the data. We will look at the quality of the raw reads for both PacBio HiFi and Illumina RNA-seq reads. Afterwards, we align to references, using two different tools for the two types of data. Finally, we will look at the alignments on a genome browser. We will work then on a computing cluster through <code>uCloud</code> to analyze the aligned data in some of the upcoming lessons of the course.</p>
+<p>Through <code>Galaxy</code>, we build a workflow applying tools to the data. We will look at the quality of the raw reads for both PacBio HiFi and Illumina RNA-seq reads. Afterwards, we align to references, using two different tools for the two types of data. Finally, we will look at the alignments on a genome browser. We will work then on a computing cluster to analyze the aligned data in some of the upcoming lessons of the course. The computing cluster is necessary because the analysis requires more resources than the ones offered for free by Galaxy.</p>
 <p><img src="./images/scheme_exercise.png" class="img-fluid"></p>
 </section>
 </section>
@@ -390,7 +402,19 @@ Questions:
 <p><strong>11</strong> Use <code>MultiQC</code> to see the quality of the output. The alignment of <code>STAR</code> produces log files which can be used for quality reports. Go on <code>Genomic File Manipulation --&gt; MultiQC</code>. In the options select the tool <code>STAR</code>. Then <code>Insert STAR output</code>, as type of output the <code>Log</code>, and choose the two logs listing collections of <code>STAR</code> alignments. Then click on <code>Run Tool</code>.</p>
 <p><img src="./images/starMultiQC.png" class="img-fluid"></p>
 <p>View the report to see the alignment statistics.</p>
-<p><strong>Final note:</strong> `Galaxy can also be used to create an automatic workflow that will map the data. This workflow can be useful when running multiple samples. You can generate a workflow from the analysis already completed in a history, by going to Settings → Extract workflow. You can also create a workflow from scratch using the Workflow editor.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>`Galaxy can also be used to create an automatic workflow that will map the data. This workflow can be useful when running multiple samples. You can generate a workflow from the analysis already completed in a history, by going to Settings → Extract workflow. You can also create a workflow from scratch using the Workflow editor.</p>
+</div>
+</div>
 
 
 </section>
