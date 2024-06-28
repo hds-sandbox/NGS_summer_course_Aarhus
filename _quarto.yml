@@ -33,13 +33,13 @@ website:
         text: Galaxy
       - text: Tutorials
         menu:
-          - href: nb/align.ipynb
+          - href: nb/01_raw_data_alignment.ipynb
             text: Alignment
-          - href: nb/vcf.ipynb
+          - href: nb/02_VCF_variant_calling_analysis.ipynb
             text: Variant analysis
-          - href: nb/bulk.ipynb
+          - href: nb/03_bulk_RNA_analysis.ipynb
             text: bulkRNA analysis
-          - href: nb/scrna.html
+          - href: nb/04_scRNAseq_analysis.ipynb
             text: scRNA analysis
 #          - href: datasets/synthdata.qmd
 
