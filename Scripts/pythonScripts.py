@@ -3,7 +3,7 @@
 
 import allel
 import numpy as np
-from robustbase import mad
+from robustbase.stats import mad
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import scale
 import scanpy as sc
@@ -12,6 +12,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from IPython.display import HTML, display
 from IPython.core.magic import register_cell_magic
+import scipy
 
 def set_background(color):    
     script = (
@@ -136,6 +137,18 @@ def rename_clusters(names_dict, names_obs):
     clusters = pd.Categorical(split_array)
     return clusters
 
+###function to rename clusters from scores in an objective way
+def clustersByScores(adata, markers_scores, leidenClusters):
+    clusters = pd.Categorical(leidenClusters)
+    scoresTable = adata.obs[markers_scores]
+    clusterUnique = np.unique(leidenClusters)
+    newNames = pd.Series(index=leidenClusters)
+    for CLST in clusterUnique:
+        meanScores = np.mean( scoresTable.loc[leidenClusters==CLST,:], 0)
+        newId = meanScores.index[ np.argmax(meanScores) ].split('_')[0]
+        newNames[CLST] = newId
+    return(pd.Categorical(newNames))
+
 ###function to plot variant density in VCF file analysis
 def plot_variant_density(variants, window_size, title=None):
     
@@ -196,7 +209,6 @@ def pseudobulk_matrix(adata, batch_key, condition_key, cluster_key, Nsamples=10,
                 print(f'--------{CLUST}')
                 #M3 = M2[ M2.obs[cluster_key]==COND, : ].copy()
                 M = adata[(adata.obs[batch_key]==BATCH)&(adata.obs[condition_key]==COND)&(adata.obs[cluster_key]==CLUST)].layers['raw_counts'].copy()
-                M = M.todense()
                 if(M.shape[0]>1):
                     for i in range(Nsamples):
                         integ = np.random.randint(low=0, high=M.shape[0]-1, size=min(Ncells, M.shape[1]))
@@ -218,7 +230,7 @@ def pseudobulk_extract_DEG(pbulk, adata, DE_key='rank_genes_groups'):
         for group in groups for key in ['names', 'pvals','pvals_adj','logfoldchanges']})
     
     #expression matrix from the original data, normalized depths and logarithmized
-    adata.X = adata.layers["raw_counts"].todense().copy()
+    adata.X = adata.layers["raw_counts"].copy()
     sc.pp.normalize_per_cell(adata)
     sc.pp.log1p(adata)
 
@@ -252,3 +264,21 @@ def pseudobulk_volcano(X, logpval_threshold=3, logfold_threshold=2, plot_size=(8
                  size='Crypto_PCT',
                  data_frame=X)
     fig.show()
+
+def array_and_densify(X):
+    try:
+        X = np.asarray(X.todense())
+        print("densified")
+        return(X)
+    except:
+        X = np.asarray(X)
+        print("Only arraying, maybe already dense?")
+        return(X)
+        
+
+def sparsify(X):
+    try:
+        X = scipy.sparse.csr_matrix(np.array(X))
+        print("sparsified")
+    except:
+        print("Nothing done, maybe already sparse?")
