@@ -57,3 +57,8 @@ echo "Activating kernels..."
 echo "Modifying kernels..."
 wget https://raw.githubusercontent.com/hds-sandbox/NGS_summer_course_Aarhus/docker/kernels/kernel_py_docker.json -O $HOME/.local/share/jupyter/kernels/ngs_python/kernel.json
 wget https://raw.githubusercontent.com/hds-sandbox/NGS_summer_course_Aarhus/docker/kernels/kernel_R_docker.json -O $HOME/.local/share/jupyter/kernels/ngs_r/kernel.json
+
+unset XDG_RUNTIME_DIR
+eval "$(conda shell.bash hook)"
+conda activate /opt/conda/envs/NGS_aarhus_py
+jupyter-lab --no-browser --port=$UID --ip=0.0.0.0 --NotebookApp.token='' --NotebookApp.password=''
