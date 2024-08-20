@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>HPC access – Introduction to NGS data analysis</title>
+<title>Course days 2024 - access on GenomeDK – Introduction to NGS data analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -171,7 +205,7 @@ gtag('config', 'G-EXW13D5861', { 'anonymize_ip': true});
 </script>
 
 
-<meta property="og:title" content="HPC access – Introduction to NGS data analysis">
+<meta property="og:title" content="Course days 2024 - access on GenomeDK – Introduction to NGS data analysis">
 <meta property="og:description" content="">
 <meta property="og:site_name" content="Introduction to NGS data analysis">
 <meta property="og:locale" content="en_US">
@@ -267,7 +301,7 @@ gtag('config', 'G-EXW13D5861', { 'anonymize_ip': true});
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
@@ -275,25 +309,25 @@ gtag('config', 'G-EXW13D5861', { 'anonymize_ip': true});
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#ucloud" id="toc-ucloud" class="nav-link active" data-scroll-target="#ucloud">UCloud</a></li>
-  <li><a href="#computerome" id="toc-computerome" class="nav-link" data-scroll-target="#computerome">Computerome</a></li>
-  <li><a href="#genomedk" id="toc-genomedk" class="nav-link" data-scroll-target="#genomedk">GenomeDK</a></li>
-  <li><a href="#any-other-computing-cluster" id="toc-any-other-computing-cluster" class="nav-link" data-scroll-target="#any-other-computing-cluster">Any other computing cluster</a></li>
-  <li><a href="#your-local-pc" id="toc-your-local-pc" class="nav-link" data-scroll-target="#your-local-pc">Your local PC</a></li>
+  <li><a href="#singularity-container" id="toc-singularity-container" class="nav-link active" data-scroll-target="#singularity-container">Singularity container</a>
+  <ul class="collapse">
+  <li><a href="#what-if-my-internet-connection-drops" id="toc-what-if-my-internet-connection-drops" class="nav-link" data-scroll-target="#what-if-my-internet-connection-drops">What if my internet connection drops?</a></li>
+  <li><a href="#recovering-the-material-from-your-previous-session" id="toc-recovering-the-material-from-your-previous-session" class="nav-link" data-scroll-target="#recovering-the-material-from-your-previous-session">Recovering the material from your previous session</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content column-page-left" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">HPC access</h1>
+<h1 class="title">Course days 2024 - access on GenomeDK</h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page-left">
+<div class="quarto-title-meta">
 
     
   
@@ -305,42 +339,116 @@ gtag('config', 'G-EXW13D5861', { 'anonymize_ip': true});
 </header>
 
 
-<p>The Sandbox is collaborating with the two major academic high performance computing platforms in Denmark. Computerome is located at the Technical University of Denmark (and co-owned by the University of Copenhagen) while UCloud is owned by the University of Southern Denmark. These HPC platforms each have their own strengths which we leverage in the Sandbox in different ways.</p>
-<section id="ucloud" class="level2">
-<h2 class="anchored" data-anchor-id="ucloud">UCloud</h2>
-<p><a href="https://cloud.sdu.dk/app/login">UCloud</a> is a relatively new HPC platform that can be accessed by students at Danish universities (via a WAYF university login). It has a user friendly graphical user interface that supports straightforward project, user, and resource management. UCloud provides access to many tools via selectable Apps matched with a range of flexible compute resources, and the Sandbox is deploying training modules in this form such that any UCloud user can easily access Sandbox materials independently. The Sandbox is also hosting workshops and training events on UCloud in conjunction with in-person training.</p>
-<div class="callout callout-style-default callout-tip callout-titled" title="Access Sandbox Apps on UCloud">
+<p>For the course days we are using containers on GenomeDK to execute the analysis. A container includes jupyterlab (interface for coding) and the necessary packages to run all the code. GenomeDK comes with <code>singularity</code>, which can import and execute containers (made with Docker in this case) and is able to ensure full reproducibility of the analysis.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Technical prerequisites">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Access Sandbox Apps on UCloud
+Technical prerequisites
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Find detailed instructions on accessing Sandbox apps <a href="../access/UCloud.html">here</a> via UCloud. Check out UCloud’s extensive user docs <a href="https://docs.cloud.sdu.dk/index.html">here</a>.</p>
+<ul>
+<li><p>if you do not yet have an account on GenomeDK, please get one <a href="https://console.genome.au.dk/user-requests/create/">Click on this link to get to the account request.</a> and follow the instructions for the 2-factor authentication.</p></li>
+<li><p>you need to have (or be part of) an active project on GenomeDK. For this course, you will be already assigned a project folder, so no worries.</p></li>
+<li><p>In Windows and the Powershell command line, commands might need <code>.exe</code> at the end, such as <code>ssh.exe</code> instead of <code>ssh</code>. Newer versions of Windows do not require that, though.</p></li>
+</ul>
+</div>
+</div>
+<section id="singularity-container" class="level2">
+<h2 class="anchored" data-anchor-id="singularity-container">Singularity container</h2>
+<p><strong>1.</strong> Log into the cluster using the command line, and substituting <code>USERNAME</code> with your actual user name:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> USERNAME@login.genome.au.dk</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>and be sure to run those two commands to remove space-filling cache data, which can make everything slower after a few times you run tutorials</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> ~/.apptainer/cache/<span class="pp">*</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> ~/.singularity/cache/<span class="pp">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>2.</strong> Get into a folder inside the course project</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ngssummer2024/<span class="kw">`</span><span class="fu">whoami</span><span class="kw">`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You need to do this step only once!</p>
+</div>
+</div>
+<p><strong>3.</strong> Activate <code>tmux</code>: this will make things run in backround. If you lose your internet connection, the course material will still be up and running when the connection is back on your pc! Use the command</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">tmux</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The command line will change a bit its aspect. Now it’s time to get a few resources to run all the material. We suggest one CPU and 32GB of RAM for the first three modules, and 2 CPUs and 64GB of RAM for the single-cell analysis. For the first configuration suggested, for example, you get resources using</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">srun</span> <span class="at">--mem</span><span class="op">=</span>32g <span class="at">--cores</span><span class="op">=</span>1 <span class="at">--time</span><span class="op">=</span>4:0:0  <span class="at">--account</span><span class="op">=</span>ngssummer2024 <span class="at">--pty</span> /bin/bash</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You can also choose for how long you want the resources to be available to you. <strong>Asking for more resources means waiting for longer time in a queue before they are assigned.</strong></p>
+<p>In the example above <code>time</code> is 4 hours. After this time, whatever you are doing will be closed, so be sure to save your work in progress.</p>
+</div>
+</div>
+<p><strong>4.</strong> execute the container with</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">singularity</span> exec course.sif /bin/bash</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note that the command line shows now <code>Apptainer&gt;</code> on its left. We are <em>inside</em> the container and the tools we need are now available into it.</p>
+<p><strong>5.</strong> Now we need to run a configuration script, which will setup the last details and execute jupyterlab. If a folder called <code>Data</code> exists, it will not be downloaded again (also meaning that you can use our container with your own data folder for your own analysis in future)</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> http.sslVerify false</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-qO-</span>  https://raw.githubusercontent.com/hds-sandbox/NGS_summer_course_Aarhus/docker/scripts/courseMaterial.sh <span class="kw">|</span> <span class="fu">bash</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>6.</strong> You will see a lot of messages, which is normal. At the end of the messages, you are provided two links looking as in the image below. Write down the node name and the user id highlighted in the circles.</p>
+<p><img src="../images/nodeAndUsername.png" class="img-fluid" width="600"></p>
+<p>Wrote down node and ID? Last step is to create a tunnel between your computer and genomeDK to be able to see jupyterlab in your browser. Now you need to <strong>use the node name and the user id</strong> you wrote down before! <strong>Open a new terminal window</strong> on your laptop and write</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> <span class="at">-L</span> USERID:NODENAME:USERID USERNAME@login.genome.au.dk</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>where you substitute <code>USERID</code> and <code>NODENAME</code> as you wrote down before, and then USERNAME is your account name on GenomeDK. For example <code>ssh -L 6835:s21n81:6835 samuele@login.genome.au.dk</code> according to the figure above for a user with name <code>samuele</code>.</p>
+<p><strong>7.</strong> Open your browser and go to the address http://127.0.0.1:USERID/lab, where you need your user id again instead of USERID. For example <code>http://127.0.0.1:6835/lab</code> from the figure above. Jupyterlab opens in your browser.</p>
+<p><strong>8.</strong> Now you are ready to use JupyterLab for coding. Use the file browser (on the left-side) to find the folder <code>Notebooks</code>. Select one of the four tutorials of the course. You will see that the notebook opens on the right-side pane. Read the text of the tutorial and execute each code cell starting from the first. You will see results showing up directly on the notebook!</p>
+<p><img src="../images/startNotebook.gif" class="img-fluid"></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Right click on a notebook or a saved results file, and use the download option to save it locally on your computer.</p>
+</div>
+</div>
+<section id="what-if-my-internet-connection-drops" class="level3">
+<h3 class="anchored" data-anchor-id="what-if-my-internet-connection-drops">What if my internet connection drops?</h3>
+<p>Now worries, <code>tmux</code> kept your material up and running. You only need a new terminal window to run the tunneling</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> <span class="at">-L</span> USERID:NODENAME:USERID USERNAME@login.genome.au.dk</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>as you did before, so you can continue working.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Press the up-arrow key in the terminal to see the last command you used, such as the tunneling command, and press enter to use it again</p>
 </div>
 </div>
 </section>
-<section id="computerome" class="level2">
-<h2 class="anchored" data-anchor-id="computerome">Computerome</h2>
-<p><a href="https://computerome.dk/">Computerome</a> is the home of many sensitive health datasets via collaborations between DTU, KU, Rigshospitalet, and other major health sector players in the Capital Region of Denmark. Computerome has recently launched their secure cloud platform, <a href="https://computerome.dk/solutions/delphi">DELPHI</a>, and in collaboration with the Sandbox has built a <a href="https://computerome.dk/solutions/course-platform">Course Platform</a> on the same backbone such that courses and training can be conducted in the same environment as real research would be performed in the secure cloud. The Sandbox is supporting courses in the Course Platform, but it is also available for independent use by educators at Danish universities. Please see their website for more information on independent use and pricing, and <a href="mailto:nhds_sandbox@sund.ku.dk">contact us</a> if you’d like to collaborate on hosting a course on Computerome. We can help with tool installation, environment testing, and user support (ranging from using the environment to course content if we have Sandbox staff with matching expertise).</p>
-<p>Participants in courses co-hosted by the Sandbox can check <a href="Computerome.qmd">here</a> for access instructions.</p>
-</section>
-<section id="genomedk" class="level2">
-<h2 class="anchored" data-anchor-id="genomedk">GenomeDK</h2>
-<p>In development.</p>
-</section>
-<section id="any-other-computing-cluster" class="level2">
-<h2 class="anchored" data-anchor-id="any-other-computing-cluster">Any other computing cluster</h2>
-<p>In development.</p>
-</section>
-<section id="your-local-pc" class="level2">
-<h2 class="anchored" data-anchor-id="your-local-pc">Your local PC</h2>
-<p>In development.</p>
+<section id="recovering-the-material-from-your-previous-session" class="level3">
+<h3 class="anchored" data-anchor-id="recovering-the-material-from-your-previous-session">Recovering the material from your previous session</h3>
+<p>Do you want to work again on the course material, or recover some analysis? Everything is saved in the folder you were working in. Next time, follow the whole procedure again (without step number <strong>3.</strong>) and you can be up and running the course in no time.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

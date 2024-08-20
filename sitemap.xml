@@ -1,55 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://hds-sandbox.github.io/NGS_summer_course_Aarhus/nb/02_VCF_variant_calling_analysis.html</loc>
-    <lastmod>2024-06-28T12:01:11.410Z</lastmod>
-  </url>
-  <url>
-    <loc>https://hds-sandbox.github.io/NGS_summer_course_Aarhus/nb/01_raw_data_alignment.html</loc>
-    <lastmod>2024-06-28T12:01:11.410Z</lastmod>
-  </url>
-  <url>
-    <loc>https://hds-sandbox.github.io/NGS_summer_course_Aarhus/galaxy/galaxy.html</loc>
-    <lastmod>2024-06-28T12:01:11.330Z</lastmod>
-  </url>
-  <url>
-    <loc>https://hds-sandbox.github.io/NGS_summer_course_Aarhus/about/about.html</loc>
-    <lastmod>2024-06-28T12:01:11.330Z</lastmod>
-  </url>
-  <url>
-    <loc>https://hds-sandbox.github.io/NGS_summer_course_Aarhus/access/UCloud.html</loc>
-    <lastmod>2024-06-28T12:01:11.330Z</lastmod>
-  </url>
-  <url>
-    <loc>https://hds-sandbox.github.io/NGS_summer_course_Aarhus/access/otherHPC.html</loc>
-    <lastmod>2024-06-28T12:01:11.330Z</lastmod>
-  </url>
-  <url>
-    <loc>https://hds-sandbox.github.io/NGS_summer_course_Aarhus/slides.html</loc>
-    <lastmod>2024-06-28T12:01:11.658Z</lastmod>
+    <loc>https://hds-sandbox.github.io/NGS_summer_course_Aarhus/access/index.html</loc>
+    <lastmod>2024-08-20T08:39:14.102Z</lastmod>
   </url>
   <url>
     <loc>https://hds-sandbox.github.io/NGS_summer_course_Aarhus/access/genomedk.html</loc>
-    <lastmod>2024-06-28T12:01:11.330Z</lastmod>
+    <lastmod>2024-08-20T08:39:14.102Z</lastmod>
   </url>
   <url>
-    <loc>https://hds-sandbox.github.io/NGS_summer_course_Aarhus/access/index.html</loc>
-    <lastmod>2024-06-28T12:01:11.330Z</lastmod>
+    <loc>https://hds-sandbox.github.io/NGS_summer_course_Aarhus/access/otherHPC.html</loc>
+    <lastmod>2024-08-20T08:39:14.102Z</lastmod>
   </url>
   <url>
-    <loc>https://hds-sandbox.github.io/NGS_summer_course_Aarhus/index.html</loc>
-    <lastmod>2024-06-28T12:01:11.410Z</lastmod>
+    <loc>https://hds-sandbox.github.io/NGS_summer_course_Aarhus/galaxy/galaxy.html</loc>
+    <lastmod>2024-08-20T08:39:14.102Z</lastmod>
   </url>
   <url>
-    <loc>https://hds-sandbox.github.io/NGS_summer_course_Aarhus/galaxy/images/galaxy.html</loc>
-    <lastmod>2024-06-28T12:01:11.334Z</lastmod>
+    <loc>https://hds-sandbox.github.io/NGS_summer_course_Aarhus/about/about.html</loc>
+    <lastmod>2024-08-20T08:39:14.102Z</lastmod>
   </url>
   <url>
     <loc>https://hds-sandbox.github.io/NGS_summer_course_Aarhus/nb/03_bulk_RNA_analysis.html</loc>
-    <lastmod>2024-06-28T12:01:11.410Z</lastmod>
+    <lastmod>2024-08-20T08:39:14.186Z</lastmod>
+  </url>
+  <url>
+    <loc>https://hds-sandbox.github.io/NGS_summer_course_Aarhus/nb/02_VCF_variant_calling_analysis.html</loc>
+    <lastmod>2024-08-20T08:39:14.186Z</lastmod>
+  </url>
+  <url>
+    <loc>https://hds-sandbox.github.io/NGS_summer_course_Aarhus/nb/01_raw_data_alignment.html</loc>
+    <lastmod>2024-08-20T08:39:14.186Z</lastmod>
   </url>
   <url>
     <loc>https://hds-sandbox.github.io/NGS_summer_course_Aarhus/nb/04_scRNAseq_analysis.html</loc>
-    <lastmod>2024-06-28T12:01:11.630Z</lastmod>
+    <lastmod>2024-08-20T08:39:14.402Z</lastmod>
+  </url>
+  <url>
+    <loc>https://hds-sandbox.github.io/NGS_summer_course_Aarhus/slides.html</loc>
+    <lastmod>2024-08-20T08:39:14.430Z</lastmod>
+  </url>
+  <url>
+    <loc>https://hds-sandbox.github.io/NGS_summer_course_Aarhus/galaxy/images/galaxy.html</loc>
+    <lastmod>2024-08-20T08:39:14.106Z</lastmod>
+  </url>
+  <url>
+    <loc>https://hds-sandbox.github.io/NGS_summer_course_Aarhus/index.html</loc>
+    <lastmod>2024-08-20T08:39:14.186Z</lastmod>
+  </url>
+  <url>
+    <loc>https://hds-sandbox.github.io/NGS_summer_course_Aarhus/access/UCloud.html</loc>
+    <lastmod>2024-08-20T08:39:14.102Z</lastmod>
+  </url>
+  <url>
+    <loc>https://hds-sandbox.github.io/NGS_summer_course_Aarhus/access/ngssummer.html</loc>
+    <lastmod>2024-08-20T08:39:14.102Z</lastmod>
   </url>
 </urlset>
