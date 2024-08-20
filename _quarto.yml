@@ -18,6 +18,8 @@ website:
         text: Slides
       - text: Access
         menu:
+          - href: access/ngssummer.qmd
+            text: Summer School
           - href: access/UCloud.qmd
             text: UCloud
           - href: access/genomedk.qmd
